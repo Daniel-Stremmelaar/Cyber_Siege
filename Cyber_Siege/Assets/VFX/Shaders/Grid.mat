@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Grid
+  m_Shader: {fileID: -6465566751694194690, guid: 74258dc1787d04049a52575290ee6932,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Boolean_4743F0EC: 0
+    m_Colors:
+    - Color_381F8651: {r: 1.5723071, g: 1.5723071, b: 1.5723071, a: 0}
+    - Vector2_CAF6CC33: {r: 10, g: 20, b: 0, a: 0}
