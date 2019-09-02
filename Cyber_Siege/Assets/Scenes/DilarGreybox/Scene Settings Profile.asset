@@ -65,7 +65,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   skyType:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 3
   skyAmbientMode:
     m_OverrideState: 1
     m_Value: 0
@@ -212,6 +212,7 @@ MonoBehaviour:
   - {fileID: 3142172277492726172}
   - {fileID: 7751572025210935388}
   - {fileID: 2436086010520892981}
+  - {fileID: 5581404962582480578}
 --- !u!114 &2436086010520892981
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -277,7 +278,7 @@ MonoBehaviour:
     min: 0
   mipFogFar:
     m_OverrideState: 1
-    m_Value: 1000
+    m_Value: 1010.22
     min: 0
   albedo:
     m_OverrideState: 1
@@ -287,7 +288,7 @@ MonoBehaviour:
     showEyeDropper: 1
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 307.7
+    m_Value: 200
     min: 1
   baseHeight:
     m_OverrideState: 1
@@ -308,6 +309,73 @@ MonoBehaviour:
   enableDistantFog:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &5581404962582480578
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81bcacc415a1f743bfdf703afc52027, type: 3}
+  m_Name: GradientSky
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 1
+    m_Value: 0
+  exposure:
+    m_OverrideState: 1
+    m_Value: 0
+  multiplier:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+  desiredLuxValue:
+    m_OverrideState: 1
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 1
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 1
+    m_Value: 0
+  top:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  middle:
+    m_OverrideState: 1
+    m_Value: {r: 0.25787646, g: 0.4388525, b: 0.5754717, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  bottom:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  gradientDiffusion:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &7751572025210935388
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -324,7 +392,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.02
+    m_Value: 1.66
     min: 0
     max: 4
   stepCount:
@@ -334,7 +402,7 @@ MonoBehaviour:
     max: 32
   radius:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1.37
     min: 0.25
     max: 5
   fullResolution:
@@ -342,7 +410,7 @@ MonoBehaviour:
     m_Value: 1
   maximumRadiusInPixels:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 35
     min: 16
     max: 256
   directLightingStrength:
