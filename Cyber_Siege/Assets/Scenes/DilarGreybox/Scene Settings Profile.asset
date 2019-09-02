@@ -369,7 +369,7 @@ MonoBehaviour:
     showEyeDropper: 1
   bottom:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.12335349, g: 0.20255204, b: 0.26415092, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -388,21 +388,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9008a067f4d626c4d8bc4bc48f04bb89, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.66
+    m_Value: 1.07
     min: 0
     max: 4
   stepCount:
     m_OverrideState: 1
-    m_Value: 6
+    m_Value: 2
     min: 2
     max: 32
   radius:
     m_OverrideState: 1
-    m_Value: 1.37
+    m_Value: 5
     min: 0.25
     max: 5
   fullResolution:
