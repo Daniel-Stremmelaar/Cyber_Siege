@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] float transitionModifier;
     [SerializeField] Animator playerAnimator;
     [SerializeField] float movementSpeedModifier, rotationModifier;
-    [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff;
-    [SerializeField] bool crouching;
+    [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff, sprintBuff;
+    [SerializeField] bool crouching, running;
     [SerializeField] LayerMask interactableMask;
     [SerializeField] string vaultableTag;
     [SerializeField] float vaultDetectionRange;
@@ -37,12 +37,15 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if(currentState != States.Disabled)
         {
-            Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
-            if(vaultables.Length > 0)
+            if (Input.GetButtonDown("Jump"))
             {
-                vaultables[0].GetComponent<Interactable>().Interact(gameObject);
+                Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
+                if (vaultables.Length > 0)
+                {
+                    vaultables[0].GetComponent<Interactable>().Interact(gameObject);
+                }
             }
         }
     }
@@ -52,6 +55,11 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonUp("Crouch"))
             {
+                if (Input.GetButton("Sprint"))
+                {
+                    running = true;
+                    playerAnimator.SetBool("Running", running);
+                }
                 crouching = false;
                 playerAnimator.SetBool("Crouching", crouching);
                 BoxCollider playerCollider = GetComponent<BoxCollider>();
@@ -63,11 +71,32 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonDown("Crouch"))
             {
+                if (running)
+                {
+                    running = false;
+                    playerAnimator.SetBool("Running", running);
+                }
                 crouching = true;
                 playerAnimator.SetBool("Crouching", crouching);
                 BoxCollider playerCollider = GetComponent<BoxCollider>();
                 playerCollider.center = crouchColliderPosition;
                 playerCollider.size = crouchColliderSize;
+            }
+        }
+        if (running)
+        {
+            if (Input.GetButtonUp("Sprint"))
+            {
+                running = false;
+                playerAnimator.SetBool("Running", running);
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("Sprint") && !crouching)
+            {
+                running = true;
+                playerAnimator.SetBool("Running", running);
             }
         }
         Vector3 movementAmount = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -84,6 +113,13 @@ public class Player : MonoBehaviour
                 if (movementAmount.z < 0)
                 {
                     movementAmount *= (1 - (backwardsWalkDebuff / 100));
+                }
+                else
+                {
+                    if(!crouching && running)
+                    {
+                        movementAmount *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
+                    }
                 }
             }
             if (crouching)
@@ -114,12 +150,13 @@ public class Player : MonoBehaviour
     }
     public IEnumerator Vault(Vector3[] vaultPositions)
     {
+        playerAnimator.SetTrigger("Action");
         currentState = States.Disabled;
         GetComponent<Collider>().isTrigger = true;
         GetComponent<Rigidbody>().useGravity = false;
         for(int i = 0; i < vaultPositions.Length; i++)
         {
-            while (Vector3.Distance(transform.position, vaultPositions[i]) > 0)
+            while (Vector3.Distance(transform.position, vaultPositions[i]) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, vaultPositions[i], vaultSpeed * Time.deltaTime);
                 yield return null;
@@ -129,6 +166,7 @@ public class Player : MonoBehaviour
         currentState = States.Normal;
         GetComponent<Collider>().isTrigger = false;
         GetComponent<Rigidbody>().useGravity = true;
+        playerAnimator.SetTrigger("Action");
     }
     public enum States { Normal, Disabled, ActionImpaired}
 }
