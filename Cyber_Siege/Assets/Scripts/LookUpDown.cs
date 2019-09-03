@@ -16,13 +16,15 @@ public class LookUpDown : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         ammoText.text = ammo.ToString() + "/" + ammoCap.ToString();
     }
 	
 	// Update is called once per frame
 	void Update () {
         //rotation look
-        r.x += -Input.GetAxis("Mouse Y") * rotSpeed;
+        r.x += Input.GetAxis("Mouse Y") * rotSpeed;
         r.x = Mathf.Clamp(r.x, -50.0f, 50.0f);
         transform.eulerAngles = (new Vector3(r.x, transform.eulerAngles.y, 0.0f));
 
@@ -48,6 +50,7 @@ public class LookUpDown : MonoBehaviour {
             if(hit.transform.gameObject.tag == "Target")
             {
                 Debug.Log("hit target");
+                hit.transform.gameObject.GetComponent<Target>().Hit();
             }
         }
         ammoText.text = ammo.ToString() + "/" + ammoCap.ToString();
