@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         if(start.x < player.transform.position.x && player.transform.position.x < start2.x && start.z < player.transform.position.z && player.transform.position.z < start2.z)
         {
+            timer = 0.00f;
             running = true;
         }
 
