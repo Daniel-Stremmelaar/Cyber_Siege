@@ -27,18 +27,11 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if(currentState != States.Disabled)
-        {
-            Movement();
-        }
-    }
     public void Update()
     {
         if(currentState != States.Disabled)
         {
+            Movement();
             if (Input.GetButtonDown("Jump"))
             {
                 Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
@@ -48,6 +41,27 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+    public void CheckMovement()
+    {
+        if (Input.GetButton("Crouch"))
+        {
+            crouching = true;
+        }
+        else
+        {
+            crouching = false;
+        }
+        if (Input.GetButton("Sprint") && !crouching)
+        {
+            running = true;
+        }
+        else
+        {
+            running = false;
+        }
+        playerAnimator.SetBool("Running", running);
+        playerAnimator.SetBool("Crouching", crouching);
     }
     public void Movement()
     {
@@ -166,6 +180,7 @@ public class Player : MonoBehaviour
         currentState = States.Normal;
         GetComponent<Collider>().isTrigger = false;
         GetComponent<Rigidbody>().useGravity = true;
+        CheckMovement();
         playerAnimator.SetTrigger("Action");
     }
     public enum States { Normal, Disabled, ActionImpaired}
