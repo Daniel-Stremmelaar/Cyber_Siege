@@ -47,7 +47,7 @@ public class LookUpDown : MonoBehaviour {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
             print("hit");
-            if(hit.transform.gameObject.tag == "Target")
+            if(hit.transform.gameObject.tag == "Target" || hit.transform.gameObject.tag == "Head")
             {
                 Debug.Log("hit target");
                 hit.transform.gameObject.GetComponent<Target>().Hit();

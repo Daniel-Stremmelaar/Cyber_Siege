@@ -5,11 +5,12 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
 
-    public Material blue;
+    public GeneralManager manager;
     public Material red;
 
-    public void Hit()
+    public virtual void Hit()
     {
         gameObject.GetComponent<MeshRenderer>().material = red;
+        manager.targets.Remove(gameObject.GetComponent<Target>());
     }
 }
