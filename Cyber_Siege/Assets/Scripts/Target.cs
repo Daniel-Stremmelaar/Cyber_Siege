@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-
     public GeneralManager manager;
     public Material red;
 

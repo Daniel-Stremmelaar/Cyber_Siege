@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetHead : Target
 {
+    public FadingText adjustText;
     public float headshotTime;
     public Target mainBody;
 
@@ -12,5 +13,8 @@ public class TargetHead : Target
         gameObject.GetComponent<MeshRenderer>().material = red;
         manager.timer -= headshotTime;
         mainBody.Hit();
+        adjustText.timeChange.text = "-" + headshotTime.ToString();
+        adjustText.PopIn();
+        adjustText.FadeOut();
     }
 }
