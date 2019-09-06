@@ -13,7 +13,7 @@ public class TargetHead : Target
         gameObject.GetComponent<MeshRenderer>().material = red;
         manager.timer -= headshotTime;
         mainBody.Hit();
-        adjustText.timeChange.text = "-" + headshotTime.ToString();
+        adjustText.timeChange.text = "-" + headshotTime.ToString("F4");
         adjustText.PopIn();
         adjustText.FadeOut();
     }

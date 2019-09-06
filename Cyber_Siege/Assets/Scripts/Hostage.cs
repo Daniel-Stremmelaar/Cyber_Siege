@@ -10,7 +10,7 @@ public class Hostage : Target
     public override void Hit()
     {
         manager.timer += penaltyTime;
-        adjustText.timeChange.text = "+" + penaltyTime.ToString();
+        adjustText.timeChange.text = "+" + penaltyTime.ToString("F4");
         adjustText.PopIn();
         adjustText.FadeOut();
         Destroy(gameObject);

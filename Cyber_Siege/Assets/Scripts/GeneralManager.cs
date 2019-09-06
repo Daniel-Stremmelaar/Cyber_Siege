@@ -34,13 +34,13 @@ public class GeneralManager : MonoBehaviour
         if (running)
         {
             timer += Time.deltaTime;
-            timeText.text = timer.ToString();
+            timeText.text = timer.ToString("F4");
         }
 
         if (end.x < player.transform.position.x && player.transform.position.x < end2.x && end.z < player.transform.position.z && player.transform.position.z < end2.z && running)
         {
             timer += targetMissTime * targets.Count;
-            timeText.text = timer.ToString();
+            timeText.text = timer.ToString("F4");
             running = false;
         }
     }
