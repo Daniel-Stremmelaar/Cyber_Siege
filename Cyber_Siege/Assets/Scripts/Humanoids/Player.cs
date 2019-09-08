@@ -25,10 +25,10 @@ public class Player : MonoBehaviour
     [SerializeField] float slideGapDuration;
     [SerializeField] bool canSlide = true;
     [SerializeField] bool inSlideGap;
-    [SerializeField] float minimalSlideHeight, maximalSlideHeight;
+    [SerializeField] float minimalSlideAngle, maximalSlideAngle;
     [SerializeField] float slideBoostModifier;
-    [SerializeField] float minimalSlideDownhillVelocity;
     [SerializeField] float slideVelocityLimiter;
+    [SerializeField] float minimalSlideVelocity;
     Coroutine currentGapTimer;
 
     [SerializeField] Transform feetLocation;
@@ -41,17 +41,6 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-        Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
-        Ray rayDownward = new Ray(feetLocation.position, -feetLocation.up);
-        RaycastHit hitData;
-        if (!Physics.Raycast(rayForward, 100))
-        {
-            if (Physics.Raycast(rayDownward, out hitData, 1000))
-            {
-                Debug.DrawRay(hitData.transform.position, hitData.normal, Color.cyan, Time.fixedDeltaTime);
-                print(hitData.normal);
-            }
-        }
 
 
 
@@ -242,15 +231,31 @@ public class Player : MonoBehaviour
             {
                 if (Physics.Raycast(rayDownward, out hitData, 1000))
                 {
-                    print(hitData.normal);
-                    if (hitData.normal.y > minimalSlideHeight && hitData.normal.y < maximalSlideHeight)
+                    float angle = Vector3.Angle(Vector3.up, hitData.normal);
+                    if (angle >= minimalSlideAngle && angle <= maximalSlideAngle)
                     {
-                        GetComponent<Rigidbody>().velocity = transform.forward * minimalSlideDownhillVelocity;
                         Vector3 velocityBoost = hitData.normal;
-
-                        float boostAmount = minimalSlideHeight / velocityBoost.y;
                         velocityBoost.y = 0;
-                        GetComponent<Rigidbody>().velocity += (velocityBoost * slideBoostModifier);
+                        velocityBoost *= angle / maximalSlideAngle;
+                        print(angle / maximalSlideAngle);
+                        GetComponent<Rigidbody>().velocity += (velocityBoost * slideBoostModifier * Time.deltaTime);
+
+                        velocityBoost = GetComponent<Rigidbody>().velocity;
+                        float missing = velocityBoost.x;
+                        missing /= (minimalSlideVelocity * hitData.normal.x);
+                        if (missing < 1)
+                        {
+                            missing = 1 + (1 - missing);
+                            velocityBoost.x = GetComponent<Rigidbody>().velocity.x * missing;
+                        }
+                        missing = GetComponent<Rigidbody>().velocity.z;
+                        missing /= (minimalSlideVelocity * hitData.normal.z);
+                        if (missing < 1)
+                        {
+                            missing = 1 + (1 - missing);
+                            velocityBoost.z = GetComponent<Rigidbody>().velocity.z * missing;
+                        }
+                        GetComponent<Rigidbody>().velocity = velocityBoost;
                     }
                 }
             }

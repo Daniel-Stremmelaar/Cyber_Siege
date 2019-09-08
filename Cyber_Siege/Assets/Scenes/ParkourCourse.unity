@@ -2237,26 +2237,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
-        type: 3}
-      propertyPath: clearColorMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
-        type: 3}
-      propertyPath: backgroundColorHDR.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
-        type: 3}
-      propertyPath: backgroundColorHDR.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
-        type: 3}
-      propertyPath: backgroundColorHDR.b
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
         type: 3}
       propertyPath: canSlide
@@ -2290,12 +2270,52 @@ PrefabInstance:
     - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
         type: 3}
       propertyPath: slideBoostModifier
-      value: 0.2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
         type: 3}
       propertyPath: slideVelocityLimiter
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: minimalSlideAngle
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: maximalSlideAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: minimalSlideDownhillVelocity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: minimalSlideVelocity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: clearColorMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: backgroundColorHDR.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: backgroundColorHDR.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193276509180518233, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: backgroundColorHDR.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86829945e5a98944c8dd5afe3d7fd822, type: 3}
