@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GreyboxKillhouse.unity
     guid: b39306d456afba646923eecf70c23780
+  - enabled: 1
+    path: Assets/Scenes/ParkourCourse.unity
+    guid: 620c5271d9e82424680408886095ab11
   m_configObjects: {}

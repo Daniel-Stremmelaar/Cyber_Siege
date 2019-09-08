@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] string vaultableTag;
     [SerializeField] float vaultDetectionRange;
     [SerializeField] float vaultSpeed;
+    [SerializeField] float slidePower;
     [SerializeField] States currentState;
 
     [Header("Sizes")]
@@ -21,17 +22,48 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 standColliderPosition;
     [SerializeField] Vector3 crouchColliderSize, crouchColliderPosition;
 
+    [SerializeField] float slideGapDuration;
+    [SerializeField] bool canSlide = true;
+    [SerializeField] bool inSlideGap;
+    [SerializeField] float minimalSlideHeight, maximalSlideHeight;
+    [SerializeField] float slideBoostModifier;
+    [SerializeField] float minimalSlideDownhillVelocity;
+    [SerializeField] float slideVelocityLimiter;
+    Coroutine currentGapTimer;
+
+    [SerializeField] Transform feetLocation;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void Update()
     {
-        if(currentState != States.Disabled)
+        Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
+        Ray rayDownward = new Ray(feetLocation.position, -feetLocation.up);
+        RaycastHit hitData;
+        if (!Physics.Raycast(rayForward, 100))
         {
-            Movement();
+            if (Physics.Raycast(rayDownward, out hitData, 1000))
+            {
+                Debug.DrawRay(hitData.transform.position, hitData.normal, Color.cyan, Time.fixedDeltaTime);
+                print(hitData.normal);
+            }
+        }
+
+
+
+
+
+        if (currentState != States.Disabled)
+        {
+            if (currentState != States.MovementImpaired)
+            {
+                Movement();
+                MovementAction();
+            }
             if (Input.GetButtonDown("Jump"))
             {
                 Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
@@ -40,6 +72,10 @@ public class Player : MonoBehaviour
                     vaultables[0].GetComponent<Interactable>().Interact(gameObject);
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            StartCoroutine(Slide(slidePower));
         }
     }
     public void CheckMovement()
@@ -63,7 +99,7 @@ public class Player : MonoBehaviour
         playerAnimator.SetBool("Running", running);
         playerAnimator.SetBool("Crouching", crouching);
     }
-    public void Movement()
+    public void MovementAction()
     {
         if (crouching)
         {
@@ -85,6 +121,12 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonDown("Crouch"))
             {
+                if (inSlideGap && canSlide)
+                {
+                    print("OOF X2");
+                    StartCoroutine(Slide(slidePower));
+                    return;
+                }
                 if (running)
                 {
                     running = false;
@@ -113,6 +155,9 @@ public class Player : MonoBehaviour
                 playerAnimator.SetBool("Running", running);
             }
         }
+    }
+    public void Movement()
+    {
         Vector3 movementAmount = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         playerAnimator.SetFloat("SidewaysWalking", movementAmount.x);
         playerAnimator.SetFloat("ForwardWalking", movementAmount.z);
@@ -130,9 +175,25 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    if(!crouching && running)
+                    if (!crouching)
                     {
-                        movementAmount *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
+                        if (running)
+                        {
+                            inSlideGap = true;
+                            movementAmount *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
+                            if (currentGapTimer != null)
+                            {
+                                StopCoroutine(currentGapTimer);
+                                currentGapTimer = null;
+                            }
+                        }
+                        else
+                        {
+                            if (currentGapTimer == null)
+                            {
+                                currentGapTimer = StartCoroutine(DisableSlideGap(slideGapDuration));
+                            }
+                        }
                     }
                 }
             }
@@ -162,13 +223,48 @@ public class Player : MonoBehaviour
         transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0) * Time.deltaTime * rotationModifier);
         playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0) * Time.deltaTime * rotationModifier);
     }
+    public IEnumerator Slide(float launchPower)
+    {
+        print("SLIDE");
+        currentState = States.MovementImpaired;
+        GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
+        print("Launched");
+        while (GetComponent<Rigidbody>().velocity.x > slideVelocityLimiter || GetComponent<Rigidbody>().velocity.z > slideVelocityLimiter)
+        {
+            yield return null;
+        }
+        while (Input.GetButton("Crouch"))
+        {
+            Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
+            Ray rayDownward = new Ray(feetLocation.position, -feetLocation.up);
+            RaycastHit hitData;
+            if (!Physics.Raycast(rayForward, 100))
+            {
+                if (Physics.Raycast(rayDownward, out hitData, 1000))
+                {
+                    print(hitData.normal);
+                    if (hitData.normal.y > minimalSlideHeight && hitData.normal.y < maximalSlideHeight)
+                    {
+                        GetComponent<Rigidbody>().velocity = transform.forward * minimalSlideDownhillVelocity;
+                        Vector3 velocityBoost = hitData.normal;
+
+                        float boostAmount = minimalSlideHeight / velocityBoost.y;
+                        velocityBoost.y = 0;
+                        GetComponent<Rigidbody>().velocity += (velocityBoost * slideBoostModifier);
+                    }
+                }
+            }
+            yield return null;
+        }
+        currentState = States.Normal;
+    }
     public IEnumerator Vault(Vector3[] vaultPositions)
     {
         playerAnimator.SetTrigger("Action");
         currentState = States.Disabled;
         GetComponent<Collider>().isTrigger = true;
         GetComponent<Rigidbody>().useGravity = false;
-        for(int i = 0; i < vaultPositions.Length; i++)
+        for (int i = 0; i < vaultPositions.Length; i++)
         {
             while (Vector3.Distance(transform.position, vaultPositions[i]) > 0.1f)
             {
@@ -183,5 +279,10 @@ public class Player : MonoBehaviour
         CheckMovement();
         playerAnimator.SetTrigger("Action");
     }
-    public enum States { Normal, Disabled, ActionImpaired}
+    IEnumerator DisableSlideGap(float timeBeforeChange)
+    {
+        yield return new WaitForSeconds(timeBeforeChange);
+        inSlideGap = false;
+    }
+    public enum States { Normal, Disabled, ActionImpaired, MovementImpaired }
 }
