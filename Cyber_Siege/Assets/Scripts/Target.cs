@@ -11,5 +11,6 @@ public class Target : MonoBehaviour
     {
         gameObject.GetComponent<MeshRenderer>().material = red;
         manager.targets.Remove(gameObject.GetComponent<Target>());
+        Destroy(gameObject);
     }
 }
