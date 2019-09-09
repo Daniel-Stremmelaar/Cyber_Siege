@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     [SerializeField] float slideBoostModifier;
     [SerializeField] float slideVelocityLimiter;
     [SerializeField] float minimalSlideVelocity;
+    [SerializeField] float rotateSpeed;
     Coroutine currentGapTimer;
 
     [SerializeField] Transform feetLocation;
@@ -42,10 +43,6 @@ public class Player : MonoBehaviour
     public void Update()
     {
 
-
-
-
-
         if (currentState != States.Disabled)
         {
             if (currentState != States.MovementImpaired)
@@ -53,6 +50,7 @@ public class Player : MonoBehaviour
                 Movement();
                 MovementAction();
             }
+            RotateCamera();
             if (Input.GetButtonDown("Jump"))
             {
                 Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
@@ -208,60 +206,56 @@ public class Player : MonoBehaviour
                 playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, transitionModifier * Time.deltaTime);
             }
         }
+    }
+
+    public void RotateCamera()
+    {
         Vector2 cameraRotationAmount = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
         transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0) * Time.deltaTime * rotationModifier);
         playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0) * Time.deltaTime * rotationModifier);
     }
     public IEnumerator Slide(float launchPower)
     {
-        print("SLIDE");
-        currentState = States.MovementImpaired;
-        GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
-        print("Launched");
-        while (GetComponent<Rigidbody>().velocity.x > slideVelocityLimiter || GetComponent<Rigidbody>().velocity.z > slideVelocityLimiter)
+        Vector3 ogUpwards = transform.up;
+        RaycastHit hitData;
+        Ray rayDownward = new Ray(feetLocation.position, -feetLocation.up);
+        Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
+        Vector3 lastHitNormal = Vector3.zero;
+        if (!Physics.Raycast(rayForward, 100))
         {
-            yield return null;
-        }
-        while (Input.GetButton("Crouch"))
-        {
-            Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
-            Ray rayDownward = new Ray(feetLocation.position, -feetLocation.up);
-            RaycastHit hitData;
-            if (!Physics.Raycast(rayForward, 100))
+            print("SLIDE");
+            currentState = States.MovementImpaired;
+            GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
+            print("Launched");
+            while (GetComponent<Rigidbody>().velocity.x > slideVelocityLimiter || GetComponent<Rigidbody>().velocity.z > slideVelocityLimiter)
+            {
+                if(Physics.Raycast(rayDownward, out hitData, 1000))
+                {
+                    lastHitNormal = hitData.normal;
+                    playerCamera.rotation = Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation;
+                    transform.rotation = Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation;
+                }
+                yield return null;
+            }
+            while (Input.GetButton("Crouch"))
             {
                 if (Physics.Raycast(rayDownward, out hitData, 1000))
                 {
+                    lastHitNormal = hitData.normal;
+                    playerCamera.rotation = Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation;
+                    transform.rotation = Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation;
                     float angle = Vector3.Angle(Vector3.up, hitData.normal);
                     if (angle >= minimalSlideAngle && angle <= maximalSlideAngle)
                     {
-                        Vector3 velocityBoost = hitData.normal;
-                        velocityBoost.y = 0;
-                        velocityBoost *= angle / maximalSlideAngle;
-                        print(angle / maximalSlideAngle);
-                        GetComponent<Rigidbody>().velocity += (velocityBoost * slideBoostModifier * Time.deltaTime);
 
-                        velocityBoost = GetComponent<Rigidbody>().velocity;
-                        float missing = velocityBoost.x;
-                        missing /= (minimalSlideVelocity * hitData.normal.x);
-                        if (missing < 1)
-                        {
-                            missing = 1 + (1 - missing);
-                            velocityBoost.x = GetComponent<Rigidbody>().velocity.x * missing;
-                        }
-                        missing = GetComponent<Rigidbody>().velocity.z;
-                        missing /= (minimalSlideVelocity * hitData.normal.z);
-                        if (missing < 1)
-                        {
-                            missing = 1 + (1 - missing);
-                            velocityBoost.z = GetComponent<Rigidbody>().velocity.z * missing;
-                        }
-                        GetComponent<Rigidbody>().velocity = velocityBoost;
                     }
                 }
+                yield return null;
             }
-            yield return null;
+            playerCamera.rotation = Quaternion.FromToRotation(ogUpwards, transform.up) * playerCamera.rotation;
+            transform.rotation = Quaternion.FromToRotation(transform.up, ogUpwards) * transform.rotation;
+            currentState = States.Normal;
         }
-        currentState = States.Normal;
     }
     public IEnumerator Vault(Vector3[] vaultPositions)
     {
