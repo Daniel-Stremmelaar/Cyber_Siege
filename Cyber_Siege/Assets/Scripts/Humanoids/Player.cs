@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Transform relocate;
+
+
     [SerializeField] Transform playerCamera, standingCamPos, crouchingCamPos, crouchWalkCamPos, standingWalkCamPos;
     [SerializeField] float transitionModifier;
     [SerializeField] Animator playerAnimator;
@@ -42,7 +45,10 @@ public class Player : MonoBehaviour
 
     public void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            transform.position = relocate.position;
+        }
         if (currentState != States.Disabled)
         {
             if (currentState != States.MovementImpaired)
@@ -218,9 +224,10 @@ public class Player : MonoBehaviour
     {
         Vector3 ogUpwards = transform.up;
         RaycastHit hitData;
-        Ray rayDownward = new Ray(feetLocation.position, -feetLocation.up);
+        Ray rayDownward;
         Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
         Vector3 lastHitNormal = Vector3.zero;
+        Vector3 localCameraEuler;
         if (!Physics.Raycast(rayForward, 100))
         {
             print("SLIDE");
@@ -229,33 +236,47 @@ public class Player : MonoBehaviour
             print("Launched");
             while (GetComponent<Rigidbody>().velocity.x > slideVelocityLimiter || GetComponent<Rigidbody>().velocity.z > slideVelocityLimiter)
             {
-                if(Physics.Raycast(rayDownward, out hitData, 1000))
+                rayDownward = new Ray(feetLocation.position, -feetLocation.up);
+                if (Physics.Raycast(rayDownward, out hitData, 1000))
                 {
                     lastHitNormal = hitData.normal;
-                    playerCamera.rotation = Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation;
-                    transform.rotation = Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation;
+                    playerCamera.rotation = Quaternion.RotateTowards(playerCamera.rotation, Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation , rotateSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation, rotateSpeed * Time.deltaTime);
+                    localCameraEuler = playerCamera.localEulerAngles;
+                    localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
+                    playerCamera.localEulerAngles = localCameraEuler;
                 }
                 yield return null;
             }
             while (Input.GetButton("Crouch"))
             {
-                if (Physics.Raycast(rayDownward, out hitData, 1000))
+                rayDownward = new Ray(feetLocation.position, -feetLocation.up);
+                if (Physics.Raycast(rayDownward, out hitData, 100))
                 {
                     lastHitNormal = hitData.normal;
-                    playerCamera.rotation = Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation;
-                    transform.rotation = Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation;
-                    float angle = Vector3.Angle(Vector3.up, hitData.normal);
+                    playerCamera.rotation = Quaternion.RotateTowards(playerCamera.rotation, Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation , rotateSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation, rotateSpeed * Time.deltaTime);
+                    localCameraEuler = playerCamera.localEulerAngles;
+                    localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
+                    playerCamera.localEulerAngles = localCameraEuler;
+                    float angle = Mathf.Abs(Vector3.Angle(Vector3.up, hitData.normal));
                     if (angle >= minimalSlideAngle && angle <= maximalSlideAngle)
                     {
-
+                        GetComponent<Rigidbody>().velocity += transform.forward * slideBoostModifier * Time.deltaTime;
                     }
                 }
                 yield return null;
             }
-            playerCamera.rotation = Quaternion.FromToRotation(ogUpwards, transform.up) * playerCamera.rotation;
-            transform.rotation = Quaternion.FromToRotation(transform.up, ogUpwards) * transform.rotation;
+            transform.rotation = Quaternion.FromToRotation(lastHitNormal, ogUpwards) * transform.rotation;
+            Quaternion oldRot = playerCamera.rotation;
+            playerCamera.rotation = Quaternion.FromToRotation(ogUpwards, lastHitNormal) * playerCamera.rotation;
+            localCameraEuler = playerCamera.localEulerAngles;
+            localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
+            playerCamera.localEulerAngles = localCameraEuler;
+            localCameraEuler = playerCamera.localEulerAngles;
             currentState = States.Normal;
         }
+        print("OVER");
     }
     public IEnumerator Vault(Vector3[] vaultPositions)
     {
