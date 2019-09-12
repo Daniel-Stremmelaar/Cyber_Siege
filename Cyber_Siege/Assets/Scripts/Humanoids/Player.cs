@@ -267,6 +267,7 @@ public class Player : MonoBehaviour
                 }
                 yield return null;
             }
+            //USE THE PART OF SLIDE FOR THIS
             transform.rotation = Quaternion.FromToRotation(lastHitNormal, ogUpwards) * transform.rotation;
             Quaternion oldRot = playerCamera.rotation;
             playerCamera.rotation = Quaternion.FromToRotation(ogUpwards, lastHitNormal) * playerCamera.rotation;
