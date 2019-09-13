@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefbddaf55c60844b90d56e83b56afa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonsWindows: []
   windows: []
 --- !u!1 &336028651
 GameObject:
@@ -518,7 +519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &637114613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1354,7 +1355,7 @@ MonoBehaviour:
   m_Text: "Pim Huisman: Concept Artist & Environment Artist\nMaurits Heetkamp: Programmer
     & Secondary Producer\nDilar van der Roest: Weapon Artist & Level Artist\nMikey
     Buchan: Weapon Artist & Prop Artist\nDani\xEBl Stremmelaar: Producer & Game Designer\n\nJonathan
-    [achternaam]: Character animations\nStefan van den Berg: Visual Effects"
+    Breeschooten: Character animations\nStefan van den Berg: Visual Effects"
 --- !u!222 &1013439064
 CanvasRenderer:
   m_ObjectHideFlags: 0
