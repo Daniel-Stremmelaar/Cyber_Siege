@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GeneralManager : MonoBehaviour
 {
+    [Header ("General")]
+    public GameObject pauseMenu;
+
+    [Header ("timer")]
     public GameObject player;
     public float timer;
     public bool running;
@@ -42,6 +46,20 @@ public class GeneralManager : MonoBehaviour
             timer += targetMissTime * targets.Count;
             timeText.text = timer.ToString("F4");
             running = false;
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if(pauseMenu.active == false)
+            {
+                Time.timeScale = 0;
+                pauseMenu.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                pauseMenu.SetActive(false);
+            }
         }
     }
 }
