@@ -268,9 +268,16 @@ public class Player : MonoBehaviour
                 yield return null;
             }
             //USE THE PART OF SLIDE FOR THIS
-            transform.rotation = Quaternion.FromToRotation(lastHitNormal, ogUpwards) * transform.rotation;
+            while(transform.rotation != transform.rotation * Quaternion.FromToRotation(transform.up, ogUpwards))
+            {
+                playerCamera.rotation = Quaternion.RotateTowards(playerCamera.transform.rotation, Quaternion.FromToRotation(ogUpwards, transform.up) * playerCamera.rotation, rotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, ogUpwards) * transform.rotation, rotateSpeed * Time.deltaTime);
+                localCameraEuler = playerCamera.localEulerAngles;
+                localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
+                playerCamera.localEulerAngles = localCameraEuler;
+                yield return null;
+            }
             Quaternion oldRot = playerCamera.rotation;
-            playerCamera.rotation = Quaternion.FromToRotation(ogUpwards, lastHitNormal) * playerCamera.rotation;
             localCameraEuler = playerCamera.localEulerAngles;
             localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
             playerCamera.localEulerAngles = localCameraEuler;
