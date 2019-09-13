@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public List<GameObject> buttonsWindows = new List<GameObject>();
     public List<GameObject> windows = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
