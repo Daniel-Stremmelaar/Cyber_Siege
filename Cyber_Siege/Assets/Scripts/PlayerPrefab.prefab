@@ -906,39 +906,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a5f762426ed05439a2ef3ce545d6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  relocate: {fileID: 0}
+  playerAnimator: {fileID: 9079898022457594374}
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 16
+  currentState: 0
+  feetLocation: {fileID: 1234728300}
   minCamClamp: -45
   maxCamClamp: 45
-  jumpForce: {x: 0, y: 150, z: 0}
-  relocate: {fileID: 0}
   playerCamera: {fileID: 6193276509180518232}
   standingCamPos: {fileID: 6193276507306009079}
   crouchingCamPos: {fileID: 6193276507945784917}
   crouchWalkCamPos: {fileID: 6193276508407823270}
   standingWalkCamPos: {fileID: 6193276508982772592}
-  transitionModifier: 3
-  playerAnimator: {fileID: 9079898022457594374}
-  movementSpeedModifier: 1.6605406
+  cameraTransitionModifier: 0
   rotationModifier: 200
+  movementSpeedModifier: 1.6605406
   sidewaysWalkDebuff: 21.621622
   backwardsWalkDebuff: 48.648647
   crouchWalkDebuff: 17.6
   sprintBuff: 100
   crouching: 0
   running: 0
-  interactableMask:
-    serializedVersion: 2
-    m_Bits: 16
+  jumpForce: {x: 0, y: 150, z: 0}
+  resetJumps: 1
+  remainingJumps: 1
+  jumpChargeCheckSize: {x: 0.34, y: 0.01, z: 0.3}
+  jumpCheckPosModifier: {x: -0.008, y: -0.02, z: -0.12}
   vaultableTag: Vaultable
   vaultDetectionRange: 2
   vaultSpeed: 4
-  slidePower: 9
-  currentState: 0
-  standColliderSize: {x: 0.6019324, y: 1.782591, z: 0.3785927}
-  standColliderPosition: {x: -0.002019227, y: 0.8913374, z: 0}
-  crouchColliderSize: {x: 0.6019324, y: 1.211166, z: 0.3785927}
-  crouchColliderPosition: {x: -0.002019227, y: 0.6056248, z: 3.02286e-11}
-  slideColliderSize: {x: 0.6019324, y: 0.5469069, z: 1.78}
-  slideColliderPosition: {x: -0.002019227, y: 0.2734954, z: 0}
+  slidePower: 7
   slideGapDuration: 0.15
   canSlide: 1
   inSlideGap: 0
@@ -947,12 +946,13 @@ MonoBehaviour:
   slideBoostModifier: 10
   slideVelocityLimiter: 100
   minimalSlideVelocity: 10000
-  rotateSpeed: 50
-  resetJumps: 1
-  remainingJumps: 1
-  feetLocation: {fileID: 1234728300}
-  jumpChargeCheckSize: {x: 0.34, y: 0.01, z: 0.3}
-  jumpCheckPosModifier: {x: -0.008, y: -0.02, z: -0.12}
+  rotateToNormalSpeed: 0
+  standColliderSize: {x: 0.6019324, y: 1.782591, z: 0.3785927}
+  standColliderPosition: {x: -0.002019227, y: 0.8913374, z: 0}
+  crouchColliderSize: {x: 0.6019324, y: 1.211166, z: 0.3785927}
+  crouchColliderPosition: {x: -0.002019227, y: 0.6056248, z: 3.02286e-11}
+  slideColliderSize: {x: 0.6019324, y: 0.5469069, z: 1.78}
+  slideColliderPosition: {x: -0.002019227, y: 0.2734954, z: 0}
 --- !u!54 &101298923
 Rigidbody:
   m_ObjectHideFlags: 0

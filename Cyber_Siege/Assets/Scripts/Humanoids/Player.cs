@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float minCamClamp, maxCamClamp;
-
-    [SerializeField] Vector3 jumpForce;
     [SerializeField] Transform relocate;
-
-
-    [SerializeField] Transform playerCamera, standingCamPos, crouchingCamPos, crouchWalkCamPos, standingWalkCamPos;
-    [SerializeField] float transitionModifier;
     [SerializeField] Animator playerAnimator;
-    [SerializeField] float movementSpeedModifier, rotationModifier;
+    [SerializeField] LayerMask interactableMask;
+    [SerializeField] States currentState;
+    [SerializeField] Transform feetLocation;
+
+    [Header("Camera")]
+    [SerializeField] float rotationModifier;
+    [SerializeField] float minCamClamp, maxCamClamp;
+    [SerializeField] Transform playerCamera, standingCamPos, crouchingCamPos, crouchWalkCamPos, standingWalkCamPos;
+    [SerializeField] float cameraTransitionModifier;
+
+    [Header("Movement")]
+    [SerializeField] float movementSpeedModifier;
     [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff, sprintBuff;
     [SerializeField] bool crouching, running;
-    [SerializeField] LayerMask interactableMask;
+
+    [Header("Jumping")]
+    [SerializeField] Vector3 jumpForce;
+    [SerializeField] int resetJumps = 1;
+    [SerializeField] int remainingJumps = 1;
+    [SerializeField] Vector3 jumpChargeCheckSize;
+    [SerializeField] Vector3 jumpCheckPosModifier;
+
+    [Header("Vaulting")]
     [SerializeField] string vaultableTag;
     [SerializeField] float vaultDetectionRange;
     [SerializeField] float vaultSpeed;
+
+    [Header("Sliding")]
     [SerializeField] float slidePower;
-    [SerializeField] States currentState;
-
-    [Header("Sizes")]
-    [SerializeField] Vector3 standColliderSize;
-    [SerializeField] Vector3 standColliderPosition;
-    [SerializeField] Vector3 crouchColliderSize, crouchColliderPosition;
-    [SerializeField] Vector3 slideColliderSize, slideColliderPosition;
-
     [SerializeField] float slideGapDuration;
     [SerializeField] bool canSlide = true;
     [SerializeField] bool inSlideGap;
@@ -36,15 +42,14 @@ public class Player : MonoBehaviour
     [SerializeField] float slideBoostModifier;
     [SerializeField] float slideVelocityLimiter;
     [SerializeField] float minimalSlideVelocity;
-    [SerializeField] float rotateSpeed;
-
-    [SerializeField] int resetJumps = 1;
-    [SerializeField] int remainingJumps = 1;
+    [SerializeField] float rotateToNormalSpeed;
     Coroutine currentGapTimer;
 
-    [SerializeField] Transform feetLocation;
-    [SerializeField] Vector3 jumpChargeCheckSize;
-    [SerializeField] Vector3 jumpCheckPosModifier;
+    [Header("ColliderData")]
+    [SerializeField] Vector3 standColliderSize;
+    [SerializeField] Vector3 standColliderPosition;
+    [SerializeField] Vector3 crouchColliderSize, crouchColliderPosition;
+    [SerializeField] Vector3 slideColliderSize, slideColliderPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour
         }
         if (currentState != States.Disabled)
         {
-            if(currentState != States.Frozen)
+            if (currentState != States.Frozen)
             {
                 if (currentState != States.MovementImpaired)
                 {
@@ -68,7 +73,8 @@ public class Player : MonoBehaviour
                     MovementAction();
                 }
                 if (currentState != States.ActionImpaired)
-                {;
+                {
+                    ;
                     if (Input.GetButtonDown("Jump"))
                     {
                         Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
@@ -219,11 +225,11 @@ public class Player : MonoBehaviour
             if (crouching)
             {
                 movementAmount *= (1 - (crouchWalkDebuff / 100));
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchWalkCamPos.position, transitionModifier * Time.deltaTime);
+                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchWalkCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             else
             {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingWalkCamPos.position, transitionModifier * Time.deltaTime);
+                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingWalkCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             transform.Translate(movementAmount * movementSpeedModifier * Time.deltaTime);
         }
@@ -231,11 +237,11 @@ public class Player : MonoBehaviour
         {
             if (crouching)
             {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, transitionModifier * Time.deltaTime);
+                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             else
             {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, transitionModifier * Time.deltaTime);
+                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
         }
     }
@@ -245,14 +251,10 @@ public class Player : MonoBehaviour
         Vector2 cameraRotationAmount = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
         transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0) * Time.deltaTime * rotationModifier);
         playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0) * Time.deltaTime * rotationModifier);
-        print(playerCamera.localRotation);
         //playerCamera.localEulerAngles = new Vector3(Mathf.Clamp(playerCamera.localEulerAngles.x, minCamClamp, maxCamClamp), playerCamera.localEulerAngles.y, playerCamera.localEulerAngles.z);
     }
     public IEnumerator Slide(float launchPower)
     {
-        BoxCollider playerCollider = GetComponent<BoxCollider>();
-        playerCollider.size = slideColliderSize;
-        playerCollider.center = slideColliderPosition;
         inSlideGap = false;
         Vector3 ogUpwards = transform.up;
         RaycastHit hitData;
@@ -260,8 +262,11 @@ public class Player : MonoBehaviour
         Ray rayForward = new Ray(feetLocation.position, feetLocation.forward);
         Vector3 lastHitNormal = Vector3.zero;
         Vector3 localCameraEuler;
-        if (!Physics.Raycast(rayForward, 100))
+        if (!Physics.Raycast(rayForward, 1))
         {
+            BoxCollider playerCollider = GetComponent<BoxCollider>();
+            playerCollider.size = slideColliderSize;
+            playerCollider.center = slideColliderPosition;
             print("SLIDE");
             currentState = States.MovementImpaired;
             GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
@@ -272,8 +277,8 @@ public class Player : MonoBehaviour
                 if (Physics.Raycast(rayDownward, out hitData, 1000))
                 {
                     lastHitNormal = hitData.normal;
-                    playerCamera.rotation = Quaternion.RotateTowards(playerCamera.rotation, Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation , rotateSpeed * Time.deltaTime);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation, rotateSpeed * Time.deltaTime);
+                    playerCamera.rotation = Quaternion.RotateTowards(playerCamera.rotation, Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation, rotateToNormalSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation, rotateToNormalSpeed * Time.deltaTime);
                     localCameraEuler = playerCamera.localEulerAngles;
                     localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
                     playerCamera.localEulerAngles = localCameraEuler;
@@ -286,8 +291,8 @@ public class Player : MonoBehaviour
                 if (Physics.Raycast(rayDownward, out hitData, 100))
                 {
                     lastHitNormal = hitData.normal;
-                    playerCamera.rotation = Quaternion.RotateTowards(playerCamera.rotation, Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation , rotateSpeed * Time.deltaTime);
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation, rotateSpeed * Time.deltaTime);
+                    playerCamera.rotation = Quaternion.RotateTowards(playerCamera.rotation, Quaternion.FromToRotation(hitData.normal, transform.up) * playerCamera.rotation, rotateToNormalSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, hitData.normal) * transform.rotation, rotateToNormalSpeed * Time.deltaTime);
                     localCameraEuler = playerCamera.localEulerAngles;
                     localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
                     playerCamera.localEulerAngles = localCameraEuler;
@@ -300,10 +305,10 @@ public class Player : MonoBehaviour
                 yield return null;
             }
             //USE THE PART OF SLIDE FOR THIS
-            while(transform.rotation != transform.rotation * Quaternion.FromToRotation(transform.up, ogUpwards))
+            while (transform.rotation != transform.rotation * Quaternion.FromToRotation(transform.up, ogUpwards))
             {
-                playerCamera.rotation = Quaternion.RotateTowards(playerCamera.transform.rotation, Quaternion.FromToRotation(ogUpwards, transform.up) * playerCamera.rotation, rotateSpeed * Time.deltaTime);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, ogUpwards) * transform.rotation, rotateSpeed * Time.deltaTime);
+                playerCamera.rotation = Quaternion.RotateTowards(playerCamera.transform.rotation, Quaternion.FromToRotation(ogUpwards, transform.up) * playerCamera.rotation, rotateToNormalSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.FromToRotation(transform.up, ogUpwards) * transform.rotation, rotateToNormalSpeed * Time.deltaTime);
                 localCameraEuler = playerCamera.localEulerAngles;
                 localCameraEuler = new Vector3(localCameraEuler.x, 0, 0);
                 playerCamera.localEulerAngles = localCameraEuler;
@@ -347,10 +352,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(timeBeforeChange);
         inSlideGap = false;
     }
-    public enum States { Normal, Disabled, ActionImpaired, MovementImpaired , Frozen}
+    public enum States { Normal, Disabled, ActionImpaired, MovementImpaired, Frozen }
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawCube(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize);
+        Gizmos.DrawLine(feetLocation.position, feetLocation.position + feetLocation.forward);
     }
 }
