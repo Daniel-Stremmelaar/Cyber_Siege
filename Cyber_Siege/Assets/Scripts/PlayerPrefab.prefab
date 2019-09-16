@@ -892,7 +892,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6019324, y: 1.7825909, z: 0.37859273}
+  m_Size: {x: 0.34, y: 1.7825909, z: 0.37859273}
   m_Center: {x: -0.0020192266, y: 0.8913374, z: 0}
 --- !u!114 &6193276508385752565
 MonoBehaviour:
@@ -918,7 +918,7 @@ MonoBehaviour:
   transitionModifier: 3
   playerAnimator: {fileID: 9079898022457594374}
   movementSpeedModifier: 1.6605406
-  rotationModifier: 30
+  rotationModifier: 200
   sidewaysWalkDebuff: 21.621622
   backwardsWalkDebuff: 48.648647
   crouchWalkDebuff: 17.6
