@@ -4,13 +4,53 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    [Header("Hologram flicker")]
+    public float minTime;
+    public float maxTime;
+    public float minAlpha;
+    public float maxAlpha;
+    public Material hologram;
+    public float hologramAlpha;
+    public float hologramTime;
+    public float speedRef;
+
+    [Header("Mechanics")]
     public GeneralManager manager;
-    public Material red;
+    public TargetHead head;
+
+    private void Start()
+    {
+        hologram = gameObject.GetComponent<Renderer>().material;
+        hologramTime = Random.Range(minTime, maxTime);
+    }
+
+    private void Update()
+    {
+        Flicker();
+        /*if(head != null)
+        {
+            head.hologram.SetFloat("_AlphaAdjust", hologram.GetFloat("_AlphaAdjust"));
+        }*/
+    }
 
     public virtual void Hit()
     {
-        gameObject.GetComponent<MeshRenderer>().material = red;
         manager.targets.Remove(gameObject.GetComponent<Target>());
         Destroy(gameObject);
+    }
+
+    public virtual void Flicker()
+    {
+        hologramTime -= Time.deltaTime;
+        if (hologramTime <= 0)
+        {
+            hologramAlpha = Random.Range(minAlpha, maxAlpha);
+            hologramTime = Random.Range(minTime, maxTime);
+            hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
+            if(head != null)
+            {
+                head.hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
+            }
+        }
     }
 }

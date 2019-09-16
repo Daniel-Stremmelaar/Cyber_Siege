@@ -10,11 +10,17 @@ public class TargetHead : Target
 
     public override void Hit()
     {
-        gameObject.GetComponent<MeshRenderer>().material = red;
         manager.timer -= headshotTime;
         mainBody.Hit();
         adjustText.timeChange.text = "-" + headshotTime.ToString("F4");
         adjustText.PopIn();
         adjustText.FadeOut();
+    }
+
+    public override void Flicker()
+    {
+        hologramTime = mainBody.hologramTime;
+        hologramAlpha = mainBody.hologramAlpha;
+        hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
     }
 }

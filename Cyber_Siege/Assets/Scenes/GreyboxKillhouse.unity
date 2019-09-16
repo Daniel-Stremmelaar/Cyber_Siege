@@ -261,8 +261,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 1995279488}
@@ -630,8 +638,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 2029534523}
@@ -931,8 +947,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 617596364}
@@ -1041,8 +1065,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 183825119}
@@ -1337,8 +1369,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 915718549}
@@ -1604,7 +1644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &183825118
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,8 +1672,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &183825120
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1713,7 +1761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &192982146
 Transform:
   m_ObjectHideFlags: 0
@@ -1741,8 +1789,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &192982148
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1822,7 +1878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &194706326
 Transform:
   m_ObjectHideFlags: 0
@@ -1850,8 +1906,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &194706328
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1931,7 +1995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &199367468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1944,8 +2008,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &199367469
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2067,8 +2139,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 194706327}
@@ -2361,8 +2441,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 2026257807}
@@ -2471,8 +2559,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 192982147}
@@ -2673,8 +2769,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 487158771}
@@ -4250,8 +4354,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dd526735df850498dcadfa81d7dc0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   penaltyTime: 3
 --- !u!136 &478357699
@@ -4553,7 +4665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &487158770
 Transform:
   m_ObjectHideFlags: 0
@@ -4581,8 +4693,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &487158772
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4782,8 +4902,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0.05
+  maxTime: 0.2
+  minAlpha: 0.5
+  maxAlpha: 3
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 589462107}
 --- !u!136 &500019258
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4815,7 +4943,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  - {fileID: 2100000, guid: 13dc3b27d15ee2d428d603ad1fb0b564, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6002,8 +6130,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 619525951}
@@ -6112,8 +6248,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dd526735df850498dcadfa81d7dc0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   penaltyTime: 3
 --- !u!136 &588104262
@@ -6222,8 +6366,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0.05
+  maxTime: 0.2
+  minAlpha: 0.5
+  maxAlpha: 3
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 500019257}
@@ -6257,7 +6409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  - {fileID: 2100000, guid: 13dc3b27d15ee2d428d603ad1fb0b564, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6516,8 +6668,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 934949889}
@@ -6599,7 +6759,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &617596363
 Transform:
   m_ObjectHideFlags: 0
@@ -6627,8 +6787,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &617596365
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6883,7 +7051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &619525950
 Transform:
   m_ObjectHideFlags: 0
@@ -6911,8 +7079,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &619525952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7305,8 +7481,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 1093227918}
@@ -10587,7 +10771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &915718548
 Transform:
   m_ObjectHideFlags: 0
@@ -10615,8 +10799,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &915718550
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10696,7 +10888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &921369781
 Transform:
   m_ObjectHideFlags: 0
@@ -10724,8 +10916,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &921369783
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10897,7 +11097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &934949888
 Transform:
   m_ObjectHideFlags: 0
@@ -10925,8 +11125,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &934949890
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12035,7 +12243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1093227917
 Transform:
   m_ObjectHideFlags: 0
@@ -12063,8 +12271,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &1093227919
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13282,8 +13498,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dd526735df850498dcadfa81d7dc0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   penaltyTime: 3
 --- !u!136 &1280313707
@@ -13913,6 +14137,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319340251}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1330497526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1330497527}
+  m_Layer: 0
+  m_Name: Pause
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1330497527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330497526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.003386, y: 2.3932958, z: -12.568246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1343850614
 GameObject:
   m_ObjectHideFlags: 0
@@ -14254,7 +14508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1380509360
 Transform:
   m_ObjectHideFlags: 0
@@ -14282,8 +14536,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &1380509362
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14858,8 +15120,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dd526735df850498dcadfa81d7dc0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   penaltyTime: 3
 --- !u!136 &1409881562
@@ -15508,6 +15778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f93bd588ea36644d8c4b2fce4cc9a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1330497526}
   player: {fileID: 482563889}
   timer: 0
   running: 0
@@ -15580,8 +15851,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1dd526735df850498dcadfa81d7dc0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: d2480b967dc1cc74ebb3f894e5f2e303, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   penaltyTime: 3
 --- !u!136 &1450613640
@@ -16778,8 +17057,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 1380509361}
@@ -18670,7 +18957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1995279487
 Transform:
   m_ObjectHideFlags: 0
@@ -18698,8 +18985,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &1995279489
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19335,7 +19630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2026257806
 Transform:
   m_ObjectHideFlags: 0
@@ -19363,8 +19658,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &2026257808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19444,7 +19747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2029534522
 Transform:
   m_ObjectHideFlags: 0
@@ -19472,8 +19775,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49f07573f94bc4db3b5f717de1df87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
 --- !u!136 &2029534524
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19580,8 +19891,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 199367468}
@@ -19690,8 +20009,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTime: 0
+  maxTime: 0
+  minAlpha: 0
+  maxAlpha: 0
+  hologram: {fileID: 0}
+  hologramAlpha: 0
+  hologramTime: 0
+  speedRef: 0
   manager: {fileID: 1450060351}
-  red: {fileID: 2100000, guid: da0b81ab69a9abb43a1470552956ca3f, type: 2}
+  head: {fileID: 0}
   adjustText: {fileID: 154053996}
   headshotTime: 2
   mainBody: {fileID: 921369782}
@@ -20154,7 +20481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2144459270
 Transform:
   m_ObjectHideFlags: 0
