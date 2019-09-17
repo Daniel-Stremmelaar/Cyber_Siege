@@ -49,7 +49,7 @@ public class Target : MonoBehaviour
             hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
             if(head != null)
             {
-                head.hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
+                head.hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(head.hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
             }
         }
     }

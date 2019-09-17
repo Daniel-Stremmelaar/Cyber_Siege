@@ -19,8 +19,8 @@ public class TargetHead : Target
 
     public override void Flicker()
     {
-        hologramTime = mainBody.hologramTime;
+        /*hologramTime = mainBody.hologramTime;
         hologramAlpha = mainBody.hologramAlpha;
-        hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
+        hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));*/
     }
 }
