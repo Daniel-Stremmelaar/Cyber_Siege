@@ -19,12 +19,34 @@ public class EdgeCalculator : EditorWindow
             CalculateEdges();
         }
     }
-
-    void CalculateEdges()
+    public void CalculateEdges()
     {
-        foreach(GameObject obj in Selection.gameObjects)
+        List<Triangle> triangles = GetTriangles();
+
+        foreach (Triangle triangle in triangles)
         {
-            List<Triangle> triangles = new List<Triangle>();
+            for (int i = 0; i < triangle.verts.Length; i++)
+            {
+                //Gets to know what edge we are gonna calculate
+                Vector2 edge;
+                edge.x = triangle.verts[i];
+                if (i == triangle.verts.Length - 1)
+                {
+                    edge.y = triangle.verts[0];
+                }
+                else
+                {
+                    edge.y = triangle.verts[i + 1];
+                }
+            }
+        }
+    }
+
+    List<Triangle> GetTriangles()
+    {
+        List<Triangle> triangles = new List<Triangle>();
+        foreach (GameObject obj in Selection.gameObjects)
+        {
             int[] objectTriangles = obj.GetComponent<MeshFilter>().sharedMesh.triangles;
             for (int currentVert = 0; currentVert < objectTriangles.Length; currentVert += 3)
             {
@@ -33,15 +55,32 @@ public class EdgeCalculator : EditorWindow
             }
 
             Debug.Log("There are " + triangles.Count.ToString() + " triangles.");
-            foreach(Triangle triangle in triangles)
+        }
+        return triangles;
+    }
+    Triangle GetConnectedEdge(List<Triangle> allTriangles, Triangle ownerTriangle, Vector2 requiredEdge)
+    {
+        foreach (Triangle triangleToCheck in allTriangles)
+        {
+            if (triangleToCheck != ownerTriangle)
             {
-                foreach(int vert in triangle.verts)
+                foreach (int vertOne in triangleToCheck.verts)
                 {
-                    Debug.Log(vert);
+                    if (vertOne == requiredEdge.x)
+                    {
+                        foreach (int vertTwo in triangleToCheck.verts)
+                        {
+                            if (vertTwo == requiredEdge.y)
+                            {
+                                return triangleToCheck;
+                            }
+                        }
+                    }
+                    break;
                 }
             }
-            Debug.Log("DONE");
         }
+        return null;
     }
 
     [System.Serializable]

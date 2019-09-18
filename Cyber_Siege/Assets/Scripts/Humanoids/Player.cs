@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))

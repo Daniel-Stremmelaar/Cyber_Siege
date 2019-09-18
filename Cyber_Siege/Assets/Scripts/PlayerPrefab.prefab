@@ -913,6 +913,9 @@ MonoBehaviour:
     m_Bits: 16
   currentState: 0
   feetLocation: {fileID: 1234728300}
+  backBone: {fileID: 1322140508937301896}
+  rotateSped: 200
+  rotationModifier: 200
   minCamClamp: -45
   maxCamClamp: 45
   playerCamera: {fileID: 6193276509180518232}
@@ -921,7 +924,6 @@ MonoBehaviour:
   crouchWalkCamPos: {fileID: 6193276508407823270}
   standingWalkCamPos: {fileID: 6193276508982772592}
   cameraTransitionModifier: 0
-  rotationModifier: 200
   movementSpeedModifier: 1.6605406
   sidewaysWalkDebuff: 21.621622
   backwardsWalkDebuff: 48.648647
