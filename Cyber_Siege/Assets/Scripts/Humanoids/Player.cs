@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] Animator playerAnimator;
     [SerializeField] LayerMask interactableMask;
     [SerializeField] States currentState;
+    [SerializeField] Status currentStatus;
     [SerializeField] Transform feetLocation;
 
     [Header("Camera")]
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] float cameraTransitionModifier;
 
     [Header("Movement")]
+    Vector3 lastMovedAmount;
     [SerializeField] float movementSpeedModifier;
     [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff, sprintBuff;
     [SerializeField] bool crouching, running;
@@ -55,6 +57,14 @@ public class Player : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+    private void LateUpdate()
+    {
+        if (currentStatus == Status.Normal)
+        {
+            Rigidbody rigid = GetComponent<Rigidbody>();
+            rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+        }
     }
     public void Update()
     {
@@ -182,20 +192,20 @@ public class Player : MonoBehaviour
     }
     public void Movement()
     {
-        Vector3 movementAmount = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        playerAnimator.SetFloat("SidewaysWalking", movementAmount.x);
-        playerAnimator.SetFloat("ForwardWalking", movementAmount.z);
-        if (movementAmount != Vector3.zero)
+        lastMovedAmount = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        playerAnimator.SetFloat("SidewaysWalking", lastMovedAmount.x);
+        playerAnimator.SetFloat("ForwardWalking", lastMovedAmount.z);
+        if (lastMovedAmount != Vector3.zero)
         {
-            if (movementAmount.z == 0)
+            if (lastMovedAmount.z == 0)
             {
-                movementAmount *= (1 - (sidewaysWalkDebuff / 100));
+                lastMovedAmount *= (1 - (sidewaysWalkDebuff / 100));
             }
             else
             {
-                if (movementAmount.z < 0)
+                if (lastMovedAmount.z < 0)
                 {
-                    movementAmount *= (1 - (backwardsWalkDebuff / 100));
+                    lastMovedAmount *= (1 - (backwardsWalkDebuff / 100));
                 }
                 else
                 {
@@ -204,7 +214,7 @@ public class Player : MonoBehaviour
                         if (running)
                         {
                             inSlideGap = true;
-                            movementAmount *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
+                            lastMovedAmount *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
                             if (currentGapTimer != null)
                             {
                                 StopCoroutine(currentGapTimer);
@@ -223,14 +233,14 @@ public class Player : MonoBehaviour
             }
             if (crouching)
             {
-                movementAmount *= (1 - (crouchWalkDebuff / 100));
+                lastMovedAmount *= (1 - (crouchWalkDebuff / 100));
                 playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchWalkCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             else
             {
                 playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingWalkCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
-            transform.Translate(movementAmount * movementSpeedModifier * Time.deltaTime);
+            transform.Translate(lastMovedAmount * movementSpeedModifier * Time.deltaTime);
         }
         else
         {
@@ -352,6 +362,7 @@ public class Player : MonoBehaviour
         inSlideGap = false;
     }
     public enum States { Normal, Disabled, ActionImpaired, MovementImpaired, Frozen }
+    public enum Status { Normal, Falling}
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
