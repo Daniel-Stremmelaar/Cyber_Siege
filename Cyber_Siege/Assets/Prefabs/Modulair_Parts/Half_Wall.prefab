@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 2038308307911555759}
   - component: {fileID: 6994794064927555737}
   - component: {fileID: 3615837786030963808}
-  - component: {fileID: 5466144030862120884}
+  - component: {fileID: 7740205655608113206}
   m_Layer: 0
   m_Name: Half_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2038308307911555759
 Transform:
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &5466144030862120884
+--- !u!65 &7740205655608113206
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +90,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.75000024, y: 2.4486275, z: 0.15566137}
-  m_Center: {x: 0, y: 1.2243137, z: 0.00000010430813}
+  m_Size: {x: 0.75000024, y: 2.5983667, z: 0.15566137}
+  m_Center: {x: 0, y: 1.2991834, z: 0.00000010430813}

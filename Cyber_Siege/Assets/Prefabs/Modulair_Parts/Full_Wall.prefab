@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 3383632445918658693}
   - component: {fileID: 6029780553345596083}
   - component: {fileID: 41266991200405066}
-  - component: {fileID: 816471645903713645}
+  - component: {fileID: 3349893220264044609}
   m_Layer: 0
   m_Name: Full_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3383632445918658693
 Transform:
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &816471645903713645
+--- !u!65 &3349893220264044609
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,5 +90,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5000006, y: 2.4486275, z: 0.15566148}
-  m_Center: {x: 0, y: 1.2243137, z: 0.00000010430816}
+  m_Size: {x: 1.5000006, y: 2.598367, z: 0.15566148}
+  m_Center: {x: 0.00000023841858, y: 1.2991832, z: 0.00000010430816}
