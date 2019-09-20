@@ -112,6 +112,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_11146F85: 0
+    - Vector1_392AF007: 0.3
     - Vector1_448138DE: 0
     - Vector1_4ACC55E6: 900
     - Vector1_4C85EC39: 1500
@@ -124,7 +125,7 @@ Material:
     - _AORemapMin: 0
     - _ATDistance: 1
     - _AlbedoAffectEmissive: 0
-    - _AlphaAdjust: 1
+    - _AlphaAdjust: 3
     - _AlphaCutoff: 0.5
     - _AlphaCutoffEnable: 0
     - _AlphaCutoffPostpass: 0.5
