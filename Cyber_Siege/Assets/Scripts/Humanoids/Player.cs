@@ -234,11 +234,11 @@ public class Player : MonoBehaviour
             if (crouching)
             {
                 lastMovedAmount *= (1 - (crouchWalkDebuff / 100));
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchWalkCamPos.position, cameraTransitionModifier * Time.deltaTime);
+                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             else
             {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingWalkCamPos.position, cameraTransitionModifier * Time.deltaTime);
+                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             transform.Translate(lastMovedAmount * movementSpeedModifier * Time.deltaTime);
         }
@@ -276,7 +276,7 @@ public class Player : MonoBehaviour
             BoxCollider playerCollider = GetComponent<BoxCollider>();
             playerCollider.size = slideColliderSize;
             playerCollider.center = slideColliderPosition;
-            print("SLIDE");
+            currentStatus = Status.Falling;
             currentState = States.MovementImpaired;
             GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
             print("Launched");
@@ -329,6 +329,7 @@ public class Player : MonoBehaviour
             playerCamera.localEulerAngles = localCameraEuler;
             localCameraEuler = playerCamera.localEulerAngles;
             currentState = States.Normal;
+            currentStatus = Status.Normal;
             playerCollider.size = standColliderSize;
             playerCollider.center = standColliderPosition;
             CheckMovement();
