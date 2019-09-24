@@ -5,7 +5,14 @@ using UnityEditor;
 
 public class EdgeCalculator : EditorWindow
 {
+    public float maxAngle, minAngle;
+    public GameObject indicator;
 
+    List<GameObject> test = new List<GameObject>();
+
+    List<Triangle> allTriangles;
+    List<CombinedTriangleData> trianglesWithRightAngle = new List<CombinedTriangleData>();
+    List<CombinedTriangleData> combinedTriangles = new List<CombinedTriangleData>();
     [MenuItem("Window/EdgeCalculator")]
     public static void ShowWindow()
     {
@@ -14,16 +21,82 @@ public class EdgeCalculator : EditorWindow
 
     private void OnGUI()
     {
-        if(GUILayout.Button("Calculate Edges"))
+        indicator = (GameObject)EditorGUILayout.ObjectField(indicator, typeof(GameObject), false);
+        minAngle = EditorGUILayout.FloatField("Minimal Angle", minAngle);
+        minAngle = Mathf.Clamp(minAngle, 0, 180);
+        maxAngle = EditorGUILayout.FloatField("Maximum Angle", maxAngle);
+        maxAngle = Mathf.Clamp(maxAngle, 0, 180);
+        if(maxAngle < minAngle)
         {
-            CalculateEdges();
+            maxAngle = minAngle;
+        }
+        else
+        {
+            if(minAngle > maxAngle)
+            {
+                minAngle = maxAngle;
+            }
+        }
+        if (GUILayout.Button("Get Combined Edges"))
+        {
+            GetCombinedEdges();
+        }
+        if (GUILayout.Button("Calculate Angles"))
+        {
+            CalculateAngles();
         }
     }
-    public void CalculateEdges()
-    {
-        List<Triangle> triangles = GetTriangles();
 
-        foreach (Triangle triangle in triangles)
+    public void CalculateAngles()
+    {
+        foreach(GameObject obj in test)
+        {
+            DestroyImmediate(obj);
+        }
+        test = new List<GameObject>();
+        trianglesWithRightAngle = new List<CombinedTriangleData>();
+        foreach (CombinedTriangleData data in combinedTriangles)
+        {
+            int ogTriIndex = 0;
+            int connectedTriIndex = 0;
+            for (int index = 0; index < allTriangles.Count; index++)
+            {
+                if (allTriangles[index] == data.connectedTriangleOne)
+                {
+                    ogTriIndex = index;
+                }
+                if (allTriangles[index] == data.connectedTriangleTwo)
+                {
+                    connectedTriIndex = index;
+                }
+            }
+            if (HasRightAngle(connectedTriIndex, ogTriIndex))
+            {
+                AddIndicators(data);
+            }
+        }
+    }
+
+    public void AddIndicators(CombinedTriangleData data_)
+    {
+        MeshFilter filter = Selection.activeGameObject.GetComponent<MeshFilter>();
+        trianglesWithRightAngle.Add(data_);
+
+        Vector3 centerPosition = (filter.sharedMesh.vertices[(int)data_.edgeOne.x] + filter.sharedMesh.vertices[(int)data_.edgeOne.y]) / 2;
+        test.Add(Instantiate(indicator, Selection.activeGameObject.transform.TransformPoint(centerPosition), Quaternion.identity, Selection.activeGameObject.transform));
+        test[test.Count - 1].transform.LookAt(Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.x]));
+
+        Vector3 newColliderSize = test[test.Count - 1].GetComponent<BoxCollider>().size;
+        newColliderSize.z = Mathf.Abs(Vector3.Distance(Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.x]), Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.y])));
+        newColliderSize *= (1 / test[test.Count - 1].transform.localScale.z);
+        test[test.Count - 1].GetComponent<BoxCollider>().size = newColliderSize;
+
+    }
+    public void GetCombinedEdges()
+    {
+        allTriangles = GetTriangles();
+
+        foreach (Triangle triangle in allTriangles)
         {
             for (int i = 0; i < triangle.verts.Length; i++)
             {
@@ -38,10 +111,10 @@ public class EdgeCalculator : EditorWindow
                 {
                     edge.y = triangle.verts[i + 1];
                 }
-                ConnectedTriangle connectedTriangle = GetConnectedTriangle(triangles, triangle, edge);
-                if(connectedTriangle.connectedTriangle != null)
+                ConnectedTriangle connectedTriangle = GetConnectedTriangle(allTriangles, triangle, edge);
+                if (connectedTriangle.connectedTriangle != null)
                 {
-                    Debug.Log("FOUND");
+                    combinedTriangles.Add(new CombinedTriangleData(triangle, edge, connectedTriangle.connectedTriangle, connectedTriangle.edge));
                 }
             }
         }
@@ -72,6 +145,13 @@ public class EdgeCalculator : EditorWindow
         {
             if (triangleToCheck != ownerTriangle)
             {
+                foreach (CombinedTriangleData combinedTriangles in combinedTriangles)
+                {
+                    if (ownerTriangle == combinedTriangles.connectedTriangleTwo && triangleToCheck == combinedTriangles.connectedTriangleOne)
+                    {
+                        return new ConnectedTriangle();
+                    }
+                }
                 foreach (int vertOne in triangleToCheck.verts)
                 {
                     if (Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[vertOne]) == requiredX)
@@ -90,6 +170,24 @@ public class EdgeCalculator : EditorWindow
             }
         }
         return new ConnectedTriangle();
+    }
+
+    bool HasRightAngle(int connectedTriangleIndex, int ogTriangleIndex)
+    {
+        
+        MeshFilter filter = Selection.activeGameObject.GetComponent<MeshFilter>();
+        Vector3 ogTriangleNormal = filter.sharedMesh.normals[allTriangles[ogTriangleIndex].verts[0]];
+        Vector3 connectedTriangleNormal = filter.sharedMesh.normals[allTriangles[connectedTriangleIndex].verts[0]];
+        if(Mathf.Abs(Vector3.Angle(ogTriangleNormal, connectedTriangleNormal)) >= minAngle && Mathf.Abs(Vector3.Angle(ogTriangleNormal, connectedTriangleNormal)) <= maxAngle)
+        {
+            Debug.Log("RIGHT ANGLE");
+            return true;
+        }
+        else
+        {
+            Debug.Log("WRONG ANGLE");
+        }
+        return false;
     }
 
     [System.Serializable]
@@ -114,6 +212,23 @@ public class EdgeCalculator : EditorWindow
         {
             connectedTriangle = connectedTri;
             edge = connectedEdge;
+        }
+    }
+    public struct CombinedTriangleData
+    {
+        public Triangle connectedTriangleOne;
+        public Vector2 edgeOne;
+
+        public Triangle connectedTriangleTwo;
+        public Vector2 edgeTwo;
+
+        public CombinedTriangleData(Triangle connectedTriangleOne_, Vector2 edgeOne_, Triangle connectedTriangleTwo_, Vector2 edgeTwo_)
+        {
+            connectedTriangleOne = connectedTriangleOne_;
+            edgeOne = edgeOne_;
+
+            connectedTriangleTwo = connectedTriangleTwo_;
+            edgeTwo = edgeTwo_;
         }
     }
 }

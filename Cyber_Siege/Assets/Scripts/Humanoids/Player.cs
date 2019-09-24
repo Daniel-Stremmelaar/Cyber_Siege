@@ -52,7 +52,42 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 standColliderPosition;
     [SerializeField] Vector3 crouchColliderSize, crouchColliderPosition;
     [SerializeField] Vector3 slideColliderSize, slideColliderPosition;
+
+    [Header("GunData")]
+    public Transform gunWieldingPoint;
+    public Transform currentGun;
+
+    [Header("Inverse Kinematics")]
+    public bool ikEnabled;
+    [SerializeField] Transform backbone;
+    float backupX;
+
     // Start is called before the first frame update
+    private void OnAnimatorIK(int layerIndex)
+    {
+        if (enabled && currentGun)
+        {
+            /*
+            playerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+            playerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, playerCamera.rotation);
+            playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+            playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, playerCamera.rotation);
+            */
+            playerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+            playerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, currentGun.GetComponent<BaseGun>().handlePosition.position);
+            playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, currentGun.GetComponent<BaseGun>().triggerPosition.position);
+            /*playerAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1);
+            playerAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, currentGun.GetComponent<BaseGun>().leftElbowPosition.position);
+            playerAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
+            playerAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, currentGun.GetComponent<BaseGun>().rightElbowPosition.position);
+            */
+        }
+    }
+    private void Awake()
+    {
+        backupX = backbone.localEulerAngles.x;
+    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -60,14 +95,25 @@ public class Player : MonoBehaviour
     }
     private void LateUpdate()
     {
+        
         if (currentStatus == Status.Normal)
         {
             Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+            rigid.velocity = Vector3.zero;
+            RotateCamera();
+        }
+    }
+    public void FixedUpdate()
+    {
+        if (currentStatus == Status.Normal)
+        {
+            Rigidbody rigid = GetComponent<Rigidbody>();
+            rigid.velocity = Vector3.zero;
         }
     }
     public void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.P))
         {
             transform.position = relocate.position;
@@ -101,11 +147,15 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            RotateCamera();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
             StartCoroutine(Slide(slidePower));
+        }
+        if (currentStatus == Status.Normal)
+        {
+            Rigidbody rigid = GetComponent<Rigidbody>();
+            rigid.velocity = Vector3.zero;
         }
     }
     public void CheckMovement()
@@ -257,9 +307,12 @@ public class Player : MonoBehaviour
 
     public void RotateCamera()
     {
+        //backbone.localEulerAngles = new Vector3(backupX, backbone.localEulerAngles.y, backbone.localEulerAngles.z);
         Vector2 cameraRotationAmount = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
         transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0) * Time.deltaTime * rotationModifier);
         playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0) * Time.deltaTime * rotationModifier);
+        //backbone.Rotate(new Vector3(Input.GetAxis("Mouse Y") * Time.deltaTime * rotationModifier, 0, 0));
+        //backupX = backbone.localEulerAngles.x;
         //playerCamera.localEulerAngles = new Vector3(Mathf.Clamp(playerCamera.localEulerAngles.x, minCamClamp, maxCamClamp), playerCamera.localEulerAngles.y, playerCamera.localEulerAngles.z);
     }
     public IEnumerator Slide(float launchPower)

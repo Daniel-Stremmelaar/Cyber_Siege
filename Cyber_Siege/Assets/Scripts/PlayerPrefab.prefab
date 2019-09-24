@@ -912,9 +912,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   currentState: 0
+  currentStatus: 0
   feetLocation: {fileID: 1234728300}
-  backBone: {fileID: 1322140508937301896}
-  rotateSped: 200
   rotationModifier: 200
   minCamClamp: -45
   maxCamClamp: 45
@@ -955,6 +954,9 @@ MonoBehaviour:
   crouchColliderPosition: {x: -0.002019227, y: 0.6056248, z: 3.02286e-11}
   slideColliderSize: {x: 0.6019324, y: 0.5469069, z: 1.78}
   slideColliderPosition: {x: -0.002019227, y: 0.2734954, z: 0}
+  gunWieldingPoint: {fileID: 0}
+  currentGun: {fileID: 0}
+  ikEnabled: 0
 --- !u!54 &101298923
 Rigidbody:
   m_ObjectHideFlags: 0
