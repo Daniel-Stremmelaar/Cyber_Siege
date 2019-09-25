@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 public class EdgeCalculator : EditorWindow
 {
@@ -10,9 +9,7 @@ public class EdgeCalculator : EditorWindow
 
     List<GameObject> test = new List<GameObject>();
 
-    List<Triangle> allTriangles;
-    List<CombinedTriangleData> trianglesWithRightAngle = new List<CombinedTriangleData>();
-    List<CombinedTriangleData> combinedTriangles = new List<CombinedTriangleData>();
+    List<ObjectData> allObjectData = new List<ObjectData>();
     [MenuItem("Window/EdgeCalculator")]
     public static void ShowWindow()
     {
@@ -45,107 +42,123 @@ public class EdgeCalculator : EditorWindow
         {
             CalculateAngles();
         }
+        if (GUILayout.Button("Remove EdgePoints"))
+        {
+            RemoveIndicationPoints();
+        }
     }
 
     public void CalculateAngles()
     {
-        foreach(GameObject obj in test)
+        foreach(ObjectData objectData in allObjectData)
         {
-            DestroyImmediate(obj);
-        }
-        test = new List<GameObject>();
-        trianglesWithRightAngle = new List<CombinedTriangleData>();
-        foreach (CombinedTriangleData data in combinedTriangles)
-        {
-            int ogTriIndex = 0;
-            int connectedTriIndex = 0;
-            for (int index = 0; index < allTriangles.Count; index++)
+            if (objectData.indicationPointHolder)
             {
-                if (allTriangles[index] == data.connectedTriangleOne)
-                {
-                    ogTriIndex = index;
-                }
-                if (allTriangles[index] == data.connectedTriangleTwo)
-                {
-                    connectedTriIndex = index;
-                }
+                DestroyImmediate(objectData.indicationPointHolder.gameObject);
             }
-            if (HasRightAngle(connectedTriIndex, ogTriIndex))
+            objectData.indicationPointHolder = GameObject.Instantiate(new GameObject("IndicationHolder"), objectData.thisObject.transform.position, Quaternion.identity, objectData.thisObject.transform).transform;
+            objectData.allIndicationPoints = new List<GameObject>();
+            objectData.trianglesWithRightAngle = new List<CombinedTriangleData>();
+            Debug.Log(objectData.combinedTriangles.Count);
+            foreach (CombinedTriangleData data in objectData.combinedTriangles)
             {
-                AddIndicators(data);
+                int ogTriIndex = 0;
+                int connectedTriIndex = 0;
+                for (int index = 0; index < objectData.allTriangles.Count; index++)
+                {
+                    if (objectData.allTriangles[index] == data.connectedTriangleOne)
+                    {
+                        ogTriIndex = index;
+                    }
+                    if (objectData.allTriangles[index] == data.connectedTriangleTwo)
+                    {
+                        connectedTriIndex = index;
+                    }
+                }
+                if (HasRightAngle(connectedTriIndex, ogTriIndex, objectData))
+                {
+                    AddIndicators(data, objectData).transform.SetParent(objectData.indicationPointHolder);
+                }
             }
         }
     }
 
-    public void AddIndicators(CombinedTriangleData data_)
+    public GameObject AddIndicators(CombinedTriangleData data_, ObjectData ownerData)
     {
-        MeshFilter filter = Selection.activeGameObject.GetComponent<MeshFilter>();
-        trianglesWithRightAngle.Add(data_);
+        MeshFilter filter = ownerData.thisObject.GetComponent<MeshFilter>();
+        ownerData.trianglesWithRightAngle.Add(data_);
 
         Vector3 centerPosition = (filter.sharedMesh.vertices[(int)data_.edgeOne.x] + filter.sharedMesh.vertices[(int)data_.edgeOne.y]) / 2;
-        test.Add(Instantiate(indicator, Selection.activeGameObject.transform.TransformPoint(centerPosition), Quaternion.identity, Selection.activeGameObject.transform));
-        test[test.Count - 1].transform.LookAt(Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.x]));
+        GameObject newIndicator = Instantiate(indicator, ownerData.thisObject.transform.TransformPoint(centerPosition), Quaternion.identity, ownerData.thisObject.transform);
+        newIndicator.transform.LookAt(ownerData.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.x]));
 
-        Vector3 newColliderSize = test[test.Count - 1].GetComponent<BoxCollider>().size;
-        newColliderSize.z = Mathf.Abs(Vector3.Distance(Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.x]), Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.y])));
-        newColliderSize *= (1 / test[test.Count - 1].transform.localScale.z);
-        test[test.Count - 1].GetComponent<BoxCollider>().size = newColliderSize;
+        Vector3 newColliderSize = newIndicator.GetComponent<BoxCollider>().size;
+        newColliderSize.z = Mathf.Abs(Vector3.Distance(ownerData.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.x]), ownerData.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)data_.edgeOne.y])));
+        newColliderSize *= (1 / newIndicator.transform.localScale.z);
+        newIndicator.GetComponent<BoxCollider>().size = newColliderSize;
 
+        return newIndicator;
     }
     public void GetCombinedEdges()
     {
-        allTriangles = GetTriangles();
+        allObjectData = GetObjectsData();
 
-        foreach (Triangle triangle in allTriangles)
+        foreach(ObjectData objectData in allObjectData)
         {
-            for (int i = 0; i < triangle.verts.Length; i++)
+            objectData.combinedTriangles = new List<CombinedTriangleData>();
+            objectData.trianglesWithRightAngle = new List<CombinedTriangleData>();
+            foreach (Triangle triangle in objectData.allTriangles)
             {
-                //Gets to know what edge we are gonna calculate
-                Vector2 edge;
-                edge.x = triangle.verts[i];
-                if (i == triangle.verts.Length - 1)
+                for (int i = 0; i < triangle.verts.Length; i++)
                 {
-                    edge.y = triangle.verts[0];
-                }
-                else
-                {
-                    edge.y = triangle.verts[i + 1];
-                }
-                ConnectedTriangle connectedTriangle = GetConnectedTriangle(allTriangles, triangle, edge);
-                if (connectedTriangle.connectedTriangle != null)
-                {
-                    combinedTriangles.Add(new CombinedTriangleData(triangle, edge, connectedTriangle.connectedTriangle, connectedTriangle.edge));
+                    //Gets to know what edge we are gonna calculate
+                    Vector2 edge;
+                    edge.x = triangle.verts[i];
+                    if (i == triangle.verts.Length - 1)
+                    {
+                        edge.y = triangle.verts[0];
+                    }
+                    else
+                    {
+                        edge.y = triangle.verts[i + 1];
+                    }
+                    ConnectedTriangle connectedTriangle = GetConnectedTriangle(objectData, triangle, edge);
+                    if (connectedTriangle.connectedTriangle != null)
+                    {
+                        objectData.combinedTriangles.Add(new CombinedTriangleData(triangle, edge, connectedTriangle.connectedTriangle, connectedTriangle.edge));
+                    }
                 }
             }
         }
     }
 
-    List<Triangle> GetTriangles()
+    List<ObjectData> GetObjectsData()
     {
-        List<Triangle> triangles = new List<Triangle>();
+        List<ObjectData> objectData = new List<ObjectData>();
         foreach (GameObject obj in Selection.gameObjects)
         {
+            ObjectData newData = new ObjectData(obj);
+            newData.allTriangles = new List<Triangle>();
             int[] objectTriangles = obj.GetComponent<MeshFilter>().sharedMesh.triangles;
             for (int currentVert = 0; currentVert < objectTriangles.Length; currentVert += 3)
             {
                 Triangle triangle = new Triangle(objectTriangles[currentVert], objectTriangles[currentVert + 1], objectTriangles[currentVert + 2]);
-                triangles.Add(triangle);
+                newData.allTriangles.Add(triangle);
             }
-
-            Debug.Log("There are " + triangles.Count.ToString() + " triangles.");
+            objectData.Add(newData);
         }
-        return triangles;
+        return objectData;
     }
-    ConnectedTriangle GetConnectedTriangle(List<Triangle> allTriangles, Triangle ownerTriangle, Vector2 requiredEdge)
+    ConnectedTriangle GetConnectedTriangle(ObjectData ownerObject, Triangle ownerTriangle, Vector2 requiredEdge)
     {
-        MeshFilter filter = Selection.activeGameObject.GetComponent<MeshFilter>();
-        Vector3 requiredX = Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)requiredEdge.x]);
-        Vector3 requiredY = Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)requiredEdge.y]);
-        foreach (Triangle triangleToCheck in allTriangles)
+        MeshFilter filter = ownerObject.thisObject.GetComponent<MeshFilter>();
+        Vector3 requiredX = ownerObject.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)requiredEdge.x]);
+        Vector3 requiredY = ownerObject.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[(int)requiredEdge.y]);
+        foreach (Triangle triangleToCheck in ownerObject.allTriangles)
         {
             if (triangleToCheck != ownerTriangle)
             {
-                foreach (CombinedTriangleData combinedTriangles in combinedTriangles)
+                foreach (CombinedTriangleData combinedTriangles in ownerObject.combinedTriangles)
                 {
                     if (ownerTriangle == combinedTriangles.connectedTriangleTwo && triangleToCheck == combinedTriangles.connectedTriangleOne)
                     {
@@ -154,11 +167,11 @@ public class EdgeCalculator : EditorWindow
                 }
                 foreach (int vertOne in triangleToCheck.verts)
                 {
-                    if (Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[vertOne]) == requiredX)
+                    if (ownerObject.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[vertOne]) == requiredX)
                     {
                         foreach (int vertTwo in triangleToCheck.verts)
                         {
-                            if (Selection.activeGameObject.transform.TransformPoint(filter.sharedMesh.vertices[vertTwo]) == requiredY)
+                            if (ownerObject.thisObject.transform.TransformPoint(filter.sharedMesh.vertices[vertTwo]) == requiredY)
                             {
                                 ConnectedTriangle connectedTriangle = new ConnectedTriangle(triangleToCheck, new Vector2(vertOne, vertTwo));
                                 return connectedTriangle;
@@ -172,12 +185,12 @@ public class EdgeCalculator : EditorWindow
         return new ConnectedTriangle();
     }
 
-    bool HasRightAngle(int connectedTriangleIndex, int ogTriangleIndex)
+    bool HasRightAngle(int connectedTriangleIndex, int ogTriangleIndex, ObjectData ownerObject)
     {
         
-        MeshFilter filter = Selection.activeGameObject.GetComponent<MeshFilter>();
-        Vector3 ogTriangleNormal = filter.sharedMesh.normals[allTriangles[ogTriangleIndex].verts[0]];
-        Vector3 connectedTriangleNormal = filter.sharedMesh.normals[allTriangles[connectedTriangleIndex].verts[0]];
+        MeshFilter filter = ownerObject.thisObject.GetComponent<MeshFilter>();
+        Vector3 ogTriangleNormal = filter.sharedMesh.normals[ownerObject.allTriangles[ogTriangleIndex].verts[0]];
+        Vector3 connectedTriangleNormal = filter.sharedMesh.normals[ownerObject.allTriangles[connectedTriangleIndex].verts[0]];
         if(Mathf.Abs(Vector3.Angle(ogTriangleNormal, connectedTriangleNormal)) >= minAngle && Mathf.Abs(Vector3.Angle(ogTriangleNormal, connectedTriangleNormal)) <= maxAngle)
         {
             Debug.Log("RIGHT ANGLE");
@@ -188,6 +201,38 @@ public class EdgeCalculator : EditorWindow
             Debug.Log("WRONG ANGLE");
         }
         return false;
+    }
+
+    void RemoveIndicationPoints()
+    {
+        foreach(GameObject thisObject in Selection.gameObjects)
+        {
+            for(int i = thisObject.transform.childCount - 1; i >= 0; i--)
+            {
+                Transform thisChild = thisObject.transform.GetChild(i);
+                if (thisChild.name == "IndicationHolder" + "(Clone)")
+                {
+                    DestroyImmediate(thisChild.gameObject);
+                }
+            }
+        }
+    }
+    public class ObjectData
+    {
+        public List<GameObject> allIndicationPoints = new List<GameObject>();
+
+        public List<Triangle> allTriangles;
+        public List<CombinedTriangleData> trianglesWithRightAngle;
+        public List<CombinedTriangleData> combinedTriangles;
+
+        public GameObject thisObject;
+
+        public Transform indicationPointHolder;
+
+        public ObjectData(GameObject thisObject_)
+        {
+            thisObject = thisObject_;
+        }
     }
 
     [System.Serializable]
