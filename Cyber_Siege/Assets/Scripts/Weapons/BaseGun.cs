@@ -4,20 +4,88 @@ using UnityEngine;
 
 public class BaseGun : MonoBehaviour
 {
-    [Header("IK Data")]
-    public Transform handlePosition;
-    public Transform triggerPosition;
-    public Transform leftElbowPosition;
-    public Transform rightElbowPosition;
+    public GunData baseData;
+    public int currentClip;
+    public int currentAmmoStore;
+    public Transform bulletSpawnPoint;
+
+    public Coroutine currentActionRoutine;
     // Start is called before the first frame update
-    void Start()
+    public void Update()
     {
-        
+        if (Input.GetButtonDown("Reload"))
+        {
+            if (currentClip < baseData.clipCapacity && currentAmmoStore > 0)
+            {
+                currentActionRoutine = StartCoroutine(Reload());
+            }
+        }
+        if (Input.GetButtonDown("Fire1") && currentActionRoutine == null)
+        {
+            if (currentClip > 0 || baseData.infiniteAmmo)
+            {
+                currentActionRoutine = StartCoroutine(Fire());
+            }
+            else
+            {
+                if (currentAmmoStore > 0)
+                {
+                    currentActionRoutine = StartCoroutine(Reload());
+                }
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual IEnumerator Fire()
     {
-        
+        while (Input.GetButton("Fire1"))
+        {
+            if (currentClip > 0 || baseData.infiniteAmmo)
+            {
+                GameObject bullet = Instantiate(baseData.bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+                Destroy(bullet, baseData.destroyTime);
+                //Spawn Particle
+                //Knock player camera up
+                //Let fire animation play
+                //Let fire audio play
+                if (!baseData.infiniteAmmo)
+                {
+                    currentClip--;
+                }
+            }
+            yield return new WaitForSeconds(baseData.shotDelay);
+        }
+        currentActionRoutine = null;
+    }
+    public virtual IEnumerator Reload()
+    {
+        print("RELOAD");
+        //Play reload animation
+        //Parent ammoClip to hand
+        //Play reload2 animation
+        //Parent ammoclip to gun
+
+        int requiredAmmo = baseData.clipCapacity - currentClip;
+        if (currentAmmoStore >= requiredAmmo)
+        {
+            currentClip = baseData.clipCapacity;
+            currentAmmoStore -= requiredAmmo;
+        }
+        else
+        {
+            currentClip += currentAmmoStore;
+            currentAmmoStore = 0;
+        }
+        yield return null;
+        currentActionRoutine = null;
+    }
+    public virtual IEnumerator AimDownsights()
+    {
+        yield return null;
+    }
+
+    public IEnumerator KnockUp()
+    {
+        yield return null;
     }
 }

@@ -6,6 +6,9 @@ public class EdgeCalculator : EditorWindow
 {
     public float maxAngle, minAngle;
     public GameObject indicator;
+    public GameObject indicatorHolder;
+    public bool normalCheck;
+    public Vector3 wantedNormal;
 
     List<GameObject> test = new List<GameObject>();
 
@@ -19,10 +22,14 @@ public class EdgeCalculator : EditorWindow
     private void OnGUI()
     {
         indicator = (GameObject)EditorGUILayout.ObjectField(indicator, typeof(GameObject), false);
+        indicatorHolder = (GameObject)EditorGUILayout.ObjectField(indicatorHolder, typeof(GameObject), false);
         minAngle = EditorGUILayout.FloatField("Minimal Angle", minAngle);
         minAngle = Mathf.Clamp(minAngle, 0, 180);
         maxAngle = EditorGUILayout.FloatField("Maximum Angle", maxAngle);
         maxAngle = Mathf.Clamp(maxAngle, 0, 180);
+        normalCheck = EditorGUILayout.Toggle("Check Normals", normalCheck);
+        wantedNormal = EditorGUILayout.Vector3Field("WantedNormal", wantedNormal);
+
         if(maxAngle < minAngle)
         {
             maxAngle = minAngle;
@@ -56,10 +63,9 @@ public class EdgeCalculator : EditorWindow
             {
                 DestroyImmediate(objectData.indicationPointHolder.gameObject);
             }
-            objectData.indicationPointHolder = GameObject.Instantiate(new GameObject("IndicationHolder"), objectData.thisObject.transform.position, Quaternion.identity, objectData.thisObject.transform).transform;
+            objectData.indicationPointHolder = GameObject.Instantiate(indicatorHolder, objectData.thisObject.transform.position, Quaternion.identity, objectData.thisObject.transform).transform;
             objectData.allIndicationPoints = new List<GameObject>();
             objectData.trianglesWithRightAngle = new List<CombinedTriangleData>();
-            Debug.Log(objectData.combinedTriangles.Count);
             foreach (CombinedTriangleData data in objectData.combinedTriangles)
             {
                 int ogTriIndex = 0;
@@ -105,6 +111,7 @@ public class EdgeCalculator : EditorWindow
 
         foreach(ObjectData objectData in allObjectData)
         {
+            MeshFilter filter = objectData.thisObject.GetComponent<MeshFilter>();
             objectData.combinedTriangles = new List<CombinedTriangleData>();
             objectData.trianglesWithRightAngle = new List<CombinedTriangleData>();
             foreach (Triangle triangle in objectData.allTriangles)
@@ -125,6 +132,13 @@ public class EdgeCalculator : EditorWindow
                     ConnectedTriangle connectedTriangle = GetConnectedTriangle(objectData, triangle, edge);
                     if (connectedTriangle.connectedTriangle != null)
                     {
+                        if (normalCheck)
+                        {
+                            if(filter.sharedMesh.normals[connectedTriangle.connectedTriangle.verts[0]] != wantedNormal && filter.sharedMesh.normals[triangle.verts[0]] != wantedNormal)
+                            {
+                                continue;
+                            }
+                        }
                         objectData.combinedTriangles.Add(new CombinedTriangleData(triangle, edge, connectedTriangle.connectedTriangle, connectedTriangle.edge));
                     }
                 }
@@ -210,7 +224,7 @@ public class EdgeCalculator : EditorWindow
             for(int i = thisObject.transform.childCount - 1; i >= 0; i--)
             {
                 Transform thisChild = thisObject.transform.GetChild(i);
-                if (thisChild.name == "IndicationHolder" + "(Clone)")
+                if (thisChild.name == indicatorHolder.name + "(Clone)")
                 {
                     DestroyImmediate(thisChild.gameObject);
                 }

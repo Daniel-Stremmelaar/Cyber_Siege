@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IKTEST : MonoBehaviour
 {
-    public Transform cam;
+    public Transform point1, point2;
     public Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,14 @@ public class IKTEST : MonoBehaviour
     }
     private void OnAnimatorIK(int layerIndex)
     {
-        animator.SetLookAtWeight(1);
-        animator.SetLookAtPosition(cam.position);
+        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+        animator.SetIKRotation(AvatarIKGoal.LeftHand, point2.rotation);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, point1.rotation);
+
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+        animator.SetIKPosition(AvatarIKGoal.LeftHand, point2.position);
+        animator.SetIKPosition(AvatarIKGoal.RightHand, point1.position);
     }
 }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ab10e6be643204ca8c5fc613bce41c, type: 3}
+  m_Name: TestGun
+  m_EditorClassIdentifier: 
+  gunPrefab: {fileID: 0}
+  gunName: Pistol
+  clipCapacity: 12
+  ammoCapacity: 1000000
+  reloadSpeedMultiplier: 1
+  bulletDamage: 0
+  shotKnockupX: 10
+  bulletPrefab: {fileID: 3005984069927293650, guid: 12e5fac7b0c72894396f278617be5322,
+    type: 3}
+  movementSpeedModifier: 0
+  baseAccuracy: 100
+  destroyTime: 1000
+  shotDelay: 0.05
+  shotSound: {fileID: 0}
+  infiniteAmmo: 1

@@ -63,27 +63,6 @@ public class Player : MonoBehaviour
     float backupX;
 
     // Start is called before the first frame update
-    private void OnAnimatorIK(int layerIndex)
-    {
-        if (enabled && currentGun)
-        {
-            /*
-            playerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
-            playerAnimator.SetIKRotation(AvatarIKGoal.LeftHand, playerCamera.rotation);
-            playerAnimator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
-            playerAnimator.SetIKRotation(AvatarIKGoal.RightHand, playerCamera.rotation);
-            */
-            playerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
-            playerAnimator.SetIKPosition(AvatarIKGoal.LeftHand, currentGun.GetComponent<BaseGun>().handlePosition.position);
-            playerAnimator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-            playerAnimator.SetIKPosition(AvatarIKGoal.RightHand, currentGun.GetComponent<BaseGun>().triggerPosition.position);
-            /*playerAnimator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, 1);
-            playerAnimator.SetIKHintPosition(AvatarIKHint.LeftElbow, currentGun.GetComponent<BaseGun>().leftElbowPosition.position);
-            playerAnimator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, 1);
-            playerAnimator.SetIKHintPosition(AvatarIKHint.RightElbow, currentGun.GetComponent<BaseGun>().rightElbowPosition.position);
-            */
-        }
-    }
     private void Awake()
     {
         backupX = backbone.localEulerAngles.x;
@@ -95,11 +74,14 @@ public class Player : MonoBehaviour
     }
     private void LateUpdate()
     {
-        
+
         if (currentStatus == Status.Normal)
         {
             Rigidbody rigid = GetComponent<Rigidbody>();
             rigid.velocity = Vector3.zero;
+        }
+        if (currentState != States.Frozen || currentState != States.Disabled)
+        {
             RotateCamera();
         }
     }
@@ -113,7 +95,7 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             transform.position = relocate.position;
@@ -416,7 +398,7 @@ public class Player : MonoBehaviour
         inSlideGap = false;
     }
     public enum States { Normal, Disabled, ActionImpaired, MovementImpaired, Frozen }
-    public enum Status { Normal, Falling}
+    public enum Status { Normal, Falling }
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;

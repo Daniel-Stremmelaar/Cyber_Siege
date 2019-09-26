@@ -15749,6 +15749,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 655672338}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &659969651 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1322140508937301896, guid: 86829945e5a98944c8dd5afe3d7fd822,
+    type: 3}
+  m_PrefabInstance: {fileID: 2011071372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &662737628 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1778440338304742038, guid: f3ed12c6f53039e43bf758aa2525d5fc,
@@ -47227,6 +47233,11 @@ PrefabInstance:
       propertyPath: movementSpeedModifier
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6193276508385752565, guid: 86829945e5a98944c8dd5afe3d7fd822,
+        type: 3}
+      propertyPath: backbone
+      value: 
+      objectReference: {fileID: 659969651}
     - target: {fileID: 6193276509180518232, guid: 86829945e5a98944c8dd5afe3d7fd822,
         type: 3}
       propertyPath: m_LocalPosition.y
