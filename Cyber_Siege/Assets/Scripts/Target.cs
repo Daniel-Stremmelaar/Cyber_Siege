@@ -22,6 +22,7 @@ public class Target : MonoBehaviour
     {
         hologram = gameObject.GetComponent<Renderer>().material;
         hologramTime = Random.Range(minTime, maxTime);
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GeneralManager>();
     }
 
     private void Update()
