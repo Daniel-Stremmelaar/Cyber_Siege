@@ -1120,9 +1120,9 @@ GameObject:
   - component: {fileID: 293198509}
   - component: {fileID: 293198508}
   - component: {fileID: 293198512}
-  m_Layer: 4
+  m_Layer: 10
   m_Name: Vault_Wall
-  m_TagString: Untagged
+  m_TagString: Vaultable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8076,7 +8076,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 9079898021480219006}
   interactableMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 1040
   currentState: 0
   currentStatus: 0
   feetLocation: {fileID: 266003988}

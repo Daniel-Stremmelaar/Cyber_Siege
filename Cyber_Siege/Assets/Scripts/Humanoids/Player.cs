@@ -117,13 +117,13 @@ public class Player : MonoBehaviour
                         Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
                         if (vaultables.Length > 0)
                         {
-                            vaultables[0].GetComponent<Interactable>().Interact(gameObject);
-                        }
-                        else
-                        {
-                            if (Physics.OverlapBox(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize / 2).Length > 0)
+                            foreach(Collider vaultable in vaultables)
                             {
-                                Jump();
+                                if(vaultable.tag == vaultableTag)
+                                {
+                                    vaultables[0].GetComponent<Interactable>().Interact(gameObject);
+                                    break;
+                                }
                             }
                         }
                     }

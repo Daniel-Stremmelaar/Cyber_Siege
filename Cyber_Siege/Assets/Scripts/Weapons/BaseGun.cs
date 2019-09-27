@@ -10,6 +10,10 @@ public class BaseGun : MonoBehaviour
     public Transform bulletSpawnPoint;
 
     public Coroutine currentActionRoutine;
+
+    Coroutine knockupRoutine;
+    Vector3 remainingRotationAmount;
+    Vector3 totalRotationAmount;
     // Start is called before the first frame update
     public void Update()
     {
@@ -86,6 +90,23 @@ public class BaseGun : MonoBehaviour
 
     public IEnumerator KnockUp()
     {
-        yield return null;
+        while(remainingRotationAmount.x >= 0)
+        {
+            Vector3 rotateAmount = new Vector3(baseData.knockupSpeed * Time.deltaTime, 0, 0);
+
+            transform.Rotate(rotateAmount);
+            remainingRotationAmount -= rotateAmount;
+            yield return null;
+        }
+        knockupRoutine = null;
+    }
+
+    public IEnumerator KnockDown()
+    {
+        while(totalRotationAmount.x >= 0)
+        {
+            Vector3 rotateAmount = new Vector3(baseData.knockupSpeed * Time.deltaTime, 0, 0);
+            yield return null;
+        }
     }
 }

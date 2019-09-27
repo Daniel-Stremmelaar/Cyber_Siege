@@ -12,6 +12,7 @@ public class GunData : ScriptableObject
     public float reloadSpeedMultiplier;
     public float bulletDamage;
     public float shotKnockupX;
+    public float knockupSpeed;
     public GameObject bulletPrefab;
     public float movementSpeedModifier;
     public float baseAccuracy;
