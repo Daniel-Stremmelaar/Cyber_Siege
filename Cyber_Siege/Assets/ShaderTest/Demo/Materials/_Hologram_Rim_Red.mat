@@ -87,7 +87,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Flicker: 0
-    - _FlickerSpeed: 4
+    - _FlickerSpeed: 3
     - _Fold: 35
     - _Glitch: 1
     - _GlitchIntensity: 0.25
@@ -118,6 +118,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 0, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 0.08247183, b: 0, a: 1}
-    - _RimColor: {r: 1, g: 0.06666666, b: 0.44095382, a: 1}
+    - _MainColor: {r: 0.5754717, g: 0.047391787, b: 0, a: 1}
+    - _RimColor: {r: 1, g: 0.02142857, b: 0, a: 1}
     - _ScanlineColor: {r: 0, g: 0, b: 1, a: 1}
