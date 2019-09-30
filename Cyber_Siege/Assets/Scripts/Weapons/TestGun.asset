@@ -18,12 +18,18 @@ MonoBehaviour:
   ammoCapacity: 1000000
   reloadSpeedMultiplier: 1
   bulletDamage: 0
-  shotKnockupX: 10
+  shotKnockupX: 2
+  shotKnockdownX: 2
+  knockupSpeed: 35
+  knockdownSpeed: 35
   bulletPrefab: {fileID: 3005984069927293650, guid: 12e5fac7b0c72894396f278617be5322,
     type: 3}
   movementSpeedModifier: 0
   baseAccuracy: 100
   destroyTime: 1000
   shotDelay: 0.05
+  bulletRange: 7.81
+  maxBulletOffset: {x: 0, y: 0}
+  minBulletOffset: {x: 0, y: 0}
   shotSound: {fileID: 0}
   infiniteAmmo: 1

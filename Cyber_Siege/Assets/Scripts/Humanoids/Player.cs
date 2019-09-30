@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     [Header("Camera")]
     [SerializeField] float rotationModifier;
     [SerializeField] float minCamClamp, maxCamClamp;
-    [SerializeField] Transform playerCamera, standingCamPos, crouchingCamPos, crouchWalkCamPos, standingWalkCamPos;
+    public Transform playerCamera;
+    [SerializeField] Transform standingCamPos, crouchingCamPos, crouchWalkCamPos, standingWalkCamPos;
     [SerializeField] float cameraTransitionModifier;
 
     [Header("Movement")]
