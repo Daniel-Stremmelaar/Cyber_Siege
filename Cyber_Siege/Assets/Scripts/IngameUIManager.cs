@@ -18,7 +18,7 @@ public class IngameUIManager : MonoBehaviour
         hitMarker.color = resetColor;
         hitMarker.gameObject.SetActive(true);
         yield return new WaitForSeconds(hitmarkerDurationBeforeFade);
-        IngameUIManager uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<IngameUIManager>();
+        IngameUIManager uiManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>();
         Color hitmarkerColor = hitMarker.color;
         while (hitmarkerColor.a > 0)
         {

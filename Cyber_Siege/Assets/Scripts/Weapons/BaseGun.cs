@@ -150,7 +150,11 @@ public class BaseGun : MonoBehaviour
                         uiManager.hitmarkerRoutine = null;
                     }
                     uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
-                    hitData.transform.GetComponent<Target>().Hit();
+                    //hitData.transform.GetComponent<Target>().Hit();
+                    IngameManager ingameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
+                    GameObject newBulletHole = Instantiate(baseData.bulletImpactDecal, hitData.point, Quaternion.LookRotation(hitData.normal));
+                    newBulletHole.transform.Translate(new Vector3(0, 0, 0.1f));
+                    ingameManager.AddBulletHole(newBulletHole);
                 }
             }
             CheckRecoilPattern();

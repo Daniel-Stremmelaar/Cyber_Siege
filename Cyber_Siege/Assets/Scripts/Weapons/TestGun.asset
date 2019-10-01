@@ -21,7 +21,7 @@ MonoBehaviour:
   shotKnockdownX: 2
   knockupSpeed: 0.1
   knockdownSpeed: 35
-  bulletPrefab: {fileID: 3005984069927293650, guid: 12e5fac7b0c72894396f278617be5322,
+  bulletImpactDecal: {fileID: 806173459670267454, guid: 7bcf0c75a40f630409ddc072109e5d75,
     type: 3}
   movementSpeedModifier: 0
   baseAccuracy: 100
