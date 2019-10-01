@@ -1303,9 +1303,9 @@ MonoBehaviour:
   playerCamera: {fileID: 4673935229928880370}
   standingCamPos: {fileID: 4673935228062844509}
   crouchingCamPos: {fileID: 4673935228492886527}
-  crouchWalkCamPos: {fileID: 4673935229089127436}
-  standingWalkCamPos: {fileID: 4673935229605471450}
-  cameraTransitionModifier: 0
+  crouchWalkCamPos: {fileID: 4673935228492886527}
+  standingWalkCamPos: {fileID: 4673935228062844509}
+  cameraTransitionModifier: 1
   lastMovedAmtNormalized: {x: 0, y: 0, z: 0}
   movementSpeedModifier: 1.6605406
   sidewaysWalkDebuff: 21.621622
