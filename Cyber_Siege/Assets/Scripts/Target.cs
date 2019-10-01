@@ -22,7 +22,7 @@ public class Target : MonoBehaviour
     {
         hologram = gameObject.GetComponent<Renderer>().material;
         hologramTime = Random.Range(minTime, maxTime);
-        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GeneralManager>();
+        //manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GeneralManager>();
     }
 
     private void Update()
@@ -32,7 +32,7 @@ public class Target : MonoBehaviour
 
     public virtual void Hit()
     {
-        manager.targets.Remove(gameObject.GetComponent<Target>());
+        //manager.targets.Remove(gameObject.GetComponent<Target>());
         Destroy(gameObject);
     }
 
