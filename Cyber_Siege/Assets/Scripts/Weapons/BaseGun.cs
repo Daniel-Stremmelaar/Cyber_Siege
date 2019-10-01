@@ -143,7 +143,6 @@ public class BaseGun : MonoBehaviour
             {
                 if(hitData.transform.tag == humanoidTag)
                 {
-                    print("Hit Target");
                     IngameUIManager uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<IngameUIManager>();
                     if (uiManager.hitmarkerRoutine != null)
                     {
@@ -151,6 +150,7 @@ public class BaseGun : MonoBehaviour
                         uiManager.hitmarkerRoutine = null;
                     }
                     uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
+                    hitData.transform.GetComponent<Target>().Hit();
                 }
             }
             CheckRecoilPattern();
