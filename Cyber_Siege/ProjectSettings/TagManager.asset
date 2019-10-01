@@ -8,6 +8,7 @@ TagManager:
   - Vaultable
   - Humanoid
   - UIManager
+  - Manager
   layers:
   - Default
   - TransparentFX

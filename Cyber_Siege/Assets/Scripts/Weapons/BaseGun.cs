@@ -69,7 +69,7 @@ public class BaseGun : MonoBehaviour
 
     void UpdateCrosshair()
     {
-        GameObject crosshair = GameObject.FindGameObjectWithTag("UIManager").GetComponent<IngameUIManager>().crosshair;
+        GameObject crosshair = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>().crosshair;
         float crosshairOffset;
         if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -143,7 +143,7 @@ public class BaseGun : MonoBehaviour
             {
                 if(hitData.transform.tag == humanoidTag)
                 {
-                    IngameUIManager uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<IngameUIManager>();
+                    IngameUIManager uiManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>();
                     if (uiManager.hitmarkerRoutine != null)
                     {
                         StopCoroutine(uiManager.hitmarkerRoutine);
