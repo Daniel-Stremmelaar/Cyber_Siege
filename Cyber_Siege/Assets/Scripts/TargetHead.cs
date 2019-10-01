@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetHead : Target
 {
+    [Header("Head data")]
     public FadingText adjustText;
     public float headshotTime;
     public Target mainBody;
@@ -17,10 +18,18 @@ public class TargetHead : Target
         adjustText.FadeOut();
     }
 
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        
+    }
+
     public override void Flicker()
     {
-        /*hologramTime = mainBody.hologramTime;
-        hologramAlpha = mainBody.hologramAlpha;
-        hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));*/
+        
     }
 }

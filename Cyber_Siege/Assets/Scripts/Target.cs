@@ -28,10 +28,6 @@ public class Target : MonoBehaviour
     private void Update()
     {
         Flicker();
-        /*if(head != null)
-        {
-            head.hologram.SetFloat("_AlphaAdjust", hologram.GetFloat("_AlphaAdjust"));
-        }*/
     }
 
     public virtual void Hit()
@@ -48,10 +44,6 @@ public class Target : MonoBehaviour
             hologramAlpha = Random.Range(minAlpha, maxAlpha);
             hologramTime = Random.Range(minTime, maxTime);
             hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
-            if(head != null)
-            {
-                head.hologram.SetFloat("_AlphaAdjust", Mathf.SmoothDamp(head.hologram.GetFloat("_AlphaAdjust"), hologramAlpha, ref speedRef, hologramTime));
-            }
         }
     }
 }
