@@ -11,11 +11,11 @@ public class TargetHead : Target
 
     public override void Hit()
     {
-        manager.timer -= headshotTime;
+        //manager.timer -= headshotTime;
         mainBody.Hit();
-        adjustText.timeChange.text = "-" + headshotTime.ToString("F4");
-        adjustText.PopIn();
-        adjustText.FadeOut();
+        //adjustText.timeChange.text = "-" + headshotTime.ToString("F4");
+        //adjustText.PopIn();
+        //adjustText.FadeOut();
     }
 
     private void Start()
