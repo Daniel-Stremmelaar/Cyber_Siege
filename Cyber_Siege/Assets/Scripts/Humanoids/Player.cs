@@ -19,10 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField] float cameraTransitionModifier;
 
     [Header("Movement")]
-    Vector3 lastMovedAmount;
+    public Vector3 lastMovedAmtNormalized;
     [SerializeField] float movementSpeedModifier;
     [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff, sprintBuff;
-    [SerializeField] bool crouching, running;
+    [SerializeField] public bool crouching, running;
 
     [Header("Jumping")]
     [SerializeField] Vector3 jumpForce;
@@ -225,20 +225,21 @@ public class Player : MonoBehaviour
     }
     public void Movement()
     {
-        lastMovedAmount = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        playerAnimator.SetFloat("SidewaysWalking", lastMovedAmount.x);
-        playerAnimator.SetFloat("ForwardWalking", lastMovedAmount.z);
-        if (lastMovedAmount != Vector3.zero)
+        Vector3 lastMovedAmt = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        lastMovedAmtNormalized = lastMovedAmt;
+        playerAnimator.SetFloat("SidewaysWalking", lastMovedAmt.x);
+        playerAnimator.SetFloat("ForwardWalking", lastMovedAmt.z);
+        if (lastMovedAmt != Vector3.zero)
         {
-            if (lastMovedAmount.z == 0)
+            if (lastMovedAmt.z == 0)
             {
-                lastMovedAmount *= (1 - (sidewaysWalkDebuff / 100));
+                lastMovedAmt *= (1 - (sidewaysWalkDebuff / 100));
             }
             else
             {
-                if (lastMovedAmount.z < 0)
+                if (lastMovedAmt.z < 0)
                 {
-                    lastMovedAmount *= (1 - (backwardsWalkDebuff / 100));
+                    lastMovedAmt *= (1 - (backwardsWalkDebuff / 100));
                 }
                 else
                 {
@@ -247,7 +248,7 @@ public class Player : MonoBehaviour
                         if (running)
                         {
                             inSlideGap = true;
-                            lastMovedAmount *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
+                            lastMovedAmt *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
                             if (currentGapTimer != null)
                             {
                                 StopCoroutine(currentGapTimer);
@@ -266,14 +267,14 @@ public class Player : MonoBehaviour
             }
             if (crouching)
             {
-                lastMovedAmount *= (1 - (crouchWalkDebuff / 100));
+                lastMovedAmt *= (1 - (crouchWalkDebuff / 100));
                 playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
             else
             {
                 playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
-            transform.Translate(lastMovedAmount * movementSpeedModifier * Time.deltaTime);
+            transform.Translate(lastMovedAmt * movementSpeedModifier * Time.deltaTime);
         }
         else
         {

@@ -11,17 +11,35 @@ public class GunData : ScriptableObject
     public int ammoCapacity;
     public float reloadSpeedMultiplier;
     public float bulletDamage;
-    public float shotKnockupX, shotKnockdownX;
+    public float shotKnockdownX;
     public float knockupSpeed, knockdownSpeed;
     public GameObject bulletPrefab;
     public float movementSpeedModifier;
-    public float baseAccuracy;
+    public float baseAccuracy, walkAccuracy, zoomedAccuracy;
     public float destroyTime;
     public float shotDelay;
     public float bulletRange;
     public Vector2 maxBulletOffset, minBulletOffset;
+    public float crosshairModifySpeed;
+
+    [Header("Recoil")]
+    public RecoilPattern recoilPattern;
 
     public AudioClip shotSound;
 
     public bool infiniteAmmo;
+
+    [System.Serializable]
+    public struct PatternData
+    {
+        public int bulletIndexChange;
+        public Vector3 recoilAmount;
+    }
+    [System.Serializable]
+    public struct RecoilPattern
+    {
+        public float resetTimer;
+        public Vector3 initialRecoil;
+        public PatternData[] patternData;
+    }
 }

@@ -1,13 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseGun : MonoBehaviour
 {
+    [Header("TESTING PURPOSES")]
+    public AnimationClip reloadAnim;
+    public AnimationClip shootAnim;
+    public Animation animation;
+
+
+    [Header("Actually Stuff")]
     public Player owner;
     public string humanoidTag;
 
+    public GameObject crosshair;
+
     public GunData baseData;
+
+    public int repeatedBulletAmount = 0;
+    public Vector3 recoilAmount = Vector3.zero;
+
     public int currentClip;
     public int currentAmmoStore;
     public ParticleSystem muzzleFlash;
@@ -16,11 +30,17 @@ public class BaseGun : MonoBehaviour
     public Coroutine currentActionRoutine;
 
     bool canFire = true;
-    Coroutine knockupRoutine, knockdownRoutine;
+    Coroutine knockupRoutine, knockdownRoutine, recoilResetTimer;
     Vector3 remainingRotationAmount;
     Vector3 totalRotationAmount;
 
     public FireTypes fireType;
+
+
+    private void Awake()
+    {
+        recoilAmount = baseData.recoilPattern.initialRecoil;
+    }
     // Start is called before the first frame update
     public void Update()
     {
@@ -43,6 +63,28 @@ public class BaseGun : MonoBehaviour
             }
             CheckFireMode();
         }
+        UpdateCrosshair();
+
+    }
+
+    void UpdateCrosshair()
+    {
+        GameObject crosshair = GameObject.FindGameObjectWithTag("UIManager").GetComponent<IngameUIManager>().crosshair;
+        float crosshairOffset;
+        if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            crosshairOffset = baseData.walkAccuracy;
+        }
+        else
+        {
+            crosshairOffset = baseData.zoomedAccuracy;
+        }
+        foreach(Transform crosshairStripe in crosshair.transform)
+        {
+            Vector3 ogPos = crosshairStripe.localPosition;
+            Vector3 newDistance = crosshairStripe.localPosition.normalized * crosshairOffset;
+            crosshairStripe.localPosition = Vector3.MoveTowards(ogPos, newDistance, baseData.crosshairModifySpeed * Time.deltaTime);
+        }
     }
 
     public void CheckFireMode()
@@ -61,6 +103,24 @@ public class BaseGun : MonoBehaviour
                     }
                     break;
             }
+        }
+    }
+    void CheckRecoilPattern()
+    {
+        if(baseData.recoilPattern.patternData.Length > 0 && repeatedBulletAmount != 0)
+        {
+            foreach (GunData.PatternData patternData in baseData.recoilPattern.patternData)
+            {
+                if (patternData.bulletIndexChange == repeatedBulletAmount)
+                {
+                    recoilAmount = patternData.recoilAmount;
+                    return;
+                }
+            }
+        }
+        else
+        {
+            recoilAmount = baseData.recoilPattern.initialRecoil;
         }
     }
     public void FireBullet()
@@ -84,8 +144,22 @@ public class BaseGun : MonoBehaviour
                 if(hitData.transform.tag == humanoidTag)
                 {
                     print("Hit Target");
+                    IngameUIManager uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<IngameUIManager>();
+                    if (uiManager.hitmarkerRoutine != null)
+                    {
+                        StopCoroutine(uiManager.hitmarkerRoutine);
+                        uiManager.hitmarkerRoutine = null;
+                    }
+                    uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
                 }
             }
+            CheckRecoilPattern();
+            repeatedBulletAmount++;
+            if(recoilResetTimer != null)
+            {
+                StopCoroutine(recoilResetTimer);
+            }
+            recoilResetTimer = StartCoroutine(ResetPatternCounter());
             //Spawn Particle
             //Knock player camera up
             //Let fire animation play
@@ -94,8 +168,7 @@ public class BaseGun : MonoBehaviour
             {
                 currentClip--;
             }
-            remainingRotationAmount.x += baseData.shotKnockupX;
-            totalRotationAmount.x += baseData.shotKnockupX;
+            remainingRotationAmount = recoilAmount;
             if (knockupRoutine == null)
             {
                 if (knockdownRoutine != null)
@@ -143,21 +216,60 @@ public class BaseGun : MonoBehaviour
 
     public IEnumerator KnockUp()
     {
-        while(remainingRotationAmount.x >= 0)
+        float multiplyAmount = 1 / baseData.knockupSpeed;
+        while(remainingRotationAmount != Vector3.zero)
         {
-            Vector3 rotateAmount = new Vector3(baseData.knockupSpeed * Time.deltaTime, 0, 0);
-            print("A");
-            owner.playerCamera.Rotate(-rotateAmount);
+
+            Vector3 rotateAmount = new Vector3(recoilAmount.x * (Time.deltaTime * multiplyAmount), recoilAmount.y * (Time.deltaTime * multiplyAmount), 0);
+            if(rotateAmount.x > 0)
+            {
+                if(rotateAmount.x > remainingRotationAmount.x)
+                {
+                    rotateAmount.x = remainingRotationAmount.x;
+                }
+            }
+            else
+            {
+                if(rotateAmount.x < 0)
+                {
+                    if(rotateAmount.x < remainingRotationAmount.x)
+                    {
+                        rotateAmount.x = remainingRotationAmount.x;
+                    }
+                }
+            }
+            if (rotateAmount.y > 0)
+            {
+                if (rotateAmount.y > remainingRotationAmount.y)
+                {
+                    rotateAmount.y = remainingRotationAmount.y;
+                }
+            }
+            else
+            {
+                if (rotateAmount.y < 0)
+                {
+                    if (rotateAmount.y < remainingRotationAmount.y)
+                    {
+                        rotateAmount.y = remainingRotationAmount.y;
+                    }
+                }
+            }
+            owner.playerCamera.Rotate(new Vector3(-rotateAmount.x, 0, 0));
+            print(-rotateAmount.x);
+            owner.transform.Rotate(new Vector3(0, rotateAmount.y, 0));
             remainingRotationAmount -= rotateAmount;
             yield return null;
         }
+        print(remainingRotationAmount);
         knockupRoutine = null;
         knockdownRoutine = StartCoroutine(KnockDown());
     }
 
     public IEnumerator KnockDown()
     {
-        totalRotationAmount.x = baseData.shotKnockdownX;
+        yield return null;
+        totalRotationAmount.x = baseData.recoilPattern.initialRecoil.x;
         while(totalRotationAmount.x >= 0)
         {
             print("O");
@@ -167,6 +279,13 @@ public class BaseGun : MonoBehaviour
             yield return null;
         }
         knockdownRoutine = null;
+    }
+
+    public IEnumerator ResetPatternCounter()
+    {
+        yield return new WaitForSeconds(baseData.recoilPattern.resetTimer + baseData.shotDelay);
+        repeatedBulletAmount = 0;
+        recoilResetTimer = null;
     }
 
     [System.Serializable]
