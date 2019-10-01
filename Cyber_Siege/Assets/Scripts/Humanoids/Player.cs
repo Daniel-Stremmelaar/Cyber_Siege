@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] float movementSpeedModifier;
     [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff, sprintBuff;
     [SerializeField] public bool crouching, running;
+    [SerializeField] float fieldOfViewNormal, fieldOfViewRunning, fovChangeSpeed;
 
     [Header("Jumping")]
     [SerializeField] Vector3 jumpForce;
@@ -234,12 +235,14 @@ public class Player : MonoBehaviour
             if (lastMovedAmt.z == 0)
             {
                 lastMovedAmt *= (1 - (sidewaysWalkDebuff / 100));
+                playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewNormal, fovChangeSpeed);
             }
             else
             {
                 if (lastMovedAmt.z < 0)
                 {
                     lastMovedAmt *= (1 - (backwardsWalkDebuff / 100));
+                    playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewNormal, fovChangeSpeed);
                 }
                 else
                 {
@@ -247,6 +250,7 @@ public class Player : MonoBehaviour
                     {
                         if (running)
                         {
+                            playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewRunning, fovChangeSpeed);
                             inSlideGap = true;
                             lastMovedAmt *= 1 + (sprintBuff * Input.GetAxis("Vertical") / 100);
                             if (currentGapTimer != null)
@@ -257,6 +261,7 @@ public class Player : MonoBehaviour
                         }
                         else
                         {
+                            playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewNormal, fovChangeSpeed);
                             if (currentGapTimer == null)
                             {
                                 currentGapTimer = StartCoroutine(DisableSlideGap(slideGapDuration));
@@ -278,6 +283,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewNormal, fovChangeSpeed);
             if (crouching)
             {
                 playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, cameraTransitionModifier * Time.deltaTime);

@@ -6061,6 +6061,21 @@ PrefabInstance:
       propertyPath: relocate
       value: 
       objectReference: {fileID: 610431746}
+    - target: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
+        type: 3}
+      propertyPath: fieldOfViewNormal
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
+        type: 3}
+      propertyPath: fieldOfViewRunning
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
+        type: 3}
+      propertyPath: fovChangeSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1189438991254910431, guid: 039a7c5fa9e6acf43843a807dcaf3176,
         type: 3}
       propertyPath: m_LocalRotation.x
