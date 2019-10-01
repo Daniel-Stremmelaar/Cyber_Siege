@@ -728,7 +728,7 @@ Transform:
   - {fileID: 791575890111365275}
   - {fileID: 40765357163325266}
   - {fileID: 8672961516838286841}
-  - {fileID: 5788642531585975756}
+  - {fileID: 1189438991254910431}
   m_Father: {fileID: 4324287877836052355}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   slideColliderSize: {x: 0.6019324, y: 0.5469069, z: 1.78}
   slideColliderPosition: {x: -0.002019227, y: 0.2734954, z: 0}
   gunWieldingPoint: {fileID: 0}
-  currentGun: {fileID: 5788642531585975756}
+  currentGun: {fileID: 0}
   ikEnabled: 1
   backbone: {fileID: 537890647768385570}
 --- !u!54 &1526675709238990145
@@ -2918,7 +2918,7 @@ Transform:
   m_Father: {fileID: 2204484932184587813}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &697107663974663132
+--- !u!1001 &5294052252291470287
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2992,9 +2992,9 @@ PrefabInstance:
       objectReference: {fileID: 4673935229079736927}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a236a7052df8074458aefce835b21294, type: 3}
---- !u!4 &5788642531585975756 stripped
+--- !u!4 &1189438991254910431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6483490269656245776, guid: a236a7052df8074458aefce835b21294,
     type: 3}
-  m_PrefabInstance: {fileID: 697107663974663132}
+  m_PrefabInstance: {fileID: 5294052252291470287}
   m_PrefabAsset: {fileID: 0}
