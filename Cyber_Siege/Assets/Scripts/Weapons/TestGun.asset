@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestGun
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 0}
-  gunName: Pistol
+  gunName: Assault Rifle
   clipCapacity: 12
   ammoCapacity: 1000000
   reloadSpeedMultiplier: 1
@@ -24,14 +24,14 @@ MonoBehaviour:
   bulletImpactDecal: {fileID: 806173459670267454, guid: 7bcf0c75a40f630409ddc072109e5d75,
     type: 3}
   movementSpeedModifier: 0
-  baseAccuracy: 100
+  baseAccuracy: 10
   walkAccuracy: 50
   zoomedAccuracy: 30
   destroyTime: 1000
   shotDelay: 0
   bulletRange: 20
-  maxBulletOffset: {x: 0, y: 0}
-  minBulletOffset: {x: 0, y: 0}
+  maxBulletOffset: {x: 0.6, y: 0.2}
+  minBulletOffset: {x: -0.6, y: -0.2}
   crosshairModifySpeed: 300
   recoilPattern:
     resetTimer: 0.5
