@@ -17,16 +17,42 @@ public class TutorialRaycast : MonoBehaviour
     {
         if (tutorial.CheckStage() == 1)
         {
-            print("cast");
             if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
             {
-                print("hit");
                 if(hit.transform.gameObject.tag == "LookBeacon")
                 {
-                    print("see");
                     hit.transform.gameObject.GetComponent<TutorialBeacon>().Seen();
                 }
             }
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            {
+                if(hit.transform.gameObject.tag == "Humanoid")
+                {
+                    hit.transform.gameObject.GetComponent<TutorialTarget>().Hit();
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && tutorial.CheckStage() == 2)
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 3))
+            {
+                if (hit.transform.gameObject.tag == "Weapon")
+                {
+                    print("Pickup");
+                    tutorial.NextStage();
+                }
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.R) && tutorial.CheckStage() == 4)
+        {
+            print("reload");
+            tutorial.NextStage();
         }
     }
 }

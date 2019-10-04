@@ -21,6 +21,9 @@ public class Tutorial : MonoBehaviour
     public List<GameObject> tutorialObjects = new List<GameObject>();
 
     [Header("Time")]
+    private float timer;
+    private bool running;
+    public Text timeText;
     public float startDelay;
     // Start is called before the first frame update
     void Start()
@@ -38,10 +41,20 @@ public class Tutorial : MonoBehaviour
         {
             StageCaller(stage);
         }
+        if (timer > 0.001f)
+        {
+            timeText.text = timer.ToString("F4");
+        }
+        else
+        {
+            timeText.text = "";
+        }
     }
 
     public void StageCaller(int i)
     {
+        timer = 0.000f;
+        running = false;
         next = false;
         image.SetActive(false);
         foreach(GameObject g in tutorialObjects)
@@ -69,6 +82,21 @@ public class Tutorial : MonoBehaviour
     public int CheckStage()
     {
         return stage;
+    }
+
+    public void ChangeTimer(float change)
+    {
+        timer += change;
+    }
+
+    public void ChangeRunning()
+    {
+        running = !running;
+    }
+
+    public bool CheckRunning()
+    {
+        return running;
     }
 
     public IEnumerator StartDelay()

@@ -12,6 +12,8 @@ TagManager:
   - MovementBeacon
   - LookBeacon
   - Tutorial
+  - Weapon
+  - TutorialChecker
   layers:
   - Default
   - TransparentFX
