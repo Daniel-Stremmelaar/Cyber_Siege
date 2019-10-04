@@ -9,6 +9,7 @@ public class IngameManager : MonoBehaviour
 
     public void AddBulletHole(GameObject bulletHole)
     {
+        print(maxBulletHoleAmount);
         if(maxBulletHoleAmount > 0)
         {
             if (bulletHoles.Count == maxBulletHoleAmount)
