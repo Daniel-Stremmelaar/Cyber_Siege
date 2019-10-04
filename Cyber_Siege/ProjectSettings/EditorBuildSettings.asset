@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/GreyboxKillhouse.unity
+    path: Assets/Scenes/Pim/GreyboxKillhouse.unity
     guid: b39306d456afba646923eecf70c23780
   - enabled: 0
-    path: Assets/Scenes/ParkourCourse.unity
+    path: Assets/Scenes/Maurits/ParkourCourse.unity
     guid: 620c5271d9e82424680408886095ab11
   - enabled: 1
-    path: Assets/Scenes/GreyboxKillhouse v2.unity
+    path: Assets/Scenes/FinalGame/GreyboxKillhouse v2.unity
     guid: d6144d91c3131aa449034e5628139035
   m_configObjects: {}

@@ -1218,7 +1218,7 @@ GameObject:
   - component: {fileID: 1526675709238990145}
   m_Layer: 0
   m_Name: PlayerPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2959,11 +2959,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8642954287632121099}
     m_Modifications:
-    - target: {fileID: 8044174216336577539, guid: a236a7052df8074458aefce835b21294,
-        type: 3}
-      propertyPath: m_Name
-      value: Aorus_low
-      objectReference: {fileID: 0}
     - target: {fileID: 6483490269656245776, guid: a236a7052df8074458aefce835b21294,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3019,11 +3014,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -159.688
       objectReference: {fileID: 0}
+    - target: {fileID: 8044174216336577539, guid: a236a7052df8074458aefce835b21294,
+        type: 3}
+      propertyPath: m_Name
+      value: Aorus_low
+      objectReference: {fileID: 0}
     - target: {fileID: 2054565854391626497, guid: a236a7052df8074458aefce835b21294,
         type: 3}
       propertyPath: owner
       value: 
       objectReference: {fileID: 4673935229079736927}
+    - target: {fileID: 2178659424538582236, guid: a236a7052df8074458aefce835b21294,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a236a7052df8074458aefce835b21294, type: 3}
 --- !u!4 &1189438991254910431 stripped

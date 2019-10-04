@@ -6,29 +6,29 @@ using UnityEngine.UI;
 public class Tutorial : MonoBehaviour
 {
     [Header("Tutorial stage management")]
-    public int stage;
+    private int stage;
     public bool next;
 
     [Header("Tutorial images")]
-    public List<Sprite> tutorialImages = new List<Sprite>();
     public GameObject image;
+    public List<Sprite> tutorialImages = new List<Sprite>();
 
     [Header("Voice lines")]
     public AudioSource announcerSource;
     public List<AudioClip> voiceLines = new List<AudioClip>();
-    private int index;
+
+    [Header("Tutorial objects")]
+    public List<GameObject> tutorialObjects = new List<GameObject>();
 
     [Header("Time")]
-    private float timer;
     public float startDelay;
     // Start is called before the first frame update
     void Start()
     {
-        index = 0;
-        next = true;
-        timer = startDelay;
+        stage = 0;
+        next = false;
         image.SetActive(false);
-        StartCoroutine("StartDelay");
+        StartCoroutine(StartDelay());
     }
 
     // Update is called once per frame
@@ -44,14 +44,36 @@ public class Tutorial : MonoBehaviour
     {
         next = false;
         image.SetActive(false);
+        foreach(GameObject g in tutorialObjects)
+        {
+            if(g != null)
+            {
+                g.SetActive(false);
+            }
+        }
         announcerSource.PlayOneShot(voiceLines[stage]);
         image.GetComponent<Image>().sprite = tutorialImages[stage];
         image.SetActive(true);
+        if(tutorialObjects[stage] != null)
+        {
+            tutorialObjects[stage].SetActive(true);
+        }
     }
 
-    IEnumerator StartDelay()
+    public void NextStage()
     {
+        stage++;
         next = true;
+    }
+
+    public int CheckStage()
+    {
+        return stage;
+    }
+
+    public IEnumerator StartDelay()
+    {
         yield return new WaitForSeconds(startDelay);
+        next = true;
     }
 }
