@@ -25,6 +25,10 @@ public class Tutorial : MonoBehaviour
     public Text subtitleText;
     public List<string> subtitles = new List<string>();
 
+    [Header("Tutorial objectives")]
+    public Text objectiveText;
+    public List<string> objectives = new List<string>();
+
     [Header("Time")]
     private float timer;
     private bool running;
@@ -81,10 +85,13 @@ public class Tutorial : MonoBehaviour
                 g.SetActive(false);
             }
         }
+        objectiveText.text = objectives[stage];
         announcerSource.PlayOneShot(voiceLines[stage]);
         image.GetComponent<Image>().sprite = tutorialImages[stage];
         image.SetActive(true);
         subtitleText.text = subtitles[stage];
+        subtitleText.gameObject.GetComponent<FadingText>().PopIn();
+        subtitleText.gameObject.GetComponent<FadingText>().FadeOut();
         if(tutorialObjects[stage] != null)
         {
             tutorialObjects[stage].SetActive(true);

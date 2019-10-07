@@ -1323,6 +1323,85 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 31.264347, y: 0.21945763, z: 16.913593}
   m_Center: {x: -9.943941, y: 0.061299324, z: -6.548065}
+--- !u!1 &387457751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387457754}
+  - component: {fileID: 387457753}
+  - component: {fileID: 387457752}
+  m_Layer: 5
+  m_Name: Objectives (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &387457752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387457751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &387457753
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387457751}
+  m_CullTransparentMesh: 0
+--- !u!224 &387457754
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387457751}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 445003593}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -41.4}
+  m_SizeDelta: {x: 407.5, y: 35.9}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!4 &387471574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 2c17ae18822f6e84e8b6cfd8b4824f09,
@@ -1697,6 +1776,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 426352199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &445003592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445003593}
+  m_Layer: 5
+  m_Name: Objectives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &445003593
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445003592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1639389767}
+  - {fileID: 387457754}
+  m_Father: {fileID: 1268516365}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 175}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!1001 &455706442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5902,19 +6018,62 @@ MonoBehaviour:
   - {fileID: 0}
   subtitleText: {fileID: 1902923262}
   subtitles:
-  - Stage one
-  - Stage two
-  - Stage three
-  - Stage four
-  - Stage five
-  - Stage six
-  - Stage seven
-  - Stage eight
-  - Stage nine
-  - Stage ten
-  - Stage eleven
-  - Stage twelve
+  - "Welcome to your training-ground recruit. Let\u2019s run some basic tests to make
+    sure the simulation is running properly. Walk over to the glowing beacon for me."
+  - Alright, look at the beacon to your left.
+  - "Okay, everything seems fine so far. You\u2019re out of ammo though, we have put
+    some weapons on the rack in the shooting range. Feel free to pick something you
+    are comfortable with."
+  - In the bottom right of your visor you can see how much ammunition is left in your
+    weapon, and how much you have left in total. It will only do this for the weapon
+    you are holding though. You can also see what other weapon you have with you,
+    and how many grenades you have left. Now, turn around and shoot the targets as
+    they appear.
+  - "\u201CGood job. See that timer in the top display of your visor? That is how
+    long it took you to shoot all the targets. When running the killhouse you will
+    want to end with the lowest possible time. The faster we clear a site, the safer
+    it is for those involved.Before we move on you may want to make yourself ready.
+    Reload your gun so you don\u2019t run out of ammo half way through the next task."
+  - Okay all the systems seem to be working just fine. Now on to your final training
+    before you can start putting your own practice in. In order to disable your targets
+    quickly you can shoot them in the head. Do this in the killhouse and your final
+    time will be reduced. But pay attention. Some of your targets will have hostages.
+    Do not shoot the hostages, if you do penalty time will be added to your final
+    time. To demonstrate shoot the hostage anywhere and shoot the target in the head.
+  - "You see how your time changed? It displays right below the timer. Now on to some
+    more in depth movement. Try sprinting to the beacon. If you aren\u2019t fast enough
+    the way will close and you\u2019ll have to start over."
+  - "Okay, you won\u2019t always fit everywhere while standing up, crouch down and
+    go under the next obstacle."
+  - Alright, now crouching slows you down, so try sliding under an obstacle instead.
+    If done right, it will save you time.
+  - "Nicely done. Now the final thing for getting around. You\u2019ll have to move
+    over stuff like broken walls. Vault over the next obstacle."
+  - "Okay, there are two more things you\u2019ll need to know if you want to perform
+    at your best. The first is the use of grenades. Use them to clear a room of targets,
+    but avoid using them in a room with hostages in it."
+  - "Now for the final thing. In the killhouse golden targets will be hidden. You
+    will not be penalized for missing them, but hitting them will reduce your final
+    time. Don\u2019t expect it to be as easy as it sounds though. They are well hidden
+    and you won\u2019t be able to shoot them if you just walk around. Now shoot the
+    golden target and your introduction will be over. Good luck with the killhouse
+    recruit."
   - Turial end
+  objectiveText: {fileID: 387457752}
+  objectives:
+  - Move to the beacon
+  - Look at the beacon
+  - Pickup a gun
+  - Shoot the targets
+  - Reload the gun
+  - Headshot the targets
+  - Sprint to the beacon
+  - Crouch to the beacon
+  - Slide to the beacon
+  - Vault to the beacon
+  - Throw a grenade
+  - Shoot the final target
+  - 
   timeText: {fileID: 1164665298}
   adjustText: {fileID: 421685960}
   startDelay: 2
@@ -5993,6 +6152,7 @@ RectTransform:
   - {fileID: 1164665297}
   - {fileID: 421685959}
   - {fileID: 1902923261}
+  - {fileID: 445003593}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7638,6 +7798,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617003090}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1639389766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1639389767}
+  - component: {fileID: 1639389769}
+  - component: {fileID: 1639389768}
+  m_Layer: 5
+  m_Name: Objectives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1639389767
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639389766}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 445003593}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 180, y: 45}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1639389768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639389766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 35
+    m_FontStyle: 3
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Objective:'
+--- !u!222 &1639389769
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639389766}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1642184223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9778,6 +10017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1902923261}
   - component: {fileID: 1902923263}
+  - component: {fileID: 1902923264}
   - component: {fileID: 1902923262}
   m_Layer: 5
   m_Name: Subtitles
@@ -9830,7 +10070,7 @@ MonoBehaviour:
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 30
+    m_MinSize: 25
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -9847,6 +10087,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902923260}
   m_CullTransparentMesh: 0
+--- !u!114 &1902923264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902923260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b2c13f1e2b86348b55f7c4442fbe73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeChange: {fileID: 1902923262}
+  fadeOutTime: 15
 --- !u!1 &1916263947
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class TutorialRaycast : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
             {
