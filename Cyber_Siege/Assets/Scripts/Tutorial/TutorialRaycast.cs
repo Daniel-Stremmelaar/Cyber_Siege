@@ -55,5 +55,11 @@ public class TutorialRaycast : MonoBehaviour
             print("reload");
             tutorial.NextStage();
         }
+
+        if(Input.GetKeyDown(KeyCode.G) && tutorial.CheckStage() == 10)
+        {
+            print("grenade");
+            tutorial.NextStage();
+        }
     }
 }

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShaderTestMat3
+  m_Name: HostageShader
   m_Shader: {fileID: -6465566751694194690, guid: 15d794ad7db8a1f47b2de17b939b47b9,
     type: 3}
   m_ShaderKeywords: 
