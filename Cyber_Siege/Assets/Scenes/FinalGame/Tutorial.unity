@@ -5848,6 +5848,19 @@ MonoBehaviour:
   - {fileID: 93670705}
   - {fileID: 775375614}
   - {fileID: 0}
+  subtitleText: {fileID: 0}
+  subtitles:
+  - Stage one
+  - Stage two
+  - Stage three
+  - Stage four
+  - Stage five
+  - Stage six
+  - Stage seven
+  - Stage eight
+  - Stage nine
+  - Stage ten
+  - Stage eleven
   timeText: {fileID: 1164665298}
   adjustText: {fileID: 421685960}
   startDelay: 2

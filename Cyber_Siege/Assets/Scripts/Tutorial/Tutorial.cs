@@ -21,6 +21,10 @@ public class Tutorial : MonoBehaviour
     public GameObject doorBlock;
     public List<GameObject> tutorialObjects = new List<GameObject>();
 
+    [Header("Tutorial text")]
+    public Text subtitleText;
+    public List<string> subtitles = new List<string>();
+
     [Header("Time")]
     private float timer;
     private bool running;
@@ -80,6 +84,7 @@ public class Tutorial : MonoBehaviour
         announcerSource.PlayOneShot(voiceLines[stage]);
         image.GetComponent<Image>().sprite = tutorialImages[stage];
         image.SetActive(true);
+        subtitleText.text = subtitles[stage];
         if(tutorialObjects[stage] != null)
         {
             tutorialObjects[stage].SetActive(true);
