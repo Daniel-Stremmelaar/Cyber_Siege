@@ -26,9 +26,9 @@ public class Player : MonoBehaviour
     [SerializeField] float fieldOfViewNormal, fieldOfViewRunning, fovChangeSpeed;
 
     [Header("Jumping")]
+    [SerializeField] Rigidbody playerRigid;
     [SerializeField] Vector3 jumpForce;
-    [SerializeField] int resetJumps = 1;
-    [SerializeField] int remainingJumps = 1;
+    [SerializeField] LayerMask jumpableLayers;
     [SerializeField] Vector3 jumpChargeCheckSize;
     [SerializeField] Vector3 jumpCheckPosModifier;
 
@@ -59,16 +59,7 @@ public class Player : MonoBehaviour
     public Transform gunWieldingPoint;
     public Transform currentGun;
 
-    [Header("Inverse Kinematics")]
-    public bool ikEnabled;
-    [SerializeField] Transform backbone;
-    float backupX;
-
     // Start is called before the first frame update
-    private void Awake()
-    {
-        backupX = backbone.localEulerAngles.x;
-    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -76,24 +67,18 @@ public class Player : MonoBehaviour
     }
     private void LateUpdate()
     {
-
-        if (currentStatus == Status.Normal)
-        {
-            Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.velocity = Vector3.zero;
-        }
         if (currentState != States.Frozen || currentState != States.Disabled)
         {
             RotateCamera();
         }
+        if(currentStatus == Status.Normal)
+        {
+            playerRigid.velocity = new Vector3(0, playerRigid.velocity.y, 0);
+        }
     }
     public void FixedUpdate()
     {
-        if (currentStatus == Status.Normal)
-        {
-            Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.velocity = Vector3.zero;
-        }
+
     }
     public void Update()
     {
@@ -128,6 +113,13 @@ public class Player : MonoBehaviour
                                 }
                             }
                         }
+                        else
+                        {
+                            if(Physics.CheckBox(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize, transform.rotation, jumpableLayers, QueryTriggerInteraction.Ignore))
+                            {
+                                Jump();
+                            }
+                        }
                     }
                 }
             }
@@ -135,11 +127,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             StartCoroutine(Slide(slidePower));
-        }
-        if (currentStatus == Status.Normal)
-        {
-            Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.velocity = Vector3.zero;
         }
     }
     public void CheckMovement()
@@ -165,7 +152,6 @@ public class Player : MonoBehaviour
     }
     public void Jump()
     {
-        remainingJumps--;
         GetComponent<Rigidbody>().AddForce(jumpForce);
     }
     public void MovementAction()

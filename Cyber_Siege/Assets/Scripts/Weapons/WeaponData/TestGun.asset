@@ -24,9 +24,10 @@ MonoBehaviour:
   bulletImpactDecal: {fileID: 806173459670267454, guid: 7bcf0c75a40f630409ddc072109e5d75,
     type: 3}
   movementSpeedModifier: 0
-  baseAccuracy: 10
-  walkAccuracy: 50
-  zoomedAccuracy: 30
+  baseAccuracy: 50
+  walkAccuracy: 100
+  sprintAccuracy: 30
+  zoomedAccuracy: 20
   destroyTime: 1000
   shotDelay: 0
   bulletRange: 20

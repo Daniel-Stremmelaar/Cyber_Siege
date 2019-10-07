@@ -1262,10 +1262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caacab0d1a28ee74ea1cb0b57f0ae979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthSpeed: 3
-  horizontalSpeed: 3
-  rotSpeed: 5
-  r: {fileID: 400607480}
 --- !u!23 &400607483
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5380,6 +5376,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979661433}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1981947888 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 780441864054958920, guid: 2f7b1bfa44c220448891857a68012270,
+    type: 3}
+  m_PrefabInstance: {fileID: 780441865714986020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2011679935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,6 +6063,11 @@ PrefabInstance:
       propertyPath: relocate
       value: 
       objectReference: {fileID: 610431746}
+    - target: {fileID: 6195555312680335566, guid: 039a7c5fa9e6acf43843a807dcaf3176,
+        type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1981947888}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
 --- !u!1001 &4400675549882924894

@@ -15,7 +15,7 @@ public class GunData : ScriptableObject
     public float knockupSpeed, knockdownSpeed;
     public GameObject bulletImpactDecal;
     public float movementSpeedModifier;
-    public float baseAccuracy, walkAccuracy, zoomedAccuracy;
+    public float baseAccuracy, walkAccuracy, sprintAccuracy, zoomedAccuracy;
     public float destroyTime;
     public float shotDelay;
     public float bulletRange;
