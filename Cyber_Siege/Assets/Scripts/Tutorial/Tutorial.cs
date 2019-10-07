@@ -18,6 +18,7 @@ public class Tutorial : MonoBehaviour
     public List<AudioClip> voiceLines = new List<AudioClip>();
 
     [Header("Tutorial objects")]
+    public GameObject doorBlock;
     public List<GameObject> tutorialObjects = new List<GameObject>();
 
     [Header("Time")]
@@ -61,6 +62,10 @@ public class Tutorial : MonoBehaviour
         if(stage != 4 && stage != 6)
         {
             timer = 0.000f;
+        }
+        if(stage == 6)
+        {
+            doorBlock.GetComponent<Collider>().isTrigger = true;
         }
         running = false;
         next = false;
