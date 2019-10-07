@@ -26,13 +26,13 @@ MonoBehaviour:
   movementSpeedModifier: 0
   baseAccuracy: 50
   walkAccuracy: 100
-  sprintAccuracy: 30
+  sprintAccuracy: 0
   zoomedAccuracy: 20
   destroyTime: 1000
   shotDelay: 0
   bulletRange: 20
-  maxBulletOffset: {x: 0.6, y: 0.2}
-  minBulletOffset: {x: -0.6, y: -0.2}
+  maxBulletOffset: {x: 0, y: 0}
+  minBulletOffset: {x: 0, y: 0}
   crosshairModifySpeed: 300
   recoilPattern:
     resetTimer: 0.5
