@@ -24,6 +24,7 @@ public class Tutorial : MonoBehaviour
     private float timer;
     private bool running;
     public Text timeText;
+    public Text adjustText;
     public float startDelay;
     // Start is called before the first frame update
     void Start()
@@ -39,7 +40,11 @@ public class Tutorial : MonoBehaviour
     {
         if(next)
         {
-            StageCaller(stage);
+            StageCaller();
+        }
+        if (running)
+        {
+            timer += Time.deltaTime;
         }
         if (timer > 0.001f)
         {
@@ -51,9 +56,12 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    public void StageCaller(int i)
+    public void StageCaller()
     {
-        timer = 0.000f;
+        if(stage != 4 && stage != 6)
+        {
+            timer = 0.000f;
+        }
         running = false;
         next = false;
         image.SetActive(false);
@@ -87,6 +95,18 @@ public class Tutorial : MonoBehaviour
     public void ChangeTimer(float change)
     {
         timer += change;
+    }
+
+    public void ChangeAdjust(float change)
+    {
+        if(change > 0)
+        {
+            adjustText.text = "+" + change.ToString("F4");
+        }
+        else
+        {
+            adjustText.text = change.ToString("F4");
+        }
     }
 
     public void ChangeRunning()

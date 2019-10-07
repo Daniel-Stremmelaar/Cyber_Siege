@@ -16,6 +16,7 @@ public class TutorialTarget : MonoBehaviour
 
     [Header("Mechanics")]
     public float headshotTime;
+    public float hostageTime;
     private Tutorial tutorial;
     private TutorialTargetChecker checker;
 
@@ -38,9 +39,19 @@ public class TutorialTarget : MonoBehaviour
         {
             tutorial.ChangeRunning();
         }
-        if(gameObject.tag == "HeadshotTutorial")
+        if(headshotTime > 0)
         {
             tutorial.ChangeTimer(-headshotTime);
+            tutorial.ChangeAdjust(-headshotTime);
+            tutorial.adjustText.GetComponent<FadingText>().PopIn();
+            tutorial.adjustText.GetComponent<FadingText>().FadeOut();
+        }
+        if(hostageTime > 0)
+        {
+            tutorial.ChangeTimer(hostageTime);
+            tutorial.ChangeAdjust(hostageTime);
+            tutorial.adjustText.GetComponent<FadingText>().PopIn();
+            tutorial.adjustText.GetComponent<FadingText>().FadeOut();
         }
         checker.targets.Remove(gameObject.GetComponent<TutorialTarget>());
         Destroy(gameObject);

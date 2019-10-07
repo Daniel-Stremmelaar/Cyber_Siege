@@ -32,6 +32,7 @@ public class TutorialRaycast : MonoBehaviour
             {
                 if(hit.transform.gameObject.tag == "Humanoid")
                 {
+                    print("hit");
                     hit.transform.gameObject.GetComponent<TutorialTarget>().Hit();
                 }
             }
