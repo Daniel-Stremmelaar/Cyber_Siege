@@ -7921,47 +7921,40 @@ MonoBehaviour:
   - {fileID: 0}
   subtitleText: {fileID: 1902923262}
   subtitles:
-  - "Welcome to your training-ground recruit. Let\u2019s run some basic tests to make
-    sure the simulation is running properly. Walk over to the glowing beacon for me."
+  - Welcome to training recruit. First we'll run some tests to make sure everything
+    is working. Walk over to the beacon.
   - Alright, look at the beacon to your left.
-  - "Okay, everything seems fine so far. You\u2019re out of ammo though, we have put
-    some weapons on the rack in the shooting range. Feel free to pick something you
-    are comfortable with."
-  - In the bottom right of your visor you can see how much ammunition is left in your
-    weapon, and how much you have left in total. It will only do this for the weapon
-    you are holding though. You can also see what other weapon you have with you,
-    and how many grenades you have left. Now, turn around and shoot the targets as
-    they appear.
-  - "\u201CGood job. See that timer in the top display of your visor? That is how
-    long it took you to shoot all the targets. When running the killhouse you will
-    want to end with the lowest possible time. The faster we clear a site, the safer
-    it is for those involved.Before we move on you may want to make yourself ready.
-    Reload your gun so you don\u2019t run out of ammo half way through the next task."
-  - Okay all the systems seem to be working just fine. Now on to your final training
-    before you can start putting your own practice in. In order to disable your targets
-    quickly you can shoot them in the head. Do this in the killhouse and your final
-    time will be reduced. But pay attention. Some of your targets will have hostages.
-    Do not shoot the hostages, if you do penalty time will be added to your final
-    time. To demonstrate shoot the hostage anywhere and shoot the target in the head.
-  - "You see how your time changed? It displays right below the timer. Now on to some
-    more in depth movement. Try sprinting to the beacon. If you aren\u2019t fast enough
-    the way will close and you\u2019ll have to start over."
-  - "Okay, you won\u2019t always fit everywhere while standing up, crouch down and
-    go under the next obstacle."
-  - Alright, now crouching slows you down, so try sliding under an obstacle instead.
-    If done right, it will save you time.
-  - "Nicely done. Now the final thing for getting around. You\u2019ll have to move
-    over stuff like broken walls. Vault over the next obstacle."
-  - "Okay, there are two more things you\u2019ll need to know if you want to perform
-    at your best. The first is the use of grenades. Use them to clear a room of targets,
-    but avoid using them in a room with hostages in it."
-  - "Now for the final thing. In the killhouse golden targets will be hidden. You
-    will not be penalized for missing them, but hitting them will reduce your final
-    time. Don\u2019t expect it to be as easy as it sounds though. They are well hidden
-    and you won\u2019t be able to shoot them if you just walk around. Now shoot the
-    golden target and your introduction will be over. Good luck with the killhouse
-    recruit."
+  - Alright. Now pickup a gun from the rack on the wall. You'll need it.
+  - You'll see your ammo and current gear in the bottom right of your visor. Shoot
+    the targets on the range.
+  - Keep an eye on your time in the top of the visor. We clear sites a.s.a.p. Reload
+    and get ready.
+  - Systems seem fine. Headshots will disable your target quicker so aim for the head.
+    Normally, don't shoot hostages, but do so now. You'll see the time change to reflect
+    it.
+  - As I said, faster is better. So learn to get a move on, sprint to the beacon.
+  - If you don't fit standing up, get down. Crouch under the barrier.
+  - Crouching slows you down. Combine the momentum from sprinting with going down.
+    You'll slide throught the gaps.
+  - Now get across that wall. Vault over it.
+  - Use grenades to clear rooms. Just don't use them if hostages are present.
+  - To teach you to check your corners we have hidden targets like this one. Find
+    and shoot them to get a better time.
   - Turial end
+  subtitleTimes:
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
+  - 15
   objectiveText: {fileID: 387457752}
   objectives:
   - Move to the beacon
@@ -8342,8 +8335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1300, y: 210}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 1300, y: 180}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &1337643026
 PrefabInstance:
@@ -12730,11 +12723,11 @@ RectTransform:
   m_Father: {fileID: 1317094628}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1275, y: 200}
-  m_Pivot: {x: 0.5, y: 0}
+  m_SizeDelta: {x: 1275, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902923262
 MonoBehaviour:
   m_ObjectHideFlags: 0

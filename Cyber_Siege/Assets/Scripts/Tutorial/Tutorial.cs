@@ -23,7 +23,9 @@ public class Tutorial : MonoBehaviour
 
     [Header("Tutorial text")]
     public Text subtitleText;
+    private FadingText subtitleFade;
     public List<string> subtitles = new List<string>();
+    public List<float> subtitleTimes = new List<float>();
 
     [Header("Tutorial objectives")]
     public Text objectiveText;
@@ -48,6 +50,7 @@ public class Tutorial : MonoBehaviour
         next = false;
         //image.SetActive(false);
         StartCoroutine(StartDelay());
+        subtitleFade = subtitleText.gameObject.GetComponent<FadingText>();
     }
 
     // Update is called once per frame
@@ -101,6 +104,7 @@ public class Tutorial : MonoBehaviour
             uiGuides[stage].SetActive(true);
         }
         subtitleText.text = subtitles[stage];
+        subtitleFade.fadeOutTime = subtitleTimes[stage];
         subtitleText.gameObject.GetComponent<FadingText>().PopIn();
         subtitleText.gameObject.GetComponent<FadingText>().FadeOut();
         if(tutorialObjects[stage] != null)
