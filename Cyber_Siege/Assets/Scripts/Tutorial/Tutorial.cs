@@ -29,12 +29,15 @@ public class Tutorial : MonoBehaviour
     public Text objectiveText;
     public List<string> objectives = new List<string>();
 
+    [Header("Doorblock colours")]
+    public Material open;
+
     [Header("Time")]
-    private float timer;
-    private bool running;
     public Text timeText;
     public Text adjustText;
     public float startDelay;
+    private float timer;
+    private bool running;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +77,7 @@ public class Tutorial : MonoBehaviour
         if(stage == 6)
         {
             doorBlock.GetComponent<Collider>().isTrigger = true;
+            doorBlock.gameObject.GetComponent<MeshRenderer>().material = open;
         }
         running = false;
         next = false;
