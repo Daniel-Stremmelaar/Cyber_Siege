@@ -29,6 +29,9 @@ public class Tutorial : MonoBehaviour
     public Text objectiveText;
     public List<string> objectives = new List<string>();
 
+    [Header("Tutorial world UI")]
+    public List<GameObject> uiGuides = new List<GameObject>();
+
     [Header("Doorblock colours")]
     public Material open;
 
@@ -43,7 +46,7 @@ public class Tutorial : MonoBehaviour
     {
         stage = 0;
         next = false;
-        image.SetActive(false);
+        //image.SetActive(false);
         StartCoroutine(StartDelay());
     }
 
@@ -81,7 +84,7 @@ public class Tutorial : MonoBehaviour
         }
         running = false;
         next = false;
-        image.SetActive(false);
+        //image.SetActive(false);
         foreach(GameObject g in tutorialObjects)
         {
             if(g != null)
@@ -91,8 +94,12 @@ public class Tutorial : MonoBehaviour
         }
         objectiveText.text = objectives[stage];
         announcerSource.PlayOneShot(voiceLines[stage]);
-        image.GetComponent<Image>().sprite = tutorialImages[stage];
-        image.SetActive(true);
+        //image.GetComponent<Image>().sprite = tutorialImages[stage];
+        //image.SetActive(true);
+        if(uiGuides[stage] != null)
+        {
+            uiGuides[stage].SetActive(true);
+        }
         subtitleText.text = subtitles[stage];
         subtitleText.gameObject.GetComponent<FadingText>().PopIn();
         subtitleText.gameObject.GetComponent<FadingText>().FadeOut();
