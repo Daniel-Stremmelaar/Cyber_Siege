@@ -35,10 +35,19 @@ public class BaseGun : MonoBehaviour
     Vector3 totalRotationAmount;
 
     public FireTypes fireType;
+    public GunState currentState;
 
+    float crosshairOffset = 0;
+    const float spreadPrecisionizer = 0.001f;
+    public float spreadModifier;
+
+    GameObject ingameManager;
     private void Awake()
     {
+        ingameManager = GameObject.FindGameObjectWithTag("Manager");
         recoilAmount = baseData.recoilPattern.initialRecoil;
+        spreadModifier = baseData.spreadData.baseSpreadModifier;
+        OnEquip();
     }
     // Start is called before the first frame update
     public void Update()
@@ -52,37 +61,82 @@ public class BaseGun : MonoBehaviour
         }
         if (Input.GetButton("Fire1") && currentActionRoutine == null)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if(currentClip == 0)
             {
-                if (currentClip == 0 && currentAmmoStore > 0)
+                if (Input.GetButtonDown("Fire1"))
                 {
-                    currentActionRoutine = StartCoroutine(Reload());
-                    return;
+                    if (currentAmmoStore > 0)
+                    {
+                        currentActionRoutine = StartCoroutine(Reload());
+                        return;
+                    }
                 }
             }
-            CheckFireMode();
+            else
+            {
+                CheckFireMode();
+            }
         }
         UpdateCrosshair();
 
     }
-
-    void UpdateCrosshair()
+    public void OnEquip()
     {
-        GameObject crosshair = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>().crosshair;
-        float crosshairOffset;
-        if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        ingameManager.GetComponent<IngameUIManager>().clipAmmo.text = currentClip.ToString();
+        ingameManager.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
+    }
+    GunState CheckGunState()
+    {
+        GunState newState;
+        if(currentState != GunState.Zooming)
         {
-            crosshairOffset = baseData.walkAccuracy;
+            if(!Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
+            {
+                newState = GunState.Idle;
+            }
+            else
+            {
+                if (owner.running)
+                {
+                    newState = GunState.Running;
+                }
+                else
+                {
+                    newState = GunState.Moving;
+                }
+            }
         }
         else
         {
-            crosshairOffset = baseData.zoomedAccuracy;
+            newState = GunState.Zooming;
         }
+        return newState;
+    }
+    void UpdateCrosshair()
+    {
+        currentState = CheckGunState();
+        GameObject crosshair = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>().crosshair;
+        switch (currentState)
+        {
+            case GunState.Idle:
+                crosshairOffset = baseData.idleSpread;
+                break;
+            case GunState.Moving:
+                crosshairOffset = baseData.movingSpread;
+                break;
+            case GunState.Running:
+                crosshairOffset = baseData.runningSpread;
+                break;
+            case GunState.Zooming:
+                crosshairOffset = baseData.zoomedSpread;
+                break;
+        }
+        crosshairOffset += spreadModifier;
         foreach(Transform crosshairStripe in crosshair.transform)
         {
-            Vector3 ogPos = crosshairStripe.localPosition;
-            Vector3 newDistance = crosshairStripe.localPosition.normalized * crosshairOffset;
-            crosshairStripe.localPosition = Vector3.MoveTowards(ogPos, newDistance, baseData.crosshairModifySpeed * Time.deltaTime);
+            Vector3 ogPos = crosshairStripe.transform.localPosition;
+            Vector3 newDistance = crosshairStripe.GetChild(0).localPosition.normalized * crosshairOffset;
+            crosshairStripe.localPosition = Vector3.LerpUnclamped(ogPos, newDistance, baseData.crosshairModifySpeed * Time.deltaTime);
         }
     }
 
@@ -127,35 +181,40 @@ public class BaseGun : MonoBehaviour
         if (currentClip > 0 || baseData.infiniteAmmo)
         {
             canFire = false;
-            RaycastHit hitData;
-            Vector3 accuracyModifier;
-            accuracyModifier = new Vector3(Random.Range(baseData.minBulletOffset.x, baseData.maxBulletOffset.x), Random.Range(baseData.minBulletOffset.y, baseData.maxBulletOffset.y));
-            float accuracyPercentage = 100 - baseData.baseAccuracy;
-            if (accuracyPercentage > 0)
-            {
-                accuracyPercentage /= 100;
-            }
-            accuracyModifier *= accuracyPercentage;
             muzzleFlash.Play();
             bulletShot.Play();
-            if (Physics.Raycast(owner.playerCamera.position, owner.playerCamera.forward + accuracyModifier, out hitData, baseData.bulletRange))
+
+            for(int bulletAmount = 0; bulletAmount < baseData.bulletsPerShot; bulletAmount++)
             {
-                if(hitData.transform.tag == humanoidTag)
+                RaycastHit hitData;
+                Vector3 accuracyModifier;
+                accuracyModifier = new Vector3(Random.Range(-crosshairOffset, crosshairOffset) , Random.Range(-crosshairOffset, crosshairOffset));
+
+                Vector3 accuracyChanger = Vector3.zero;
+                accuracyChanger += accuracyModifier.x * owner.playerCamera.right;
+                accuracyChanger += accuracyModifier.y * owner.playerCamera.up;
+                accuracyChanger *= spreadPrecisionizer;
+                print(accuracyModifier);
+                if (Physics.Raycast(owner.playerCamera.position, owner.playerCamera.forward + accuracyChanger, out hitData, baseData.bulletRange))
                 {
-                    IngameUIManager uiManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>();
-                    if (uiManager.hitmarkerRoutine != null)
+                    if (hitData.transform.tag == humanoidTag)
                     {
-                        StopCoroutine(uiManager.hitmarkerRoutine);
-                        uiManager.hitmarkerRoutine = null;
+                        IngameUIManager uiManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>();
+                        if (uiManager.hitmarkerRoutine != null)
+                        {
+                            StopCoroutine(uiManager.hitmarkerRoutine);
+                            uiManager.hitmarkerRoutine = null;
+                        }
+                        uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
+                        //hitData.transform.GetComponent<Target>().Hit();
                     }
-                    uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
-                    //hitData.transform.GetComponent<Target>().Hit();
-                }
                     IngameManager ingameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
                     GameObject newBulletHole = Instantiate(baseData.bulletImpactDecal, hitData.point, Quaternion.LookRotation(hitData.normal));
                     newBulletHole.transform.Translate(new Vector3(0, 0, 0.1f));
                     ingameManager.AddBulletHole(newBulletHole);
+                }
             }
+            AddSpread();
             CheckRecoilPattern();
             repeatedBulletAmount++;
             if(recoilResetTimer != null)
@@ -171,6 +230,7 @@ public class BaseGun : MonoBehaviour
             {
                 currentClip--;
             }
+            ingameManager.GetComponent<IngameUIManager>().clipAmmo.text = currentClip.ToString();
             remainingRotationAmount = recoilAmount;
             if (knockupRoutine == null)
             {
@@ -184,6 +244,13 @@ public class BaseGun : MonoBehaviour
             currentActionRoutine = StartCoroutine(FireCooldown(baseData.shotDelay));
         }
     }
+    void AddSpread()
+    {
+        if(spreadModifier < baseData.spreadData.maxSpread)
+        {
+            spreadModifier = Mathf.Min(spreadModifier * baseData.spreadData.spreadSquareAmount, baseData.spreadData.maxSpread);
+        }
+    }
     public virtual IEnumerator FireCooldown(float cooldown)
     {
         yield return new WaitForSeconds(baseData.shotDelay);
@@ -192,7 +259,6 @@ public class BaseGun : MonoBehaviour
     }
     public virtual IEnumerator Reload()
     {
-        print("RELOAD");
         //Play reload animation
         //Parent ammoClip to hand
         //Play reload2 animation
@@ -209,7 +275,9 @@ public class BaseGun : MonoBehaviour
             currentClip += currentAmmoStore;
             currentAmmoStore = 0;
         }
-        yield return null;
+        ingameManager.GetComponent<IngameUIManager>().clipAmmo.text = currentClip.ToString();
+        ingameManager.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
+        yield return new WaitForSeconds(baseData.reloadSpeedMultiplier);
         currentActionRoutine = null;
     }
     public virtual IEnumerator AimDownsights()
@@ -263,7 +331,6 @@ public class BaseGun : MonoBehaviour
             remainingRotationAmount -= rotateAmount;
             yield return null;
         }
-        print(remainingRotationAmount);
         knockupRoutine = null;
         knockdownRoutine = StartCoroutine(KnockDown());
     }
@@ -274,7 +341,6 @@ public class BaseGun : MonoBehaviour
         totalRotationAmount.x = baseData.recoilPattern.initialRecoil.x;
         while(totalRotationAmount.x >= 0)
         {
-            print("O");
             Vector3 rotateAmount = new Vector3(baseData.knockdownSpeed * Time.deltaTime, 0, 0);
             owner.playerCamera.Rotate(rotateAmount);
             totalRotationAmount -= rotateAmount;
@@ -287,6 +353,7 @@ public class BaseGun : MonoBehaviour
     {
         yield return new WaitForSeconds(baseData.recoilPattern.resetTimer + baseData.shotDelay);
         repeatedBulletAmount = 0;
+        spreadModifier = baseData.spreadData.baseSpread;
         recoilResetTimer = null;
     }
 
@@ -297,16 +364,14 @@ public class BaseGun : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Vector2 accuracyModifier;
-        accuracyModifier = new Vector2(Random.Range(baseData.minBulletOffset.x, baseData.maxBulletOffset.x), Random.Range(baseData.minBulletOffset.y, baseData.maxBulletOffset.y));
-        float accuracyPercentage = 100 - baseData.baseAccuracy;
-        if(accuracyPercentage > 0)
-        {
-            accuracyPercentage /= 100;
-        }
-        accuracyModifier *= accuracyPercentage;
+        accuracyModifier = new Vector2(Random.Range(-crosshairOffset, crosshairOffset), Random.Range(-crosshairOffset, crosshairOffset));
         Vector3 cameraLocation = owner.playerCamera.position + owner.playerCamera.forward * baseData.bulletRange;
         cameraLocation.x += owner.playerCamera.forward.x * accuracyModifier.x;
         cameraLocation.y += owner.playerCamera.forward.y * accuracyModifier.y;
         Debug.DrawLine(owner.playerCamera.position, cameraLocation);
+    }
+    public enum GunState
+    {
+        Idle, Moving, Running, Zooming
     }
 }

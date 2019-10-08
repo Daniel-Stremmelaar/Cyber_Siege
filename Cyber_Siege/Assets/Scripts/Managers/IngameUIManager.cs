@@ -11,6 +11,8 @@ public class IngameUIManager : MonoBehaviour
     public float hitmarkerDurationBeforeFade;
     public Coroutine hitmarkerRoutine;
 
+    public Text clipAmmo, storedAmmo, grenades;
+
     public IEnumerator Hitmarker()
     {
         Color resetColor = hitMarker.color;

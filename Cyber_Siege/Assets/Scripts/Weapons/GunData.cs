@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New GunData", menuName = "OOF/YES")]
+[CreateAssetMenu(fileName = "New GunData", menuName = "Guns/GunData")]
 public class GunData : ScriptableObject
 {
     public GameObject gunPrefab;
@@ -15,12 +15,13 @@ public class GunData : ScriptableObject
     public float knockupSpeed, knockdownSpeed;
     public GameObject bulletImpactDecal;
     public float movementSpeedModifier;
-    public float baseAccuracy, walkAccuracy, sprintAccuracy, zoomedAccuracy;
     public float destroyTime;
     public float shotDelay;
     public float bulletRange;
-    public Vector2 maxBulletOffset, minBulletOffset;
+    public float idleSpread, movingSpread, runningSpread, zoomedSpread;
+    public Spread spreadData;
     public float crosshairModifySpeed;
+    public int bulletsPerShot = 1;
 
     [Header("Recoil")]
     public RecoilPattern recoilPattern;
@@ -41,5 +42,11 @@ public class GunData : ScriptableObject
         public float resetTimer;
         public Vector3 initialRecoil;
         public PatternData[] patternData;
+    }
+    [System.Serializable]
+    public struct Spread
+    {
+        public float baseSpread, maxSpread;
+        public float baseSpreadModifier, spreadSquareAmount;
     }
 }
