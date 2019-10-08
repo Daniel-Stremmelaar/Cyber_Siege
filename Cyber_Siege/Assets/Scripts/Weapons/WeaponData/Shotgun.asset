@@ -52,5 +52,6 @@ MonoBehaviour:
       recoilAmount: {x: 0.5, y: -0.1, z: 0}
     - bulletIndexChange: 27
       recoilAmount: {x: 0.5, y: 0.1, z: 0}
-  shotSound: {fileID: 8300000, guid: da120c5ac22939443a88e624e651b03b, type: 3}
-  infiniteAmmo: 1
+  knockdownRecoilPercentage: 40
+  shotSound: {fileID: 8300000, guid: 1c536523e3066ee4e8dfa03cf352a5fe, type: 3}
+  infiniteAmmo: 0

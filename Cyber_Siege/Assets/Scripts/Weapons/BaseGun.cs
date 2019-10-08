@@ -206,11 +206,11 @@ public class BaseGun : MonoBehaviour
                             uiManager.hitmarkerRoutine = null;
                         }
                         uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
-                        //hitData.transform.GetComponent<Target>().Hit();
+                        //hitData.transform.GetComponent<TutorialTarget>().Hit();
                     }
                     IngameManager ingameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
                     GameObject newBulletHole = Instantiate(baseData.bulletImpactDecal, hitData.point, Quaternion.LookRotation(hitData.normal));
-                    newBulletHole.transform.Translate(new Vector3(0, 0, 0.1f));
+                    newBulletHole.transform.Translate(new Vector3(0, 0, 0.001f));
                     ingameManager.AddBulletHole(newBulletHole);
                 }
             }
@@ -338,7 +338,7 @@ public class BaseGun : MonoBehaviour
     public IEnumerator KnockDown()
     {
         yield return null;
-        totalRotationAmount.x = baseData.recoilPattern.initialRecoil.x;
+        totalRotationAmount.x = baseData.recoilPattern.initialRecoil.x * (baseData.knockdownRecoilPercentage / 100);
         while(totalRotationAmount.x >= 0)
         {
             Vector3 rotateAmount = new Vector3(baseData.knockdownSpeed * Time.deltaTime, 0, 0);
