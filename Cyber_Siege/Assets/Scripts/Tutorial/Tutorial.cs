@@ -100,7 +100,11 @@ public class Tutorial : MonoBehaviour
             }
         }
         objectiveText.text = objectives[stage];
-        announcerSource.PlayOneShot(voiceLines[stage]);
+        if(voiceLines[stage] != null)
+        {
+            announcerSource.Stop();
+            announcerSource.PlayOneShot(voiceLines[stage]);
+        }
         //image.GetComponent<Image>().sprite = tutorialImages[stage];
         //image.SetActive(true);
         if(uiGuides[stage] != null)

@@ -1213,7 +1213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &154749767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9412,19 +9412,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2967b039f0bda274fa7ef078a1c1fe32, type: 3}
   announcerSource: {fileID: 1268516360}
   voiceLines:
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
-  - {fileID: 8300000, guid: ebdc74bde6787c144aa2f62eb0aafee0, type: 3}
+  - {fileID: 8300000, guid: 31cc9d04f99199d41aa3a1ffa9d9c0d6, type: 3}
+  - {fileID: 8300000, guid: ff5b77f6c5b3604459ea0ee138ca621d, type: 3}
+  - {fileID: 8300000, guid: 47fcbfea32dbb3d4dbb4cd92b88ee6c9, type: 3}
+  - {fileID: 8300000, guid: 8af29e3fa3ccef742b9bc054bacc98a0, type: 3}
+  - {fileID: 8300000, guid: 3e78a702da118d24893e916988b89907, type: 3}
+  - {fileID: 8300000, guid: 6c5115f6c7f7217499d5c61748d21dff, type: 3}
+  - {fileID: 8300000, guid: 4fc59c605ccb5824ab71baa353706a0e, type: 3}
+  - {fileID: 8300000, guid: 8fc5eee15f69ceb43a948c808311bff5, type: 3}
+  - {fileID: 8300000, guid: bd8c0c7b5597b544eb64545a53c4f99c, type: 3}
+  - {fileID: 8300000, guid: 938e0a88c1179354480df75b685d1b96, type: 3}
+  - {fileID: 8300000, guid: fdb19c7e822b236488dc2b4b0c32b4bd, type: 3}
+  - {fileID: 8300000, guid: d9bc8e2938772444883ac1b4e9cf74df, type: 3}
+  - {fileID: 0}
   doorBlock: {fileID: 875454795}
   tutorialObjects:
   - {fileID: 1939767117}
