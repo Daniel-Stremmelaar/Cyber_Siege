@@ -85,6 +85,10 @@ public class Tutorial : MonoBehaviour
             doorBlock.GetComponent<Collider>().isTrigger = true;
             doorBlock.gameObject.GetComponent<MeshRenderer>().material = open;
         }
+        if(stage == 3)
+        {
+            
+        }
         running = false;
         next = false;
         //image.SetActive(false);

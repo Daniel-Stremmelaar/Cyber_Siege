@@ -17,6 +17,7 @@ public class TutorialTarget : MonoBehaviour
     [Header("Mechanics")]
     public float headshotTime;
     public float hostageTime;
+    public Animation projector;
     private Tutorial tutorial;
     private TutorialTargetChecker checker;
 
@@ -26,6 +27,7 @@ public class TutorialTarget : MonoBehaviour
         hologramTime = Random.Range(minTime, maxTime);
         tutorial = GameObject.FindGameObjectWithTag("Tutorial").GetComponent<Tutorial>();
         checker = GameObject.FindGameObjectWithTag("TutorialChecker").GetComponent<TutorialTargetChecker>();
+        projector.Play();
     }
 
     private void Update()
@@ -35,6 +37,7 @@ public class TutorialTarget : MonoBehaviour
 
     public virtual void Hit()
     {
+        projector.Stop();
         if (!tutorial.CheckRunning())
         {
             tutorial.ChangeRunning();
