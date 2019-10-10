@@ -9412,19 +9412,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2967b039f0bda274fa7ef078a1c1fe32, type: 3}
   announcerSource: {fileID: 1268516360}
   voiceLines:
-  - {fileID: 8300000, guid: 31cc9d04f99199d41aa3a1ffa9d9c0d6, type: 3}
-  - {fileID: 8300000, guid: ff5b77f6c5b3604459ea0ee138ca621d, type: 3}
-  - {fileID: 8300000, guid: 47fcbfea32dbb3d4dbb4cd92b88ee6c9, type: 3}
-  - {fileID: 8300000, guid: 8af29e3fa3ccef742b9bc054bacc98a0, type: 3}
-  - {fileID: 8300000, guid: 3e78a702da118d24893e916988b89907, type: 3}
-  - {fileID: 8300000, guid: 6c5115f6c7f7217499d5c61748d21dff, type: 3}
-  - {fileID: 8300000, guid: 4fc59c605ccb5824ab71baa353706a0e, type: 3}
-  - {fileID: 8300000, guid: 8fc5eee15f69ceb43a948c808311bff5, type: 3}
-  - {fileID: 8300000, guid: bd8c0c7b5597b544eb64545a53c4f99c, type: 3}
-  - {fileID: 8300000, guid: 938e0a88c1179354480df75b685d1b96, type: 3}
-  - {fileID: 8300000, guid: fdb19c7e822b236488dc2b4b0c32b4bd, type: 3}
-  - {fileID: 8300000, guid: d9bc8e2938772444883ac1b4e9cf74df, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 55571968bb5e2ba44acf77c1ade163e1, type: 3}
+  - {fileID: 8300000, guid: 811c22ff45e45c64dbe15fb8a6bcfbdd, type: 3}
+  - {fileID: 8300000, guid: 9e826b6fb4907884789becca13fec2eb, type: 3}
+  - {fileID: 8300000, guid: 14021854aee1045429d53d06fbef2695, type: 3}
+  - {fileID: 8300000, guid: 7c449d5c326526c499f7a5f8c5019dbb, type: 3}
+  - {fileID: 8300000, guid: 96f91f9eb8b09034fb72f749c5a4c568, type: 3}
+  - {fileID: 8300000, guid: 0dd39574ba40721488e05ffd25d6f35a, type: 3}
+  - {fileID: 8300000, guid: 3d0f62034f22e4145b09f5abd623045d, type: 3}
+  - {fileID: 8300000, guid: 9489b87b109a58d438531e12b950bb2d, type: 3}
+  - {fileID: 8300000, guid: 0c55a914b57a0f74abb427de96ae0898, type: 3}
+  - {fileID: 8300000, guid: 3cd3a4c7fa476814ebf13f6328adc0ff, type: 3}
+  - {fileID: 8300000, guid: 11668217d3fbe254da9c9af4bd1078f4, type: 3}
+  - {fileID: 8300000, guid: 0c1e40c46c1bdbc439756fc8b57b574a, type: 3}
   doorBlock: {fileID: 875454795}
   tutorialObjects:
   - {fileID: 1939767117}
