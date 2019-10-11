@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ab10e6be643204ca8c5fc613bce41c, type: 3}
-  m_Name: Assault Rifle
+  m_Name: Assault Rifle 1
   m_EditorClassIdentifier: 
   gunPrefab: {fileID: 0}
   gunName: Assault Rifle
@@ -18,14 +18,14 @@ MonoBehaviour:
   ammoCapacity: 250
   reloadSpeedMultiplier: 1
   bulletDamage: 0
-  shotKnockdownX: 0.7
+  shotKnockdownX: 0.2
   knockupSpeed: 0.1
   knockdownSpeed: 35
   bulletImpactDecal: {fileID: 806173459670267454, guid: 7bcf0c75a40f630409ddc072109e5d75,
     type: 3}
   movementSpeedModifier: 0
   destroyTime: 1000
-  shotDelay: 0
+  shotDelay: 0.15
   bulletRange: 20
   idleSpread: 5
   movingSpread: 15
@@ -37,19 +37,22 @@ MonoBehaviour:
     baseSpreadModifier: 1
     spreadSquareAmount: 1.3
   crosshairModifySpeed: 10
+  bulletsPerShot: 1
   recoilPattern:
     resetTimer: 0.15
     initialRecoil: {x: 2, y: 0, z: 0}
     patternData:
     - bulletIndexChange: 1
-      recoilAmount: {x: 2, y: -0.2, z: 0}
+      recoilAmount: {x: 3, y: -0.2, z: 0}
     - bulletIndexChange: 4
-      recoilAmount: {x: 1, y: 0.3, z: 0}
+      recoilAmount: {x: 2, y: 0.3, z: 0}
     - bulletIndexChange: 10
-      recoilAmount: {x: 0.5, y: -0.3, z: 0}
+      recoilAmount: {x: 2, y: -0.3, z: 0}
     - bulletIndexChange: 25
-      recoilAmount: {x: 0.5, y: -0.1, z: 0}
+      recoilAmount: {x: 1, y: -0.1, z: 0}
     - bulletIndexChange: 27
-      recoilAmount: {x: 0.5, y: 0.1, z: 0}
+      recoilAmount: {x: 1, y: 0.1, z: 0}
+  recoilSpeed: 0
+  knockdownRecoilPercentage: 10
   shotSound: {fileID: 0}
-  infiniteAmmo: 0
+  infiniteAmmo: 1

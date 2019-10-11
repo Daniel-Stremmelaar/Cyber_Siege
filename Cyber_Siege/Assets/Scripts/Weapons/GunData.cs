@@ -25,6 +25,7 @@ public class GunData : ScriptableObject
 
     [Header("Recoil")]
     public RecoilPattern recoilPattern;
+    public float recoilSpeed;
     [Range(1, 100)]
     public float knockdownRecoilPercentage;
     public AudioClip shotSound;

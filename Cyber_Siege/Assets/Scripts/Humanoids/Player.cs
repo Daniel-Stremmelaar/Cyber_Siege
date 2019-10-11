@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Transform directionChecker;
     [SerializeField] Transform relocate;
     [SerializeField] Animator playerAnimator;
-    [SerializeField] LayerMask interactableMask;
+    [SerializeField] LayerMask interactableMask, terrainMask;
     [SerializeField] States currentState;
     [SerializeField] Status currentStatus;
+    [SerializeField] ActionState currentActionState;
     [SerializeField] Transform feetLocation;
 
     [Header("Camera")]
-    [SerializeField] float rotationModifier;
+    public float rotationModifier;
     [SerializeField] float minCamClamp, maxCamClamp;
     public Transform playerCamera;
-    [SerializeField] Transform standingCamPos, crouchingCamPos, crouchWalkCamPos, standingWalkCamPos;
+    [SerializeField] Transform standingCamPos, crouchingCamPos, slideCamPos;
     [SerializeField] float cameraTransitionModifier;
+    public Coroutine currentCameralocationRoutine;
 
     [Header("Movement")]
     public Vector3 lastMovedAmtNormalized;
+    public float ySlopeBoosterAngle, boosterModifier;
     [SerializeField] float movementSpeedModifier;
     [SerializeField] float sidewaysWalkDebuff, backwardsWalkDebuff, crouchWalkDebuff, sprintBuff;
     [SerializeField] public bool crouching, running;
@@ -123,6 +127,7 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+            CheckCameraLocation();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -259,28 +264,35 @@ public class Player : MonoBehaviour
             if (crouching)
             {
                 lastMovedAmt *= (1 - (crouchWalkDebuff / 100));
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, cameraTransitionModifier * Time.deltaTime);
             }
-            else
+            if(CheckHill())
             {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, cameraTransitionModifier * Time.deltaTime);
+                Vector3 lastValue = lastMovedAmt;
+                lastMovedAmt += lastValue.z * -directionChecker.forward;
+                lastMovedAmt += lastValue.x * -directionChecker.right;
+                lastMovedAmt -= lastValue;
             }
             transform.Translate(lastMovedAmt * movementSpeedModifier * Time.deltaTime);
         }
         else
         {
             playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewNormal, fovChangeSpeed);
-            if (crouching)
-            {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, crouchingCamPos.position, cameraTransitionModifier * Time.deltaTime);
-            }
-            else
-            {
-                playerCamera.position = Vector3.MoveTowards(playerCamera.position, standingCamPos.position, cameraTransitionModifier * Time.deltaTime);
-            }
         }
     }
-
+    bool CheckHill()
+    {
+        RaycastHit hitData;
+        if(Physics.Raycast(feetLocation.position, -feetLocation.transform.up, out hitData, 10, terrainMask, QueryTriggerInteraction.Ignore))
+        {
+            if(Vector3.Angle(directionChecker.up, hitData.normal) > ySlopeBoosterAngle)
+            {
+                print(hitData.transform.name);
+                directionChecker.rotation =  directionChecker.rotation * Quaternion.FromToRotation(hitData.normal, directionChecker.up);
+                return true;
+            }
+        }
+        return false;
+    }
     public void RotateCamera()
     {
         //backbone.localEulerAngles = new Vector3(backupX, backbone.localEulerAngles.y, backbone.localEulerAngles.z);
@@ -290,6 +302,48 @@ public class Player : MonoBehaviour
         //backbone.Rotate(new Vector3(Input.GetAxis("Mouse Y") * Time.deltaTime * rotationModifier, 0, 0));
         //backupX = backbone.localEulerAngles.x;
         //playerCamera.localEulerAngles = new Vector3(Mathf.Clamp(playerCamera.localEulerAngles.x, minCamClamp, maxCamClamp), playerCamera.localEulerAngles.y, playerCamera.localEulerAngles.z);
+    }
+
+    void CheckCameraLocation()
+    {
+        bool gotNewState = false;
+        if(currentActionState != ActionState.Sliding)
+        {
+            if (crouching)
+            {
+                if(currentActionState != ActionState.Crouching)
+                {
+                    currentActionState = ActionState.Crouching;
+                    gotNewState = true;
+                }
+            }
+            else
+            {
+                if(currentActionState != ActionState.Walking)
+                {
+                    currentActionState = ActionState.Walking;
+                    gotNewState = true;
+                }
+            }
+        }
+        if (gotNewState)
+        {
+            if(currentCameralocationRoutine != null)
+            {
+                StopCoroutine(currentCameralocationRoutine);
+                currentCameralocationRoutine = null;
+            }
+            switch (currentActionState)
+            {
+                case ActionState.Walking:
+                    currentCameralocationRoutine = StartCoroutine(MoveCameraToPoint(playerCamera, standingCamPos, cameraTransitionModifier * Time.deltaTime));
+                    break;
+
+                case ActionState.Crouching:
+                    currentCameralocationRoutine = StartCoroutine(MoveCameraToPoint(playerCamera, crouchingCamPos, cameraTransitionModifier * Time.deltaTime));
+                    break;
+            }
+        }
     }
     public IEnumerator Slide(float launchPower)
     {
@@ -309,6 +363,12 @@ public class Player : MonoBehaviour
             currentState = States.MovementImpaired;
             GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
             print("Launched");
+            if(currentCameralocationRoutine != null)
+            {
+                StopCoroutine(currentCameralocationRoutine);
+            }
+            currentCameralocationRoutine = StartCoroutine(MoveCameraToPoint(playerCamera, slideCamPos, cameraTransitionModifier * Time.deltaTime));
+            currentActionState = ActionState.Sliding;
             while (GetComponent<Rigidbody>().velocity.x > slideVelocityLimiter || GetComponent<Rigidbody>().velocity.z > slideVelocityLimiter)
             {
                 rayDownward = new Ray(feetLocation.position, -feetLocation.up);
@@ -362,8 +422,8 @@ public class Player : MonoBehaviour
             playerCollider.size = standColliderSize;
             playerCollider.center = standColliderPosition;
             CheckMovement();
+            currentActionState = ActionState.Return;
         }
-        print("OVER");
     }
     public IEnumerator Vault(Vector3[] vaultPositions)
     {
@@ -393,10 +453,22 @@ public class Player : MonoBehaviour
     }
     public enum States { Normal, Disabled, ActionImpaired, MovementImpaired, Frozen }
     public enum Status { Normal, Falling }
+    
+    public enum ActionState { Return, Walking, Crouching, Aiming, Sliding}
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawCube(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize);
         Gizmos.DrawLine(feetLocation.position, feetLocation.position + feetLocation.forward);
+    }
+    public IEnumerator MoveCameraToPoint(Transform objectToMove, Transform locationToMoveTo, float speed)
+    {
+        yield return null;
+        while(objectToMove.position != locationToMoveTo.position)
+        {
+            objectToMove.position = Vector3.MoveTowards(objectToMove.position, locationToMoveTo.position, speed * Time.deltaTime);
+            yield return null;
+        }
+        currentCameralocationRoutine = null;
     }
 }

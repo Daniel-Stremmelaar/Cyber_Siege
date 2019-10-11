@@ -287,11 +287,10 @@ public class BaseGun : MonoBehaviour
 
     public IEnumerator KnockUp()
     {
-        float multiplyAmount = 1 / baseData.knockupSpeed;
         while(remainingRotationAmount != Vector3.zero)
         {
 
-            Vector3 rotateAmount = new Vector3(recoilAmount.x * (Time.deltaTime * multiplyAmount), recoilAmount.y * (Time.deltaTime * multiplyAmount), 0);
+            Vector3 rotateAmount = new Vector3(recoilAmount.x * (Time.deltaTime * baseData.recoilSpeed), recoilAmount.y * (Time.deltaTime * baseData.recoilSpeed), 0);
             if(rotateAmount.x > 0)
             {
                 if(rotateAmount.x > remainingRotationAmount.x)
