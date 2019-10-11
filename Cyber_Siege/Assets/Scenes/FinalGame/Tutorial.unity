@@ -2341,7 +2341,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329417217}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -14.011}
+  m_LocalPosition: {x: 0, y: 0, z: -11.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
@@ -2349,7 +2349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -949.54584, y: -533.34}
+  m_AnchoredPosition: {x: -949.54584, y: -533.23}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &329417219
@@ -4485,16 +4485,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669366761}
-  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 12.944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 13.406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -952.974, y: -533.51825}
+  m_AnchoredPosition: {x: -951.9769, y: -532.76794}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &669366763
@@ -4545,14 +4545,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.1
-  m_fontSizeBase: 0.1
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -4583,7 +4583,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 99.876884, y: 24.85439, z: 99.38917, w: 24.89919}
+  m_margin: {x: 99.49492, y: 24.501732, z: 99.01336, w: 24.538036}
   m_textInfo:
     textComponent: {fileID: 669366763}
     characterCount: 23
@@ -5959,16 +5959,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827869456}
-  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 20.128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 20.518}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -952.92206, y: -533.51825}
+  m_AnchoredPosition: {x: -951.84906, y: -533.3954}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &827869458
@@ -6019,14 +6019,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.1
-  m_fontSizeBase: 0.1
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -6036,7 +6036,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 24
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6057,7 +6057,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 99.876884, y: 24.85439, z: 99.38917, w: 24.89919}
+  m_margin: {x: 99.37636, y: 24.490982, z: 99.14957, w: 24.54335}
   m_textInfo:
     textComponent: {fileID: 827869458}
     characterCount: 41
@@ -6116,16 +6116,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836762588}
-  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 0, z: 24.826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 25.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -953.0818, y: -533.51825}
+  m_AnchoredPosition: {x: -951.7501, y: -534.3864}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836762590
@@ -6176,14 +6176,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 0.1
-  m_fontSizeBase: 0.1
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 257
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -6193,7 +6193,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 26
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6214,7 +6214,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 99.876884, y: 24.85439, z: 99.38917, w: 24.89919}
+  m_margin: {x: 99.26842, y: 24.524012, z: 99.24513, w: 24.51801}
   m_textInfo:
     textComponent: {fileID: 836762590}
     characterCount: 40
@@ -9412,19 +9412,19 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2967b039f0bda274fa7ef078a1c1fe32, type: 3}
   announcerSource: {fileID: 1268516360}
   voiceLines:
-  - {fileID: 8300000, guid: 55571968bb5e2ba44acf77c1ade163e1, type: 3}
-  - {fileID: 8300000, guid: 811c22ff45e45c64dbe15fb8a6bcfbdd, type: 3}
-  - {fileID: 8300000, guid: 9e826b6fb4907884789becca13fec2eb, type: 3}
-  - {fileID: 8300000, guid: 14021854aee1045429d53d06fbef2695, type: 3}
-  - {fileID: 8300000, guid: 7c449d5c326526c499f7a5f8c5019dbb, type: 3}
-  - {fileID: 8300000, guid: 96f91f9eb8b09034fb72f749c5a4c568, type: 3}
-  - {fileID: 8300000, guid: 0dd39574ba40721488e05ffd25d6f35a, type: 3}
-  - {fileID: 8300000, guid: 3d0f62034f22e4145b09f5abd623045d, type: 3}
-  - {fileID: 8300000, guid: 9489b87b109a58d438531e12b950bb2d, type: 3}
-  - {fileID: 8300000, guid: 0c55a914b57a0f74abb427de96ae0898, type: 3}
-  - {fileID: 8300000, guid: 3cd3a4c7fa476814ebf13f6328adc0ff, type: 3}
-  - {fileID: 8300000, guid: 11668217d3fbe254da9c9af4bd1078f4, type: 3}
-  - {fileID: 8300000, guid: 0c1e40c46c1bdbc439756fc8b57b574a, type: 3}
+  - {fileID: 8300000, guid: 16b857a50fc741e4e924beb39030d718, type: 3}
+  - {fileID: 8300000, guid: 94f124f790567e04885256bd7276420f, type: 3}
+  - {fileID: 8300000, guid: a1d6595031c79d246bd403ec0880b439, type: 3}
+  - {fileID: 8300000, guid: e1cc790b4e4f5f44d98c59a3159a3004, type: 3}
+  - {fileID: 8300000, guid: 110a6c6a0bd1fd74d9f461c889a58f1e, type: 3}
+  - {fileID: 8300000, guid: 8e6dec996c60de148b723230f6288bd2, type: 3}
+  - {fileID: 8300000, guid: 95ae7c586baf53a4eb81fff2da78a4d5, type: 3}
+  - {fileID: 8300000, guid: 267e345b8d7b7a34a9eb48bdf889189f, type: 3}
+  - {fileID: 8300000, guid: 2f1cb166f2f0c0541a9a1bf587cb1165, type: 3}
+  - {fileID: 8300000, guid: 6ee781657f5ec5e41971e722bb81a1c7, type: 3}
+  - {fileID: 8300000, guid: 4f1c90d34c61ecf42aefbc1da2b0f769, type: 3}
+  - {fileID: 8300000, guid: e6014992a3b4cf142bae26f300580178, type: 3}
+  - {fileID: 8300000, guid: dcabb422a1a188d4e9d946d3a7069c0f, type: 3}
   doorBlock: {fileID: 875454795}
   tutorialObjects:
   - {fileID: 1939767117}
@@ -17885,7 +17885,7 @@ PrefabInstance:
     - target: {fileID: 943799524836295262, guid: 80e1563e33fe3e143aae852ab9499d5b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 131.48318
+      value: 133.66
       objectReference: {fileID: 0}
     - target: {fileID: 943799524836295262, guid: 80e1563e33fe3e143aae852ab9499d5b,
         type: 3}
