@@ -265,6 +265,10 @@ public class Player : MonoBehaviour
             {
                 lastMovedAmt *= (1 - (crouchWalkDebuff / 100));
             }
+            if (CheckHill())
+            {
+
+            }
             /*
             if(CheckHill())
             {
@@ -288,7 +292,7 @@ public class Player : MonoBehaviour
             if(Vector3.Angle(directionChecker.up, hitData.normal) > ySlopeBoosterAngle)
             {
                 print(hitData.transform.name);
-                directionChecker.rotation =  directionChecker.rotation * Quaternion.FromToRotation(hitData.normal, directionChecker.up);
+                directionChecker.rotation =  Quaternion.LookRotation(directionChecker.forward, hitData.normal);
                 return true;
             }
         }

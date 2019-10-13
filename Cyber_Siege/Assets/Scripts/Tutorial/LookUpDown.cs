@@ -50,7 +50,7 @@ public class LookUpDown : MonoBehaviour {
             if(hit.transform.gameObject.tag == "Target" || hit.transform.gameObject.tag == "Head")
             {
                 Debug.Log("hit target");
-                hit.transform.gameObject.GetComponent<Target>().Hit();
+                hit.transform.gameObject.GetComponent<Target>().Hit(100, 0);
             }
         }
         ammoText.text = ammo.ToString() + "/" + ammoCap.ToString();

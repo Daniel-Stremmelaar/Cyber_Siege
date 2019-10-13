@@ -40,7 +40,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    public virtual void Death(float timeReduction)
+    public virtual void Death(float timeChange)
     {
         Destroy(gameObject);
         //manager.targets.Remove(gameObject.GetComponent<Target>());

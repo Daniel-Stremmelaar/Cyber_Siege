@@ -12,7 +12,7 @@ public class TargetHead : Target
     public void Hit()
     {
         //manager.timer -= headshotTime;
-        mainBody.Hit();
+        //mainBody.Hit();
         //adjustText.timeChange.text = "-" + headshotTime.ToString("F4");
         //adjustText.PopIn();
         //adjustText.FadeOut();

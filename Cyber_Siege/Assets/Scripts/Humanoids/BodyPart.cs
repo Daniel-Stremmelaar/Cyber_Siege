@@ -6,7 +6,7 @@ public class BodyPart : MonoBehaviour
 {
     public bool instaKill;
     public float damageMultiplier;
-    public float timeReduction;
+    public float timeChange;
 
     Target owner;
 
@@ -14,11 +14,11 @@ public class BodyPart : MonoBehaviour
     {
         if (instaKill)
         {
-            owner.Death(timeReduction);
+            owner.Death(timeChange);
         }
         else
         {
-            owner.Hit(damage * damageMultiplier, timeReduction);
+            owner.Hit(damage * damageMultiplier, timeChange);
         }
     }
 }

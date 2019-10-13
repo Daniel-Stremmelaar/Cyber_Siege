@@ -7,12 +7,8 @@ public class Hostage : Target
     public FadingText adjustText;
     public float penaltyTime;
 
-    public override void Hit()
+    public override void Death(float timeChange)
     {
-        manager.timer += penaltyTime;
-        adjustText.timeChange.text = "+" + penaltyTime.ToString("F4");
-        adjustText.PopIn();
-        adjustText.FadeOut();
-        Destroy(gameObject);
+        base.Death(timeChange);
     }
 }
