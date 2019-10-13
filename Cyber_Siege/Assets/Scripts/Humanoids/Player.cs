@@ -265,13 +265,14 @@ public class Player : MonoBehaviour
             {
                 lastMovedAmt *= (1 - (crouchWalkDebuff / 100));
             }
+            /*
             if(CheckHill())
             {
                 Vector3 lastValue = lastMovedAmt;
                 lastMovedAmt += lastValue.z * -directionChecker.forward;
                 lastMovedAmt += lastValue.x * -directionChecker.right;
                 lastMovedAmt -= lastValue;
-            }
+            }*/
             transform.Translate(lastMovedAmt * movementSpeedModifier * Time.deltaTime);
         }
         else

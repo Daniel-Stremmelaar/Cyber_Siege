@@ -17,6 +17,7 @@ public class Target : MonoBehaviour
     [Header("Mechanics")]
     public GeneralManager manager;
     public TargetHead head;
+    public float health;
 
     private void Start()
     {
@@ -30,10 +31,19 @@ public class Target : MonoBehaviour
         Flicker();
     }
 
-    public virtual void Hit()
+    public void Hit(float damage, float timeReductionOnDeath)
     {
-        //manager.targets.Remove(gameObject.GetComponent<Target>());
+        health -= damage;
+        if(health <= 0)
+        {
+            Death(timeReductionOnDeath);
+        }
+    }
+
+    public virtual void Death(float timeReduction)
+    {
         Destroy(gameObject);
+        //manager.targets.Remove(gameObject.GetComponent<Target>());
     }
 
     public virtual void Flicker()

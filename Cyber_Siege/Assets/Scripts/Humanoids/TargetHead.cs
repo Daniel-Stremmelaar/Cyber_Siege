@@ -9,7 +9,7 @@ public class TargetHead : Target
     public float headshotTime;
     public Target mainBody;
 
-    public override void Hit()
+    public void Hit()
     {
         //manager.timer -= headshotTime;
         mainBody.Hit();
@@ -17,6 +17,7 @@ public class TargetHead : Target
         //adjustText.PopIn();
         //adjustText.FadeOut();
     }
+
 
     private void Start()
     {
