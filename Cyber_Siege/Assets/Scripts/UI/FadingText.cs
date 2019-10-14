@@ -12,6 +12,7 @@ public class FadingText : MonoBehaviour
     private Color originalText;
     private Color originalBack;
     private float f;
+    private Coroutine routine;
 
     private void Start()
     {
@@ -29,12 +30,18 @@ public class FadingText : MonoBehaviour
 
     public void FadeOut()
     {
+        PopIn();
         StartCoroutine(FadeOutDelay());
     }
 
     public void PopIn()
     {
-        if(timeChange != null)
+        if(routine != null)
+        {
+            StopCoroutine(routine);
+            f = 0.0f;
+        }
+        if (timeChange != null)
         {
             timeChange.color = originalText;
         }
@@ -42,7 +49,6 @@ public class FadingText : MonoBehaviour
         {
             background.color = originalBack;
         }
-        f = 0;
     }
 
     private IEnumerator FadeOutRoutine()
@@ -51,11 +57,11 @@ public class FadingText : MonoBehaviour
         {
             if(timeChange != null)
             {
-                timeChange.color = Color.Lerp(originalText, Color.clear, Mathf.Min(1, f / fadeOutTime));
+                timeChange.color = Color.Lerp(timeChange.color, Color.clear, Mathf.Min(1, f / fadeOutTime));
             }
             if(background != null)
             {
-                background.color = Color.Lerp(originalBack, Color.clear, Mathf.Min(1, f / fadeOutTime));
+                background.color = Color.Lerp(background.color, Color.clear, Mathf.Min(1, f / fadeOutTime));
             }
             yield return null;
         }
@@ -64,6 +70,6 @@ public class FadingText : MonoBehaviour
     public IEnumerator FadeOutDelay()
     {
         yield return new WaitForSeconds(fullTime);
-        StartCoroutine(FadeOutRoutine());
+        routine = StartCoroutine(FadeOutRoutine());
     }
 }
