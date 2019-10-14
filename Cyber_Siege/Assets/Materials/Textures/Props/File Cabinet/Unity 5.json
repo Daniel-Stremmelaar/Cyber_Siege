@@ -33,7 +33,7 @@
         }
     },
     "texturesets": {
-        "File Cabinet": {
+        "FileCabinet": {
             "shader": "Main shader"
         }
     }

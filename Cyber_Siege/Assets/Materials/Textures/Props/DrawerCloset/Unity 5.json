@@ -33,7 +33,7 @@
         }
     },
     "texturesets": {
-        "DrawerCloset": {
+        "ClosetDrawer": {
             "shader": "Main shader"
         }
     }
