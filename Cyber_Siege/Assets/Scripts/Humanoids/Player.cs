@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask interactableMask, terrainMask;
     [SerializeField] States currentState;
     [SerializeField] Status currentStatus;
-    [SerializeField] ActionState currentActionState;
+    public ActionState currentActionState;
     [SerializeField] Transform feetLocation;
 
     [Header("Camera")]
@@ -63,6 +63,10 @@ public class Player : MonoBehaviour
     public Transform gunWieldingPoint;
     public Transform currentGun;
 
+    [Header("Grenades")]
+    [SerializeField] float throwVelocityMultiplier;
+    [SerializeField] GameObject grenadee; //Will be replaced with the inventory, same for currentgun.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +90,10 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            StartCoroutine(ThrowGrenade());
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             transform.position = relocate.position;
@@ -349,6 +356,18 @@ public class Player : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public IEnumerator ThrowGrenade()
+    {
+        //Swap out gun
+        GameObject grenade = Instantiate(grenadee, gunWieldingPoint.position, Quaternion.identity, gunWieldingPoint);
+        //Play animation of throwing grenade.
+        yield return null;
+        grenade.transform.parent = null;
+        grenade.GetComponent<Rigidbody>().velocity = playerCamera.forward * throwVelocityMultiplier;
+        StartCoroutine(grenade.GetComponent<Grenade>().StartExplosionTimer());
+
     }
     public IEnumerator Slide(float launchPower)
     {

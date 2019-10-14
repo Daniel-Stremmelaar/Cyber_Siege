@@ -74,7 +74,10 @@ public class BaseGun : MonoBehaviour
             }
             else
             {
-                CheckFireMode();
+                if(owner.lastMovedAmtNormalized != Vector3.zero && !owner.running || owner.lastMovedAmtNormalized == Vector3.zero)
+                {
+                    CheckFireMode();
+                }
             }
         }
         UpdateCrosshair();
