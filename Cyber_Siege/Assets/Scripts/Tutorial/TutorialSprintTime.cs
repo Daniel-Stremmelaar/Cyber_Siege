@@ -7,6 +7,7 @@ public class TutorialSprintTime : MonoBehaviour
     public float time;
     private float timeReset;
     public GameObject shutter;
+    public GameObject shutterText;
     public bool running;
     private Tutorial tutorial;
     public GameObject player;
@@ -28,6 +29,7 @@ public class TutorialSprintTime : MonoBehaviour
                 running = false;
                 time = timeReset;
                 shutter.SetActive(false);
+                shutterText.SetActive(false);
             }
         }
         if(running == true)
@@ -37,6 +39,7 @@ public class TutorialSprintTime : MonoBehaviour
         if(time <= 0)
         {
             shutter.SetActive(true);
+            shutterText.SetActive(true);
         }
     }
 

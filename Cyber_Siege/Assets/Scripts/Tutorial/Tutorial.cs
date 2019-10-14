@@ -85,10 +85,6 @@ public class Tutorial : MonoBehaviour
             doorBlock.GetComponent<Collider>().isTrigger = true;
             doorBlock.gameObject.GetComponent<MeshRenderer>().material = open;
         }
-        if(stage == 3)
-        {
-            
-        }
         running = false;
         next = false;
         //image.SetActive(false);
@@ -112,7 +108,7 @@ public class Tutorial : MonoBehaviour
             uiGuides[stage].SetActive(true);
         }
         subtitleText.text = subtitles[stage];
-        subtitleFade.fadeOutTime = subtitleTimes[stage];
+        subtitleFade.fullTime = subtitleTimes[stage];
         subtitleText.gameObject.GetComponent<FadingText>().PopIn();
         subtitleText.gameObject.GetComponent<FadingText>().FadeOut();
         if(tutorialObjects[stage] != null)

@@ -567,6 +567,7 @@ RectTransform:
   - {fileID: 212309378}
   - {fileID: 1408062689}
   - {fileID: 1697326218}
+  - {fileID: 1438460656}
   - {fileID: 669366762}
   - {fileID: 827869457}
   - {fileID: 836762589}
@@ -805,7 +806,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1281,7 +1282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154749766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -98.698, y: -474.35782, z: 142.99199}
+  m_LocalPosition: {x: -98.814, y: -474.35782, z: 142.99199}
   m_LocalScale: {x: 3.3826978, y: 3.4216, z: 0.15979}
   m_Children: []
   m_Father: {fileID: 1513347516}
@@ -3054,6 +3055,7 @@ MonoBehaviour:
   timeChange: {fileID: 421685960}
   background: {fileID: 0}
   fadeOutTime: 3
+  fullTime: 1
 --- !u!222 &421685962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4490,7 +4492,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5964,7 +5966,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6121,7 +6123,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 51043598}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6636,6 +6638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 3
   shutter: {fileID: 154749766}
+  shutterText: {fileID: 1438460655}
   running: 0
   player: {fileID: 1801343907}
   cornerOne: {x: 6.9, y: 0, z: -5.3}
@@ -9442,40 +9445,42 @@ MonoBehaviour:
   - {fileID: 0}
   subtitleText: {fileID: 1902923262}
   subtitles:
-  - Welcome to training recruit. First we'll run some tests to make sure everything
-    is working. Walk over to the beacon.
-  - Now look around and at the beacon.
-  - Alright, pickup a gun from the rack on the wall. You'll need it.
-  - You'll see your ammo and current gear in the bottom right of your visor. Shoot
-    the targets on the range.
-  - Keep an eye on your time in the top of the visor. We clear sites a.s.a.p. Reload
-    and get ready.
-  - Systems seem fine. Headshots will disable your target quicker so aim for the head.
-    Normally, don't shoot hostages, but do so now. You'll see the time change to reflect
+  - Welcome to the training recruit. First we'll run some basic tests. Now proceed
+    to the beacon.
+  - Aim at the beacon.
+  - Proceed into the shooting range. Then pickup the gun on the wall. You'll need
     it.
-  - As I said, faster is better. So learn to get a move on, sprint to the beacon.
-  - If you don't fit standing up, get down. Crouch under the barrier.
-  - Crouching slows you down. Combine the momentum from sprinting with going down.
-    You'll slide throught the gaps.
-  - Now get across that wall. Vault over it.
-  - Use grenades to clear rooms. Just don't use them if hostages are present.
-  - To teach you to check your corners we have hidden targets like this one. Find
-    and shoot them to get a better time.
-  - Tutorial end
+  - Your ammo and gear are displayed in the bottom right of your visor. Keep an eye
+    on it. Now shoot the targets.
+  - Your time will be displayed in the top of your visor. We clear sites as fast as
+    possible. Now reload and get ready.
+  - Systems are fine. Headshots will take down targets quicker, so make use of them.
+    Normally we don't shoot hostages, for testing we do. Your time will change if
+    you hit them.
+  - Leave the shooting range and sprint through the gate to the beacon.
+  - You won't always be able to fit everywhere, crouch under the wall and to the beacon.
+  - Crouching slows you down. To save momentum crouch while sprinting to slide under
+    the obstacles.
+  - Going over obstacles is faster than going around them. Vault over this obstacle.
+  - Clearing rooms is faster when you're using grenades. Throw one down the range
+    now.
+  - These golden targets will be hidden throughout the killhouse. Shoot them to reduce
+    your final time.
+  - This is the end of basic orientation. Good luck in the killhouse recruit.
   subtitleTimes:
+  - 10
+  - 5
+  - 9
+  - 11
+  - 13
   - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
-  - 15
+  - 7
+  - 8
+  - 10
+  - 9
+  - 9
+  - 10
+  - 9
   objectiveText: {fileID: 387457752}
   objectives:
   - Move to the beacon
@@ -10744,6 +10749,163 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1438075328}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1438460655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438460656}
+  - component: {fileID: 1438460658}
+  - component: {fileID: 1438460657}
+  m_Layer: 5
+  m_Name: BackUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1438460656
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438460655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 51043598}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -951.87006, y: -533.151}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1438460657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438460655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: Too slow. Go back through the gate and try again.
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 514
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 98.60304, y: 24.429863, z: 98.47267, w: 24.188065}
+  m_textInfo:
+    textComponent: {fileID: 1438460657}
+    characterCount: 49
+    spriteCount: 0
+    spaceCount: 9
+    wordCount: 10
+    linkCount: 0
+    lineCount: 2
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1438460658
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438460655}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1438954165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14472,7 +14634,7 @@ PrefabInstance:
     - target: {fileID: 943799524836295262, guid: 80e1563e33fe3e143aae852ab9499d5b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 152.88
+      value: 154.5
       objectReference: {fileID: 0}
     - target: {fileID: 943799524836295262, guid: 80e1563e33fe3e143aae852ab9499d5b,
         type: 3}
@@ -14810,7 +14972,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeChange: {fileID: 1902923262}
   background: {fileID: 1317094626}
-  fadeOutTime: 15
+  fadeOutTime: 5
+  fullTime: 0
 --- !u!1 &1916263947
 GameObject:
   m_ObjectHideFlags: 0
@@ -17251,6 +17414,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383548489050348956, guid: 6567b5bcacd452041a0eee8489b1a491,
+        type: 3}
+      propertyPath: lookTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6567b5bcacd452041a0eee8489b1a491, type: 3}

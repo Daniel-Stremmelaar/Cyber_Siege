@@ -8,6 +8,7 @@ public class FadingText : MonoBehaviour
     public Text timeChange;
     public Image background;
     public float fadeOutTime;
+    public float fullTime;
     private Color originalText;
     private Color originalBack;
     private float f;
@@ -28,7 +29,7 @@ public class FadingText : MonoBehaviour
 
     public void FadeOut()
     {
-        StartCoroutine(FadeOutRoutine());
+        StartCoroutine(FadeOutDelay());
     }
 
     public void PopIn()
@@ -58,5 +59,11 @@ public class FadingText : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    public IEnumerator FadeOutDelay()
+    {
+        yield return new WaitForSeconds(fullTime);
+        StartCoroutine(FadeOutRoutine());
     }
 }

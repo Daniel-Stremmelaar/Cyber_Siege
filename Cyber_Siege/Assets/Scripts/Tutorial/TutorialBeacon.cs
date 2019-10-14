@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialBeacon : MonoBehaviour
 {
     public float triggerDistance;
+    public float lookTime;
     private GameObject player;
     private Tutorial tutorial;
     // Start is called before the first frame update
@@ -33,8 +34,12 @@ public class TutorialBeacon : MonoBehaviour
 
     public void Seen()
     {
-        print("seen");
-        tutorial.NextStage();
-        gameObject.SetActive(false);
+        lookTime -= Time.deltaTime;
+        if(lookTime <= 0)
+        {
+            tutorial.NextStage();
+            gameObject.SetActive(false);
+        }
     }
+
 }
