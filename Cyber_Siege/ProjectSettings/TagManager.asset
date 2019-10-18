@@ -14,6 +14,8 @@ TagManager:
   - Tutorial
   - Weapon
   - TutorialChecker
+  - Interactable
+  - PlayerUI
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - Guns
   - Interactable
   - Terrain
-  - 
+  - Humanoid
   - 
   - 
   - 

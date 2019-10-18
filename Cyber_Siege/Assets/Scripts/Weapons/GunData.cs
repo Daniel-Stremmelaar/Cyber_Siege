@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New GunData", menuName = "Guns/GunData")]
 public class GunData : ScriptableObject
 {
-    public GameObject gunPrefab;
-    public string gunName;
     public int clipCapacity;
     public int ammoCapacity;
     public float reloadSpeedMultiplier;
@@ -18,6 +16,7 @@ public class GunData : ScriptableObject
     public float destroyTime;
     public float shotDelay;
     public float bulletRange;
+    public float bulletVelocity;
     public float idleSpread, movingSpread, runningSpread, zoomedSpread;
     public Spread spreadData;
     public float crosshairModifySpeed;

@@ -5,46 +5,38 @@ using UnityEngine.UI;
 
 public class BaseGun : MonoBehaviour
 {
-    [Header("TESTING PURPOSES")]
-    public AnimationClip reloadAnim;
-    public AnimationClip shootAnim;
-    public Animation animation;
-
-
     [Header("Actually Stuff")]
     public Player owner;
     public string humanoidTag;
 
-    public GameObject crosshair;
-
     public GunData baseData;
 
-    public int repeatedBulletAmount = 0;
-    public Vector3 recoilAmount = Vector3.zero;
+    int repeatedBulletAmount = 0;
+    Vector3 recoilAmount = Vector3.zero;
 
     public int currentClip;
     public int currentAmmoStore;
-    public ParticleSystem muzzleFlash;
-    public AudioSource bulletShot;
+    [SerializeField]ParticleSystem muzzleFlash;
+    [SerializeField]AudioSource bulletShot;
 
-    public Coroutine currentActionRoutine;
+    Coroutine currentActionRoutine;
 
-    bool canFire = true;
+    public bool canFire = true;
     Coroutine knockupRoutine, knockdownRoutine, recoilResetTimer;
     Vector3 remainingRotationAmount;
     Vector3 totalRotationAmount;
 
     public FireTypes fireType;
-    public GunState currentState;
+    GunState currentState;
 
     float crosshairOffset = 0;
     const float spreadPrecisionizer = 0.001f;
-    public float spreadModifier;
+    float spreadModifier;
 
-    GameObject ingameManager;
-    private void Awake()
+    IngameUIManager playerUI;
+    private void Start()
     {
-        ingameManager = GameObject.FindGameObjectWithTag("Manager");
+        playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<IngameUIManager>();
         recoilAmount = baseData.recoilPattern.initialRecoil;
         spreadModifier = baseData.spreadData.baseSpreadModifier;
         OnEquip();
@@ -85,8 +77,8 @@ public class BaseGun : MonoBehaviour
     }
     public void OnEquip()
     {
-        ingameManager.GetComponent<IngameUIManager>().clipAmmo.text = currentClip.ToString();
-        ingameManager.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
+        playerUI.clipAmmo.text = currentClip.ToString();
+        playerUI.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
     }
     GunState CheckGunState()
     {
@@ -118,7 +110,7 @@ public class BaseGun : MonoBehaviour
     void UpdateCrosshair()
     {
         currentState = CheckGunState();
-        GameObject crosshair = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>().crosshair;
+        GameObject crosshair = playerUI.crosshair;
         switch (currentState)
         {
             case GunState.Idle:
@@ -202,14 +194,21 @@ public class BaseGun : MonoBehaviour
                 {
                     if (hitData.transform.tag == humanoidTag)
                     {
-                        IngameUIManager uiManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameUIManager>();
-                        if (uiManager.hitmarkerRoutine != null)
+                        if (playerUI.hitmarkerRoutine != null)
                         {
-                            StopCoroutine(uiManager.hitmarkerRoutine);
-                            uiManager.hitmarkerRoutine = null;
+                            StopCoroutine(playerUI.hitmarkerRoutine);
+                            playerUI.hitmarkerRoutine = null;
                         }
-                        uiManager.hitmarkerRoutine = StartCoroutine(uiManager.Hitmarker());
+                        playerUI.hitmarkerRoutine = StartCoroutine(playerUI.Hitmarker());
                         //hitData.transform.GetComponent<TutorialTarget>().Hit();
+                    }
+                    else
+                    {
+                        if (hitData.transform.GetComponent<Rigidbody>())
+                        {
+                            Rigidbody hitRigid = hitData.transform.GetComponent<Rigidbody>();
+                            hitRigid.AddForceAtPosition(owner.playerCamera.forward * baseData.bulletVelocity, hitData.point, ForceMode.Impulse);
+                        }
                     }
                     IngameManager ingameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
                     GameObject newBulletHole = Instantiate(baseData.bulletImpactDecal, hitData.point, Quaternion.LookRotation(hitData.normal));
@@ -233,7 +232,7 @@ public class BaseGun : MonoBehaviour
             {
                 currentClip--;
             }
-            ingameManager.GetComponent<IngameUIManager>().clipAmmo.text = currentClip.ToString();
+            playerUI.clipAmmo.text = currentClip.ToString();
             remainingRotationAmount = recoilAmount;
             if (knockupRoutine == null)
             {
@@ -278,8 +277,8 @@ public class BaseGun : MonoBehaviour
             currentClip += currentAmmoStore;
             currentAmmoStore = 0;
         }
-        ingameManager.GetComponent<IngameUIManager>().clipAmmo.text = currentClip.ToString();
-        ingameManager.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
+        playerUI.clipAmmo.text = currentClip.ToString();
+        playerUI.storedAmmo.text = currentAmmoStore.ToString();
         yield return new WaitForSeconds(baseData.reloadSpeedMultiplier);
         currentActionRoutine = null;
     }

@@ -5,5 +5,6 @@ using UnityEngine;
 public abstract class Explosive : MonoBehaviour
 {
     public GameObject explosionParticle;
+    public Player owner;
     public abstract void Explode();
 }

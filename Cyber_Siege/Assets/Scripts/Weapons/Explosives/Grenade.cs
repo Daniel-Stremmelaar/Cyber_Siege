@@ -28,13 +28,18 @@ public class Grenade : Explosive
                 float distancePercentageFromCenter = Vector3.Distance(transform.position, thisObject.transform.position) / explosionRadius;
                 if(thisObject.tag == humanoidTag)
                 {
-                    Target humanoidData = thisObject.GetComponent<Target>();
-                    humanoidData.Hit(explosionDamage * distancePercentageFromCenter, 0);
+                    if (thisObject.GetComponent<Target>())
+                    {
+                        Target humanoidData = thisObject.GetComponent<Target>();
+                        humanoidData.Hit(explosionDamage * distancePercentageFromCenter, 0);
+                    }
+
                 }
             }
+            IngameUIManager playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<IngameUIManager>();
+            playerUI.StartCoroutine(playerUI.Hitmarker());
         }
         Instantiate(explosionParticle, transform.position, Quaternion.identity);
-        print("BOOM");
         Destroy(gameObject);
     }
 

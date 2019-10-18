@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1469db6aa38fa0479af9a5595addd31, type: 3}
+  m_Name: SMG
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemPrefab: {fileID: 120734722511320850, guid: f4d02e68c4b3b024f988e69d94e52d9d,
+    type: 3}
+  itemDrop: {fileID: 120734722511320850, guid: 5d9b1bac5af347947a89ab80d5d79f05, type: 3}
+  itemIcon: {fileID: 21300000, guid: 53873c7ed4ff850459800c4c5c1850fa, type: 3}
+  itemName: Kris Vector
+  maxAmount: 1

@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] Transform directionChecker;
     [SerializeField] Transform relocate;
     [SerializeField] Animator playerAnimator;
-    [SerializeField] LayerMask interactableMask, terrainMask;
+    [SerializeField] LayerMask actionMask, terrainMask;
+    [SerializeField] string interactableTag;
     [SerializeField] States currentState;
     [SerializeField] Status currentStatus;
     public ActionState currentActionState;
@@ -63,6 +64,9 @@ public class Player : MonoBehaviour
     public Transform gunWieldingPoint;
     public Transform currentGun;
 
+    [Header("Inventory")]
+    public PlayerInventory inventory;
+
     [Header("Grenades")]
     [SerializeField] float throwVelocityMultiplier;
     [SerializeField] GameObject grenadee; //Will be replaced with the inventory, same for currentgun.
@@ -94,6 +98,10 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(ThrowGrenade());
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             transform.position = relocate.position;
@@ -112,14 +120,14 @@ public class Player : MonoBehaviour
                     ;
                     if (Input.GetButtonDown("Jump"))
                     {
-                        Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
+                        Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, actionMask);
                         if (vaultables.Length > 0)
                         {
                             foreach(Collider vaultable in vaultables)
                             {
                                 if(vaultable.tag == vaultableTag)
                                 {
-                                    vaultables[0].GetComponent<Interactable>().Interact(gameObject);
+                                    vaultables[0].GetComponent<Interactable>().Interact(this);
                                     break;
                                 }
                             }
@@ -139,6 +147,18 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             StartCoroutine(Slide(slidePower));
+        }
+    }
+
+    public void Interact()
+    {
+        RaycastHit hitData;
+        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out hitData, 10000))
+        {
+            if(hitData.transform.tag == interactableTag)
+            {
+                hitData.transform.gameObject.GetComponent<ItemPickup>().Interact(this);
+            }
         }
     }
     public void CheckMovement()
@@ -362,6 +382,7 @@ public class Player : MonoBehaviour
     {
         //Swap out gun
         GameObject grenade = Instantiate(grenadee, gunWieldingPoint.position, Quaternion.identity, gunWieldingPoint);
+        grenade.GetComponent<Grenade>().owner = this;
         //Play animation of throwing grenade.
         yield return null;
         grenade.transform.parent = null;

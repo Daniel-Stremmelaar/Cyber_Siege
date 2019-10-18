@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ab10e6be643204ca8c5fc613bce41c, type: 3}
   m_Name: SMG
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 0}
-  gunName: Assault Rifle
   clipCapacity: 25
   ammoCapacity: 250
   reloadSpeedMultiplier: 1
@@ -27,6 +25,7 @@ MonoBehaviour:
   destroyTime: 1000
   shotDelay: 0.05
   bulletRange: 20
+  bulletVelocity: 10
   idleSpread: 5
   movingSpread: 15
   runningSpread: 25
@@ -55,4 +54,4 @@ MonoBehaviour:
   recoilSpeed: 20
   knockdownRecoilPercentage: 61.7
   shotSound: {fileID: 0}
-  infiniteAmmo: 0
+  infiniteAmmo: 1

@@ -156,10 +156,9 @@ GameObject:
   - component: {fileID: 6410136714408154904}
   - component: {fileID: 6410136714408154905}
   - component: {fileID: 6410136714408154902}
-  - component: {fileID: 6410136714408154906}
   m_Layer: 5
   m_Name: WeaponCanvas
-  m_TagString: UIManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,22 +244,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6410136714408154906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6410136714408154903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56407ae1281f08948b72996fea1a656d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crosshair: {fileID: 6410136714753750653}
-  hitMarker: {fileID: 6410136714896992229}
-  hitmarkerFadeSpeed: 3
-  hitmarkerDurationBeforeFade: 0.3
 --- !u!1 &6410136714753750653
 GameObject:
   m_ObjectHideFlags: 0
