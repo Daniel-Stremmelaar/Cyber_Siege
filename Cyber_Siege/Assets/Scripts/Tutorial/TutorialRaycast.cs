@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialRaycast : MonoBehaviour
 {
+    public GameObject lookBar;
     private Tutorial tutorial;
     private RaycastHit hit;
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class TutorialRaycast : MonoBehaviour
     {
         if (tutorial.CheckStage() == 1)
         {
+            lookBar.SetActive(false);
             if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
             {
                 if(hit.transform.gameObject.tag == "LookBeacon")
