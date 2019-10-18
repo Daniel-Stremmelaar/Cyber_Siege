@@ -33,6 +33,7 @@ public class Tutorial : MonoBehaviour
 
     [Header("Tutorial world UI")]
     public List<GameObject> uiGuides = new List<GameObject>();
+    public List<GameObject> uiArrows = new List<GameObject>();
 
     [Header("Doorblock colours")]
     public Material open;
@@ -106,6 +107,17 @@ public class Tutorial : MonoBehaviour
         if(uiGuides[stage] != null)
         {
             uiGuides[stage].SetActive(true);
+        }
+        foreach(GameObject g in uiArrows)
+        {
+            if(g != null)
+            {
+                g.SetActive(false);
+            }
+        }
+        if(uiArrows[stage] != null)
+        {
+            uiArrows[stage].SetActive(true);
         }
         subtitleText.text = subtitles[stage];
         subtitleFade.fullTime = subtitleTimes[stage];
