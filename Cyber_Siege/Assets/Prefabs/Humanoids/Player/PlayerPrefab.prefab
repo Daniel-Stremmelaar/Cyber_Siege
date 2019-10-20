@@ -2163,8 +2163,9 @@ MonoBehaviour:
   gunWieldingPoint: {fileID: 8642954287632121099}
   currentGun: {fileID: 514922537150743416}
   inventory: {fileID: 1526675710308218070}
-  throwVelocityMultiplier: 0
-  grenadee: {fileID: 0}
+  throwVelocityMultiplier: 20
+  grenadee: {fileID: 7574549861876082678, guid: 277e577bc4ac53d4e9f58c4d1a1c0aa5,
+    type: 3}
 --- !u!54 &1526675709238990145
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4455,6 +4456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DX-12 Punisher 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1524345827982848328, guid: c660e8cb2da81b644b2f00c1d8202bb7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2557140431835153243, guid: c660e8cb2da81b644b2f00c1d8202bb7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4601,6 +4607,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 188.82599
       objectReference: {fileID: 0}
+    - target: {fileID: 3941527109384315136, guid: 3b6814578b628e944b3e163b32c6bb93,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 4673935229079736927}
+    - target: {fileID: 3941527109384315136, guid: 3b6814578b628e944b3e163b32c6bb93,
+        type: 3}
+      propertyPath: humanoidTag
+      value: Humanoid
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b6814578b628e944b3e163b32c6bb93, type: 3}
 --- !u!4 &5788642532072294628 stripped
@@ -4701,11 +4717,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kriss Vector 2.0
       objectReference: {fileID: 0}
-    - target: {fileID: 120734722511320850, guid: f4d02e68c4b3b024f988e69d94e52d9d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4032892445120349441, guid: f4d02e68c4b3b024f988e69d94e52d9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4761,6 +4772,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 93.394005
       objectReference: {fileID: 0}
+    - target: {fileID: 7467766398021046332, guid: f4d02e68c4b3b024f988e69d94e52d9d,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 4673935229079736927}
+    - target: {fileID: 7467766398021046332, guid: f4d02e68c4b3b024f988e69d94e52d9d,
+        type: 3}
+      propertyPath: currentClip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467766398021046332, guid: f4d02e68c4b3b024f988e69d94e52d9d,
+        type: 3}
+      propertyPath: currentAmmoStore
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467766397757060767, guid: f4d02e68c4b3b024f988e69d94e52d9d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a7b1fc5367207a74285b35f2be46ff4a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4d02e68c4b3b024f988e69d94e52d9d, type: 3}
 --- !u!4 &5788642532313422870 stripped
