@@ -7,8 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField] Transform directionChecker;
     [SerializeField] Transform relocate;
     [SerializeField] Animator playerAnimator;
-    [SerializeField] LayerMask actionMask, terrainMask;
+    [SerializeField] LayerMask actionMask, terrainMask, interactableMask;
     [SerializeField] string interactableTag;
+    public float interactRange;
     [SerializeField] States currentState;
     [SerializeField] Status currentStatus;
     public ActionState currentActionState;
@@ -98,9 +99,14 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(ThrowGrenade());
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        RaycastHit forwardHit;
+        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out forwardHit, interactRange, interactableMask, QueryTriggerInteraction.Ignore))
         {
-            Interact();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact();
+            }
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -381,6 +387,8 @@ public class Player : MonoBehaviour
     public IEnumerator ThrowGrenade()
     {
         //Swap out gun
+        inventory.grenadeSlots[0].remainingAmount--;
+        inventory.remainingGrenadeText.text = inventory.grenadeSlots[0].remainingAmount.ToString();
         GameObject grenade = Instantiate(grenadee, gunWieldingPoint.position, Quaternion.identity, gunWieldingPoint);
         grenade.GetComponent<Grenade>().owner = this;
         //Play animation of throwing grenade.

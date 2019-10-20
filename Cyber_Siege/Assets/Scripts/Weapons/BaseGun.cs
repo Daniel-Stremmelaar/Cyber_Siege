@@ -7,7 +7,7 @@ public class BaseGun : MonoBehaviour
 {
     [Header("Actually Stuff")]
     public Player owner;
-    public string humanoidTag;
+    public string humanoidTag, velocityPropTag;
 
     public GunData baseData;
 
@@ -204,7 +204,7 @@ public class BaseGun : MonoBehaviour
                     }
                     else
                     {
-                        if (hitData.transform.GetComponent<Rigidbody>())
+                        if (hitData.transform.tag == velocityPropTag)
                         {
                             Rigidbody hitRigid = hitData.transform.GetComponent<Rigidbody>();
                             hitRigid.AddForceAtPosition(owner.playerCamera.forward * baseData.bulletVelocity, hitData.point, ForceMode.Impulse);

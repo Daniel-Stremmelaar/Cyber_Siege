@@ -7,9 +7,10 @@ public class Grenade : Explosive
     [SerializeField] float explosionDelay;
     [SerializeField] float explosionRadius;
     [SerializeField] float explosionDamage;
+    [SerializeField] float explosionForce;
     [SerializeField] LayerMask explosionLayers;
 
-    [SerializeField] string humanoidTag;
+    [SerializeField] string humanoidTag, velocityObjectTag;
 
     public IEnumerator StartExplosionTimer()
     {
@@ -34,6 +35,14 @@ public class Grenade : Explosive
                         humanoidData.Hit(explosionDamage * distancePercentageFromCenter, 0);
                     }
 
+                }
+                else
+                {
+                    if(thisObject.tag == velocityObjectTag)
+                    {
+                        thisObject.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                        print("YES");
+                    }
                 }
             }
             IngameUIManager playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<IngameUIManager>();

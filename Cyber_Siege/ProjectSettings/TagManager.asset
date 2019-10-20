@@ -16,6 +16,7 @@ TagManager:
   - TutorialChecker
   - Interactable
   - PlayerUI
+  - VelocityProp
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Interactable
   - Terrain
   - Humanoid
-  - 
+  - InteractiveProps
   - 
   - 
   - 

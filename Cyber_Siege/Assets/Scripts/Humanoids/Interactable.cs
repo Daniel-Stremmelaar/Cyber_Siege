@@ -4,5 +4,8 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    [TextArea]
+    public string hoverText;
+
     public abstract void Interact(Player owner);
 }

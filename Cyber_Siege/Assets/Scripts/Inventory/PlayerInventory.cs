@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -9,9 +10,18 @@ public class PlayerInventory : MonoBehaviour
     public WeaponSlot[] weaponSlots;
     public GrenadeSlot[] grenadeSlots;
 
+    public Text remainingGrenadeText;
+
     public Player owner;
 
-    public GameObject currentHoldingWeapon;
+
+    public void Start()
+    {
+        if(grenadeSlots[0] != null)
+        {
+            remainingGrenadeText.text = grenadeSlots[0].remainingAmount.ToString();
+        }
+    }
 
     public void SwapItem(GameObject itemObject, ItemData itemData, int amount)
     {
@@ -71,8 +81,8 @@ public class PlayerInventory : MonoBehaviour
                 WeaponSlot currentlyEquippedSlot = weaponSlots[currentlyEquippedWeapon];
                 GameObject newItemObject = Instantiate(currentlyEquippedSlot.itemData.itemDrop, ownerObject.transform.position, ownerObject.transform.rotation, ownerObject.transform.parent);
                 newItemObject.GetComponent<WeaponPickup>().pickupData = currentlyEquippedSlot.itemData;
-                newItemObject.GetComponent<WeaponPickup>().clipAmmoRemaining = currentHoldingWeapon.GetComponent<BaseGun>().currentClip;
-                newItemObject.GetComponent<WeaponPickup>().storedAmmoRemaining = currentHoldingWeapon.GetComponent<BaseGun>().currentAmmoStore;
+                newItemObject.GetComponent<WeaponPickup>().clipAmmoRemaining = owner.currentGun.GetComponent<BaseGun>().currentClip;
+                newItemObject.GetComponent<WeaponPickup>().storedAmmoRemaining = owner.currentGun.GetComponent<BaseGun>().currentAmmoStore;
                 currentlyEquippedSlot.itemData = data;
                 currentlyEquippedSlot.remainingClipAmmo = ownerObject.GetComponent<WeaponPickup>().clipAmmoRemaining;
                 currentlyEquippedSlot.remainingStoredAmmo = ownerObject.GetComponent<WeaponPickup>().storedAmmoRemaining;
@@ -82,8 +92,8 @@ public class PlayerInventory : MonoBehaviour
                 newWeapon.GetComponent<BaseGun>().currentAmmoStore = currentlyEquippedSlot.remainingClipAmmo;
                 newWeapon.GetComponent<BaseGun>().currentAmmoStore = currentlyEquippedSlot.remainingStoredAmmo;
                 newWeapon.GetComponent<BaseGun>().owner = owner;
-                Destroy(currentHoldingWeapon);
-                currentHoldingWeapon = newWeapon;
+                Destroy(owner.currentGun.gameObject);
+                owner.currentGun = newWeapon.transform;
                 Destroy(ownerObject);
             }
         }

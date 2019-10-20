@@ -99,10 +99,12 @@ MonoBehaviour:
   explosionDelay: 2
   explosionRadius: 4
   explosionDamage: 90
+  explosionForce: 2000
   explosionLayers:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 12288
   humanoidTag: Humanoid
+  velocityObjectTag: VelocityProp
 --- !u!54 &9161798475854072611
 Rigidbody:
   m_ObjectHideFlags: 0
