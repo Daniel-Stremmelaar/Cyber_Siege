@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4063403568583148881}
   - component: {fileID: 7735096663995316648}
   m_Layer: 0
-  m_Name: Barrel_low
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4989736304133226343
 Transform:

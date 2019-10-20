@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 1387538735406463705}
   - component: {fileID: 4646886108338374176}
   m_Layer: 0
-  m_Name: Plank2_low
+  m_Name: Plank2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7933796216908808431
 Transform:
