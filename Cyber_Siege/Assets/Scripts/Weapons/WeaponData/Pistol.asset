@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ab10e6be643204ca8c5fc613bce41c, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 0}
-  gunName: Assault Rifle
   clipCapacity: 25
   ammoCapacity: 250
   reloadSpeedMultiplier: 1
@@ -27,6 +25,7 @@ MonoBehaviour:
   destroyTime: 1000
   shotDelay: 0.05
   bulletRange: 20
+  bulletVelocity: 10
   idleSpread: 5
   movingSpread: 15
   runningSpread: 25
@@ -54,5 +53,6 @@ MonoBehaviour:
       recoilAmount: {x: 1, y: 0.1, z: 0}
   recoilSpeed: 20
   knockdownRecoilPercentage: 61.7
-  shotSound: {fileID: 0}
+  shotSound: {fileID: 8300000, guid: 45ef77f01563e8c4f88f938dd2959f59, type: 3}
+  reloadSound: {fileID: 8300000, guid: 03edcc64572a7b6488421ac7d5213b78, type: 3}
   infiniteAmmo: 1

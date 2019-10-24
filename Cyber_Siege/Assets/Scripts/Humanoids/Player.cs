@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform directionChecker;
     [SerializeField] Transform relocate;
     [SerializeField] Animator playerAnimator;
-    [SerializeField] LayerMask actionMask, terrainMask, interactableMask;
+    [SerializeField] LayerMask terrainMask, interactableMask;
     [SerializeField] string interactableTag;
     public float interactRange;
     [SerializeField] States currentState;
@@ -72,6 +72,9 @@ public class Player : MonoBehaviour
     [SerializeField] float throwVelocityMultiplier;
     [SerializeField] GameObject grenadee; //Will be replaced with the inventory, same for currentgun.
 
+    [Header("UI")]
+    [SerializeField] IngameUIManager playerUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,18 +98,22 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && inventory.grenadeSlots[0].remainingAmount > 0)
         {
             StartCoroutine(ThrowGrenade());
         }
         RaycastHit forwardHit;
-        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out forwardHit, interactRange, interactableMask, QueryTriggerInteraction.Ignore))
+        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out forwardHit, interactRange, interactableMask))
         {
-
-            if (Input.GetKeyDown(KeyCode.E))
+            playerUI.interactionText.text = "[" + forwardHit.transform.GetComponent<Interactable>().requiredInput +"] " + forwardHit.transform.GetComponent<Interactable>().hoverText;
+            if (Input.GetButtonDown("Interact"))
             {
                 Interact();
             }
+        }
+        else
+        {
+            playerUI.interactionText.text = "";
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -126,14 +133,14 @@ public class Player : MonoBehaviour
                     ;
                     if (Input.GetButtonDown("Jump"))
                     {
-                        Collider[] vaultables = Physics.OverlapSphere(transform.position, vaultDetectionRange, actionMask);
-                        if (vaultables.Length > 0)
+                        Collider[] interactables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
+                        if (interactables.Length > 0)
                         {
-                            foreach(Collider vaultable in vaultables)
+                            foreach(Collider interactable in interactables)
                             {
-                                if(vaultable.tag == vaultableTag)
+                                if(interactable.tag == interactableTag)
                                 {
-                                    vaultables[0].GetComponent<Interactable>().Interact(this);
+                                    interactables[0].GetComponent<Interactable>().CheckInteract("Jump", this);
                                     break;
                                 }
                             }
@@ -163,7 +170,7 @@ public class Player : MonoBehaviour
         {
             if(hitData.transform.tag == interactableTag)
             {
-                hitData.transform.gameObject.GetComponent<ItemPickup>().Interact(this);
+                hitData.transform.gameObject.GetComponent<Interactable>().CheckInteract("Interact", this);
             }
         }
     }

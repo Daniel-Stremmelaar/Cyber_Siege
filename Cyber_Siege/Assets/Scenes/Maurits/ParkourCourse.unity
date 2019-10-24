@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 293198512}
   m_Layer: 10
   m_Name: Vault_Wall
-  m_TagString: Vaultable
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1098,7 +1098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd22ef3823a94994eb6459ae1a4fefdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverText: 
+  hoverText: Vault
+  requiredInput: Jump
   vaultPositions:
   - {fileID: 255582238}
   - {fileID: 1855612245}
@@ -2660,6 +2661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverText: 
+  requiredInput: 
   vaultPositions:
   - {fileID: 2011679936}
   - {fileID: 585591083}
@@ -2969,16 +2971,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Can
       objectReference: {fileID: 0}
-    - target: {fileID: 1671961497904298158, guid: 11a1b29698b4eba498bc6eb4bcde38d2,
-        type: 3}
-      propertyPath: m_TagString
-      value: VelocityProp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1671961497904298158, guid: 11a1b29698b4eba498bc6eb4bcde38d2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 2409243038361701053, guid: 11a1b29698b4eba498bc6eb4bcde38d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3140,6 +3132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kriss Vector 2.1 Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 120734722511320850, guid: 5d9b1bac5af347947a89ab80d5d79f05,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4032892445120349441, guid: 5d9b1bac5af347947a89ab80d5d79f05,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3195,6 +3192,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 93.394005
       objectReference: {fileID: 0}
+    - target: {fileID: 6957506071282763372, guid: 5d9b1bac5af347947a89ab80d5d79f05,
+        type: 3}
+      propertyPath: hoverText
+      value: Pick Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957506071282763372, guid: 5d9b1bac5af347947a89ab80d5d79f05,
+        type: 3}
+      propertyPath: requiredInput
+      value: Interact
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9b1bac5af347947a89ab80d5d79f05, type: 3}
 --- !u!1 &826600945
@@ -3230,6 +3237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverText: 
+  requiredInput: 
   vaultPositions:
   - {fileID: 612032563}
   - {fileID: 646709672}
@@ -3894,6 +3902,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159804873}
   m_CullTransparentMesh: 0
+--- !u!114 &1251775278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2076388803, guid: 039a7c5fa9e6acf43843a807dcaf3176,
+    type: 3}
+  m_PrefabInstance: {fileID: 1526675710308218066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56407ae1281f08948b72996fea1a656d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1282729478
 GameObject:
   m_ObjectHideFlags: 0
@@ -4254,18 +4274,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: -18.699001, y: -427.323, z: 0}
---- !u!114 &1468286291 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-    type: 3}
-  m_PrefabInstance: {fileID: 1526675710308218066}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a5f762426ed05439a2ef3ce545d6e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1477196106
 GameObject:
   m_ObjectHideFlags: 0
@@ -4559,12 +4567,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1658518596 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5788642532313422870, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-    type: 3}
-  m_PrefabInstance: {fileID: 1526675710308218066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1690359160
 GameObject:
   m_ObjectHideFlags: 0
@@ -6354,65 +6356,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-        type: 3}
-      propertyPath: grenadee
-      value: 
-      objectReference: {fileID: 7574549861876082678, guid: 277e577bc4ac53d4e9f58c4d1a1c0aa5,
-        type: 3}
-    - target: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-        type: 3}
-      propertyPath: throwVelocityMultiplier
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4673935229079736927, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-        type: 3}
-      propertyPath: currentGun
-      value: 
-      objectReference: {fileID: 1658518596}
-    - target: {fileID: 7353879486767869445, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099743019, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1468286291}
-    - target: {fileID: 2099743019, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: currentClip
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099743019, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: currentAmmoStore
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099743019, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: velocityPropTag
-      value: VelocityProp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2712289996072936468, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3566295141178175851, guid: 039a7c5fa9e6acf43843a807dcaf3176,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1850012000, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1468286291}
-    - target: {fileID: 1850012000, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: humanoidTag
-      value: Humanoid
-      objectReference: {fileID: 0}
-    - target: {fileID: 1835757448, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a7b1fc5367207a74285b35f2be46ff4a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 039a7c5fa9e6acf43843a807dcaf3176, type: 3}
 --- !u!4 &4355019443679318709
@@ -6529,3 +6472,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBulletHoleAmount: 20
+  uiManager: {fileID: 1251775278}

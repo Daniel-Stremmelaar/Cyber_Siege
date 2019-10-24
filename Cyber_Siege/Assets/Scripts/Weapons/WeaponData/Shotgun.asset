@@ -25,7 +25,7 @@ MonoBehaviour:
   destroyTime: 1000
   shotDelay: 1
   bulletRange: 20
-  bulletVelocity: 0
+  bulletVelocity: 10
   idleSpread: 60
   movingSpread: 80
   runningSpread: 100
@@ -38,20 +38,11 @@ MonoBehaviour:
   crosshairModifySpeed: 10
   bulletsPerShot: 6
   recoilPattern:
-    resetTimer: 0.15
+    resetTimer: 0
     initialRecoil: {x: 25, y: 0, z: 0}
-    patternData:
-    - bulletIndexChange: 1
-      recoilAmount: {x: 2, y: -0.2, z: 0}
-    - bulletIndexChange: 4
-      recoilAmount: {x: 1, y: 0.3, z: 0}
-    - bulletIndexChange: 10
-      recoilAmount: {x: 0.5, y: -0.3, z: 0}
-    - bulletIndexChange: 25
-      recoilAmount: {x: 0.5, y: -0.1, z: 0}
-    - bulletIndexChange: 27
-      recoilAmount: {x: 0.5, y: 0.1, z: 0}
-  recoilSpeed: 1
-  knockdownRecoilPercentage: 40
-  shotSound: {fileID: 8300000, guid: 1c536523e3066ee4e8dfa03cf352a5fe, type: 3}
+    patternData: []
+  recoilSpeed: 15
+  knockdownRecoilPercentage: 80
+  shotSound: {fileID: 8300000, guid: c6834d7e3c9d2db4da1f924630d6426b, type: 3}
+  reloadSound: {fileID: 8300000, guid: ee7c648fa93ac0146a63cb2cbadeea4a, type: 3}
   infiniteAmmo: 0

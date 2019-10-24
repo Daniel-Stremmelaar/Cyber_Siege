@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1083351087695858802}
   - component: {fileID: 2858228558706230525}
   - component: {fileID: 4622189502574666039}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Can
-  m_TagString: Untagged
+  m_TagString: VelocityProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671961497904298158}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.544, y: -3.653, z: 6.895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

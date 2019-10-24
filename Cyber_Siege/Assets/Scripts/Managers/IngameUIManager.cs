@@ -13,6 +13,12 @@ public class IngameUIManager : MonoBehaviour
 
     public Text clipAmmo, storedAmmo, grenades;
 
+    public Text timerText, timeChangeText;
+
+    public Text interactionText;
+
+    public Animator animator;
+
     public IEnumerator Hitmarker()
     {
         Color resetColor = hitMarker.color;

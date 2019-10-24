@@ -21,17 +21,21 @@ public class BaseGun : MonoBehaviour
 
     Coroutine currentActionRoutine;
 
+    Coroutine currentCrosshairRoutine;
+
     public bool canFire = true;
     Coroutine knockupRoutine, knockdownRoutine, recoilResetTimer;
     Vector3 remainingRotationAmount;
     Vector3 totalRotationAmount;
 
     public FireTypes fireType;
-    GunState currentState;
+    public GunState currentState;
 
     float crosshairOffset = 0;
     const float spreadPrecisionizer = 0.001f;
     float spreadModifier;
+
+    public AudioSource mainSource;
 
     IngameUIManager playerUI;
     private void Start()
@@ -46,7 +50,7 @@ public class BaseGun : MonoBehaviour
     {
         if (Input.GetButtonDown("Reload"))
         {
-            if (currentClip < baseData.clipCapacity && currentAmmoStore > 0)
+            if (currentClip < baseData.clipCapacity && currentAmmoStore > 0 && currentState != GunState.Reloading)
             {
                 currentActionRoutine = StartCoroutine(Reload());
             }
@@ -72,8 +76,7 @@ public class BaseGun : MonoBehaviour
                 }
             }
         }
-        UpdateCrosshair();
-
+        ChangeCrosshairSize(CheckGunState());
     }
     public void OnEquip()
     {
@@ -83,31 +86,76 @@ public class BaseGun : MonoBehaviour
     GunState CheckGunState()
     {
         GunState newState;
-        if(currentState != GunState.Zooming)
+        if(currentState != GunState.Reloading)
         {
-            if(!Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
+            if (currentState != GunState.Zooming)
             {
-                newState = GunState.Idle;
-            }
-            else
-            {
-                if (owner.running)
+                if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
                 {
-                    newState = GunState.Running;
+                    newState = GunState.Idle;
                 }
                 else
                 {
-                    newState = GunState.Moving;
+                    if (owner.running)
+                    {
+                        newState = GunState.Running;
+                    }
+                    else
+                    {
+                        newState = GunState.Moving;
+                    }
                 }
+            }
+            else
+            {
+                newState = GunState.Zooming;
             }
         }
         else
         {
-            newState = GunState.Zooming;
+            newState = GunState.Reloading;
         }
         return newState;
     }
-    void UpdateCrosshair()
+    public void ChangeCrosshairSize(GunState newState)
+    {
+        currentState = newState;
+        switch (currentState)
+        {
+            case GunState.Idle:
+                crosshairOffset = baseData.idleSpread;
+                break;
+            case GunState.Moving:
+                crosshairOffset = baseData.movingSpread;
+                break;
+            case GunState.Running:
+                crosshairOffset = baseData.runningSpread;
+                break;
+            case GunState.Zooming:
+                crosshairOffset = baseData.zoomedSpread;
+                break;
+            default:
+                crosshairOffset = baseData.idleSpread;
+                break;
+        }
+        if (currentCrosshairRoutine == null)
+        {
+            currentCrosshairRoutine = StartCoroutine(UpdateCrosshair());
+        }
+    }
+    IEnumerator UpdateCrosshair()
+    {
+        while(playerUI.crosshair.transform.GetChild(0).localPosition != playerUI.crosshair.transform.GetChild(0).GetChild(0).localPosition.normalized * (crosshairOffset + spreadModifier))
+        {
+            foreach(Transform crosshair in playerUI.crosshair.transform)
+            {
+                crosshair.localPosition = Vector3.LerpUnclamped(crosshair.localPosition, crosshair.GetChild(0).localPosition.normalized * (crosshairOffset + spreadModifier), baseData.crosshairModifySpeed * Time.deltaTime);
+            }
+            yield return null;
+        }
+        currentCrosshairRoutine = null;
+    }
+    void UpdateCrosshairr()
     {
         currentState = CheckGunState();
         GameObject crosshair = playerUI.crosshair;
@@ -124,6 +172,9 @@ public class BaseGun : MonoBehaviour
                 break;
             case GunState.Zooming:
                 crosshairOffset = baseData.zoomedSpread;
+                break;
+            default:
+                crosshairOffset = baseData.idleSpread;
                 break;
         }
         crosshairOffset += spreadModifier;
@@ -265,7 +316,10 @@ public class BaseGun : MonoBehaviour
         //Parent ammoClip to hand
         //Play reload2 animation
         //Parent ammoclip to gun
-
+        currentState = GunState.Reloading;
+        mainSource.clip = baseData.reloadSound;
+        mainSource.Play();
+        yield return new WaitForSeconds(mainSource.clip.length);
         int requiredAmmo = baseData.clipCapacity - currentClip;
         if (currentAmmoStore >= requiredAmmo)
         {
@@ -279,8 +333,8 @@ public class BaseGun : MonoBehaviour
         }
         playerUI.clipAmmo.text = currentClip.ToString();
         playerUI.storedAmmo.text = currentAmmoStore.ToString();
-        yield return new WaitForSeconds(baseData.reloadSpeedMultiplier);
         currentActionRoutine = null;
+        currentState = CheckGunState();
     }
     public virtual IEnumerator AimDownsights()
     {
@@ -371,8 +425,9 @@ public class BaseGun : MonoBehaviour
         cameraLocation.y += owner.playerCamera.forward.y * accuracyModifier.y;
         Debug.DrawLine(owner.playerCamera.position, cameraLocation);
     }
+    [System.Serializable]
     public enum GunState
     {
-        Idle, Moving, Running, Zooming
+        Idle, Moving, Running, Zooming, Reloading
     }
 }

@@ -27,7 +27,10 @@ public class GunData : ScriptableObject
     public float recoilSpeed;
     [Range(1, 100)]
     public float knockdownRecoilPercentage;
+
+    [Header("SFX")]
     public AudioClip shotSound;
+    public AudioClip reloadSound;
 
     public bool infiniteAmmo;
 
