@@ -262,7 +262,7 @@ public class BaseGun : MonoBehaviour
                         }
                     }
                     IngameManager ingameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
-                    GameObject newBulletHole = Instantiate(baseData.bulletImpactDecal, hitData.point, Quaternion.LookRotation(hitData.normal));
+                    GameObject newBulletHole = Instantiate(baseData.bulletImpactDecal, hitData.point, Quaternion.LookRotation(hitData.normal), hitData.transform);
                     newBulletHole.transform.Translate(new Vector3(0, 0, 0.001f));
                     ingameManager.AddBulletHole(newBulletHole);
                 }
