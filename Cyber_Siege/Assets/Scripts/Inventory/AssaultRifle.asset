@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1469db6aa38fa0479af9a5595addd31, type: 3}
-  m_Name: Shotgun
+  m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   itemType: 0
-  itemPrefab: {fileID: 6491413111894662887, guid: b1672c1c96fa9d0498d4c94a04e8e7d8,
+  itemPrefab: {fileID: 1797044571209767851, guid: 7511f529e97ffc54bac553ff8a4f5ea1,
     type: 3}
-  itemDrop: {fileID: 1524345827982848328, guid: 8ec26756928182148a6ca698dc83a9ed,
+  itemDrop: {fileID: 8847246204381149795, guid: c9cdb558f7fcf5c438b0c8cabfc52856,
     type: 3}
-  itemIcon: {fileID: 21300000, guid: 53873c7ed4ff850459800c4c5c1850fa, type: 3}
-  itemName: DX-12 Punisher
+  itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemName: Aorus
   maxAmount: 1

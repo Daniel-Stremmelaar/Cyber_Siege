@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SMG
   m_EditorClassIdentifier: 
   itemType: 0
-  itemPrefab: {fileID: 120734722511320850, guid: f4d02e68c4b3b024f988e69d94e52d9d,
+  itemPrefab: {fileID: 1902071252749759962, guid: f51ccd2cd95dfc849b6e35c1eace999f,
     type: 3}
   itemDrop: {fileID: 120734722511320850, guid: 5d9b1bac5af347947a89ab80d5d79f05, type: 3}
   itemIcon: {fileID: 21300000, guid: 53873c7ed4ff850459800c4c5c1850fa, type: 3}
-  itemName: Kris Vector
+  itemName: Kriss Vector
   maxAmount: 1

@@ -1837,10 +1837,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5520536096793512048}
-  - component: {fileID: 713352812259329377}
-  m_Layer: 0
-  m_Name: Aorus_low 1
-  m_TagString: Untagged
+  - component: {fileID: 1834449424}
+  - component: {fileID: 1834449423}
+  m_Layer: 10
+  m_Name: Aorus_low 2 Pickup
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1883,7 +1884,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -77.416, y: 0.43, z: -159.688}
---- !u!114 &713352812259329377
+--- !u!65 &1834449424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847246204381149795}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.71819544, y: 0.1928321, z: 0.13907437}
+  m_Center: {x: 0.34791163, y: 0.08902453, z: 0.056966312}
+--- !u!114 &1834449423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1892,25 +1906,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8847246204381149795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df8b2d99022a889458fbaa4620df008f, type: 3}
+  m_Script: {fileID: 11500000, guid: d6111ca56520ac440b56646bc8e624db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadAnim: {fileID: 0}
-  shootAnim: {fileID: 0}
-  animation: {fileID: 0}
-  owner: {fileID: 0}
-  humanoidTag: 
-  crosshair: {fileID: 0}
-  baseData: {fileID: 0}
-  repeatedBulletAmount: 0
-  recoilAmount: {x: 0, y: 0, z: 0}
-  currentClip: 0
-  currentAmmoStore: 0
-  muzzleFlash: {fileID: 0}
-  bulletShot: {fileID: 0}
-  fireType: 0
-  currentState: 0
-  spreadModifier: 0
+  hoverText: Pick Up
+  requiredInput: E
+  pickupData: {fileID: 11400000, guid: de71997911d51cd4a9498743bd5de32f, type: 2}
+  amount: 1
+  clipAmmoRemaining: 420
+  storedAmmoRemaining: 140
 --- !u!1 &9009088180206661596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,13 +2058,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
         type: 3}
-      propertyPath: LightsModule.light
-      value: 
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.07
+      propertyPath: LightsModule.light
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2557140431835153243}
   - component: {fileID: 6784619047366293869}
   - component: {fileID: 944426032139994516}
-  - component: {fileID: 3761974579636594980}
   - component: {fileID: 442582430366438337}
-  m_Layer: 0
+  - component: {fileID: 2380254}
+  m_Layer: 10
   m_Name: DX-12 Punisher Pickup
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524345827982848328}
-  m_LocalRotation: {x: -0.47655508, y: 0.40034604, z: 0.6015185, w: -0.5007931}
+  m_LocalRotation: {x: -0.47655204, y: 0.40034884, z: 0.60151994, w: -0.5007922}
   m_LocalPosition: {x: 0.14515918, y: -0.02238942, z: -0.002439835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3761974579636594980
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524345827982848328}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.16683361, z: 0.6}
-  m_Center: {x: 0.000000005028248, y: 0.010057177, z: -0.2}
 --- !u!114 &442582430366438337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,10 +94,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6111ca56520ac440b56646bc8e624db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverText: Pick Up
+  requiredInput: E
   pickupData: {fileID: 11400000, guid: 4b1e74a324ef5a84ebcdcd192e9941ec, type: 2}
   amount: 1
-  clipAmmoRemaining: 100
-  storedAmmoRemaining: 200
+  clipAmmoRemaining: 420
+  storedAmmoRemaining: 140
+--- !u!65 &2380254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524345827982848328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12200616, y: 0.16683361, z: 0.6466326}
+  m_Center: {x: 0.0000000040235975, y: 0.010057172, z: -0.2288863}
 --- !u!1 &2734237721151818363
 GameObject:
   m_ObjectHideFlags: 0

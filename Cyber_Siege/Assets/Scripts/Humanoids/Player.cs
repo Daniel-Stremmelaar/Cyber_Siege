@@ -75,6 +75,9 @@ public class Player : MonoBehaviour
     [Header("UI")]
     [SerializeField] IngameUIManager playerUI;
 
+    public delegate void OnAction();
+    public OnAction onGrenade;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -170,7 +173,7 @@ public class Player : MonoBehaviour
         {
             if(hitData.transform.tag == interactableTag)
             {
-                hitData.transform.gameObject.GetComponent<Interactable>().CheckInteract("Interact", this);
+                hitData.transform.gameObject.GetComponent<Interactable>().CheckInteract("E", this);
             }
         }
     }
@@ -351,8 +354,9 @@ public class Player : MonoBehaviour
 
     void CheckCameraLocation()
     {
+
         bool gotNewState = false;
-        if(currentActionState != ActionState.Sliding)
+        if(currentActionState != ActionState.Sliding && currentActionState != ActionState.Aiming)
         {
             if (crouching)
             {
@@ -394,6 +398,10 @@ public class Player : MonoBehaviour
     public IEnumerator ThrowGrenade()
     {
         //Swap out gun
+        if(onGrenade != null)
+        {
+            onGrenade();
+        }
         inventory.grenadeSlots[0].remainingAmount--;
         inventory.remainingGrenadeText.text = inventory.grenadeSlots[0].remainingAmount.ToString();
         GameObject grenade = Instantiate(grenadee, gunWieldingPoint.position, Quaternion.identity, gunWieldingPoint);

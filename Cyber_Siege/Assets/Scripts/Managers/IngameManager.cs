@@ -12,9 +12,11 @@ public class IngameManager : MonoBehaviour
 
     [SerializeField] IngameUIManager uiManager;
 
-    private void Start()
+    [SerializeField] TriggerEvent entrance, exit;
+
+    private void Awake()
     {
-        StartTimer();
+        entrance.onTrigger += StartGame;
     }
 
     private void Update()
@@ -42,6 +44,22 @@ public class IngameManager : MonoBehaviour
             Destroy(bulletHole);
         }
     }
+
+    public void StartGame()
+    {
+        print("BET");
+        uiManager.timerText.gameObject.SetActive(true);
+        StartTimer();
+        entrance.onTrigger -= StartGame;
+        exit.onTrigger += FinishGame;
+    }
+    public void FinishGame()
+    {
+        StopTimer();
+        exit.onTrigger -= FinishGame;
+    }
+
+
 
     public void StartTimer()
     {

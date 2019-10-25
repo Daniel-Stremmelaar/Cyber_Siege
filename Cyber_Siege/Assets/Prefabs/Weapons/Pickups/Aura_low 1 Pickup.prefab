@@ -684,10 +684,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7414752044982687876}
-  - component: {fileID: 3941527109384315136}
-  m_Layer: 0
-  m_Name: Aura_low
-  m_TagString: Untagged
+  - component: {fileID: 109082034}
+  - component: {fileID: 109082033}
+  m_Layer: 10
+  m_Name: Aura_low 1 Pickup
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,7 +700,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817846338923899543}
-  m_LocalRotation: {x: -0.083438836, y: -0.5915197, z: -0.7969392, w: 0.089612536}
+  m_LocalRotation: {x: -0.083439395, y: -0.5915162, z: -0.79694164, w: 0.08961334}
   m_LocalPosition: {x: 0.38, y: -0.385, z: -0.306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -720,7 +721,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -73.288, y: -354.617, z: 188.82599}
---- !u!114 &3941527109384315136
+--- !u!65 &109082034
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817846338923899543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.37157524, y: 0.22777437, z: 0.051239453}
+  m_Center: {x: 0.19717076, y: 0.14445135, z: 0.47438085}
+--- !u!114 &109082033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -729,25 +743,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5817846338923899543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df8b2d99022a889458fbaa4620df008f, type: 3}
+  m_Script: {fileID: 11500000, guid: d6111ca56520ac440b56646bc8e624db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadAnim: {fileID: 0}
-  shootAnim: {fileID: 0}
-  animation: {fileID: 0}
-  owner: {fileID: 0}
-  humanoidTag: 
-  crosshair: {fileID: 0}
-  baseData: {fileID: 0}
-  repeatedBulletAmount: 0
-  recoilAmount: {x: 0, y: 0, z: 0}
-  currentClip: 0
-  currentAmmoStore: 0
-  muzzleFlash: {fileID: 0}
-  bulletShot: {fileID: 0}
-  fireType: 0
-  currentState: 0
-  spreadModifier: 0
+  hoverText: Pick Up
+  requiredInput: E
+  pickupData: {fileID: 11400000, guid: fa45458b53de7414a8f38f50d0d6b82a, type: 2}
+  amount: 1
+  clipAmmoRemaining: 420
+  storedAmmoRemaining: 140
 --- !u!1 &6487874167371801508
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1469db6aa38fa0479af9a5595addd31, type: 3}
-  m_Name: Shotgun
+  m_Name: Pistol
   m_EditorClassIdentifier: 
   itemType: 0
-  itemPrefab: {fileID: 6491413111894662887, guid: b1672c1c96fa9d0498d4c94a04e8e7d8,
+  itemPrefab: {fileID: 2102147094395435810, guid: a61a3b3962400a1459efd11bf5b93702,
     type: 3}
-  itemDrop: {fileID: 1524345827982848328, guid: 8ec26756928182148a6ca698dc83a9ed,
+  itemDrop: {fileID: 5817846338923899543, guid: e608316f82c4bc74fa02ff657962762b,
     type: 3}
-  itemIcon: {fileID: 21300000, guid: 53873c7ed4ff850459800c4c5c1850fa, type: 3}
-  itemName: DX-12 Punisher
+  itemIcon: {fileID: 21300000, guid: 513f46b7407e550459db27aea9fe8459, type: 3}
+  itemName: Aura
   maxAmount: 1

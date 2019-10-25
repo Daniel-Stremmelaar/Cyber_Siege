@@ -23,6 +23,43 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("One"))
+        {
+            SwapGun(0);
+        }
+        else
+        {
+            if (Input.GetButtonDown("Two"))
+            {
+                SwapGun(1);
+            }
+        }
+    }
+    void SwapGun(int newIndex)
+    {
+        weaponSlots[currentlyEquippedWeapon].remainingClipAmmo = owner.currentGun.GetComponent<BaseGun>().currentClip;
+        weaponSlots[currentlyEquippedWeapon].remainingStoredAmmo = owner.currentGun.GetComponent<BaseGun>().currentAmmoStore;
+        Destroy(owner.currentGun.gameObject);
+        currentlyEquippedWeapon = newIndex;
+        if(currentlyEquippedWeapon >= weaponSlots.Length)
+        {
+            currentlyEquippedWeapon = 0;
+        }
+        else
+        {
+            if(currentlyEquippedWeapon < 0)
+            {
+                currentlyEquippedWeapon = weaponSlots.Length - 1;
+            }
+        }
+        GameObject newGun = Instantiate(weaponSlots[currentlyEquippedWeapon].itemData.itemPrefab, owner.gunWieldingPoint.position, owner.gunWieldingPoint.rotation, owner.gunWieldingPoint);
+        owner.currentGun = newGun.transform;
+        newGun.GetComponent<BaseGun>().currentClip = weaponSlots[currentlyEquippedWeapon].remainingClipAmmo;
+        newGun.GetComponent<BaseGun>().currentAmmoStore = weaponSlots[currentlyEquippedWeapon].remainingStoredAmmo;
+        newGun.GetComponent<BaseGun>().owner = owner;
+    }
     public void SwapItem(GameObject itemObject, ItemData itemData, int amount)
     {
         switch (itemData.itemType)
@@ -89,7 +126,6 @@ public class PlayerInventory : MonoBehaviour
                 currentlyEquippedSlot.icon.sprite = data.itemIcon;
                 GameObject newWeapon = Instantiate(data.itemPrefab, owner.gunWieldingPoint.position, owner.gunWieldingPoint.rotation, owner.gunWieldingPoint);
                 newWeapon.GetComponent<BaseGun>().currentClip = ownerObject.GetComponent<WeaponPickup>().clipAmmoRemaining;
-                newWeapon.GetComponent<BaseGun>().currentAmmoStore = currentlyEquippedSlot.remainingClipAmmo;
                 newWeapon.GetComponent<BaseGun>().currentAmmoStore = currentlyEquippedSlot.remainingStoredAmmo;
                 newWeapon.GetComponent<BaseGun>().owner = owner;
                 Destroy(owner.currentGun.gameObject);

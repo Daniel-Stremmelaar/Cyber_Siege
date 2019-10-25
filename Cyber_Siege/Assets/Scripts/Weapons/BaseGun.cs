@@ -55,33 +55,64 @@ public class BaseGun : MonoBehaviour
                 currentActionRoutine = StartCoroutine(Reload());
             }
         }
-        if (Input.GetButton("Fire1") && currentActionRoutine == null)
+        if (currentActionRoutine == null)
         {
-            if(currentClip == 0)
+            if (Input.GetButtonDown("Fire2"))
             {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    if (currentAmmoStore > 0)
-                    {
-                        currentActionRoutine = StartCoroutine(Reload());
-                        return;
-                    }
-                }
+                owner.running = false;
+                //Zoom
             }
             else
             {
-                if(owner.lastMovedAmtNormalized != Vector3.zero && !owner.running || owner.lastMovedAmtNormalized == Vector3.zero)
+                if (Input.GetButtonUp("Fire2"))
                 {
-                    CheckFireMode();
+                    //Unzoom
+                }
+            }
+            if (Input.GetButton("Fire1"))
+            {
+                if (currentClip == 0)
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        if (currentAmmoStore > 0)
+                        {
+                            currentActionRoutine = StartCoroutine(Reload());
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if (owner.lastMovedAmtNormalized != Vector3.zero && !owner.running || owner.lastMovedAmtNormalized == Vector3.zero)
+                    {
+                        CheckFireMode();
+                    }
                 }
             }
         }
-        ChangeCrosshairSize(CheckGunState());
+        if (CheckCrosshairVisibility())
+        {
+            ChangeCrosshairSize(CheckGunState());
+        }
     }
     public void OnEquip()
     {
         playerUI.clipAmmo.text = currentClip.ToString();
         playerUI.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
+    }
+    bool CheckCrosshairVisibility()
+    {
+        if(owner.running && owner.lastMovedAmtNormalized != Vector3.zero)
+        {
+            playerUI.crosshair.SetActive(false);
+            return false;
+        }
+        else
+        {
+            playerUI.crosshair.SetActive(true);
+            return true;
+        }
     }
     GunState CheckGunState()
     {
