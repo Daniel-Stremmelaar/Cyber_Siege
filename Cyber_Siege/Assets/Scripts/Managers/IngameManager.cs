@@ -14,6 +14,8 @@ public class IngameManager : MonoBehaviour
 
     [SerializeField] TriggerEvent entrance, exit;
 
+    public List<Target> targets;
+
     private void Awake()
     {
         entrance.onTrigger += StartGame;
@@ -57,6 +59,13 @@ public class IngameManager : MonoBehaviour
     {
         StopTimer();
         exit.onTrigger -= FinishGame;
+
+        float penaltyTime = 0;
+        foreach(Target target in targets)
+        {
+            penaltyTime += target.timePenaltyOnAlive;
+        }
+        ChangeTime(-penaltyTime);
     }
 
 

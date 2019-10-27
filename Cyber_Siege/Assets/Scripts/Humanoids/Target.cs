@@ -18,6 +18,7 @@ public class Target : MonoBehaviour
     public GeneralManager manager;
     public TargetHead head;
     public float health;
+    public float timePenaltyOnAlive;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class Target : MonoBehaviour
     public virtual void Death(float timeChange)
     {
         Destroy(gameObject);
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>().targets.Remove(this);
         //manager.targets.Remove(gameObject.GetComponent<Target>());
     }
 
