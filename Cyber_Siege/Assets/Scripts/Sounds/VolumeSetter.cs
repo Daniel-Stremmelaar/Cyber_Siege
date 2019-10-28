@@ -12,8 +12,7 @@ public class VolumeSetter : MonoBehaviour {
     public float masterVolume;
     public float musicVolume;
     public float effectsVolume;
-    public AudioMixer musicMixer;
-    public AudioMixer effectsMixer;
+    public AudioMixer masterMixer;
 
     // Use this to set references
     private void Awake()
@@ -71,13 +70,13 @@ public class VolumeSetter : MonoBehaviour {
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
             PlayerPrefs.SetFloat("MusicVolume", musicVolume);
-            musicMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
+            masterMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("MusicVolume"));
         }
         effectsVolume = effectsSlider.value;
         if (PlayerPrefs.HasKey("EffectsVolume"))
         {
             PlayerPrefs.SetFloat("EffectsVolume", effectsVolume);
-            effectsMixer.SetFloat("EffectsVolume", PlayerPrefs.GetFloat("EffectsVolume"));
+            masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("EffectsVolume"));
         }
     }
 }

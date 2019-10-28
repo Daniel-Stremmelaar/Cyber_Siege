@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public List<GameObject> buttonsWindows = new List<GameObject>();
-    public List<GameObject> windows = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +18,9 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void AssignScene (int i)
+    public void LoadLevel (int i)
     {
         SceneManager.LoadScene(i);
-    }
-
-    public void AssignWindow (int i)
-    {
-        windows[i].SetActive(!windows[i].active);
     }
 
     public void QuitGame()

@@ -54,12 +54,17 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 39b10e258631a7e42ab16cfcc14e8b20
+    name: musicVolume
+  - guid: ff52ed7495fbfa349ac5cdee0cc16ca3
+    name: sfxVolume
   m_AudioMixerGroupViews:
   - guids:
     - 069b30577513bb5408d34dae24141dd8
     - 757fdaba68b2b71448339f2036ab95ec
     - 4b88c2bb88f9fd449952a5be01ddc700
+    - 8928efd5bd146f24ea9a4a74d4d45837
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -73,6 +78,7 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 069b30577513bb5408d34dae24141dd8
   m_Children:
+  - {fileID: 3222030784328249395}
   - {fileID: -8168265496585265360}
   m_Volume: c6df5112c6cfda34fb823c81005a007a
   m_Pitch: a557b9bd253f71a44b3557b4fecccb4d
@@ -122,6 +128,39 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &1901864286843790218
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2dceba9d9b84d594db8cbc77dbface92
+  m_EffectName: Attenuation
+  m_MixLevel: a547b06a65361cf4a8f0064a66eaac91
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &3222030784328249395
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 8928efd5bd146f24ea9a4a74d4d45837
+  m_Children: []
+  m_Volume: 39b10e258631a7e42ab16cfcc14e8b20
+  m_Pitch: d025f7386d70ca34090a62e86cef6035
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 1901864286843790218}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &6176196481231707836
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
