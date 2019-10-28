@@ -65,7 +65,10 @@ public class IngameManager : MonoBehaviour
         {
             penaltyTime += target.timePenaltyOnAlive;
         }
-        ChangeTime(-penaltyTime);
+        if(penaltyTime != 0)
+        {
+            ChangeTime(-penaltyTime);
+        }
     }
 
 
