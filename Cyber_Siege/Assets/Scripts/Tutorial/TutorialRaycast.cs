@@ -40,13 +40,12 @@ public class TutorialRaycast : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && tutorial.CheckStage() == 2)
+        if (Input.GetKeyDown(KeyCode.E) && tutorial.CheckStage() == 2)
         {
             if (Physics.Raycast(transform.position, transform.forward, out hit, 3))
             {
-                if (hit.transform.gameObject.tag == "Weapon")
+                if (hit.transform.gameObject.tag == "Interactable")
                 {
-                    print("Pickup");
                     tutorial.NextStage();
                 }
             }
@@ -61,6 +60,7 @@ public class TutorialRaycast : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G) && tutorial.CheckStage() == 10)
         {
             print("grenade");
+            StartCoroutine(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().ThrowGrenade());
             tutorial.NextStage();
         }
     }

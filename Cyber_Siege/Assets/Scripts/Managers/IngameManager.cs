@@ -7,7 +7,7 @@ public class IngameManager : MonoBehaviour
     public int maxBulletHoleAmount;
     List<GameObject> bulletHoles = new List<GameObject>();
 
-    Coroutine currentTimer;
+    public Coroutine currentTimer;
     float totalTime;
 
     [SerializeField] IngameUIManager uiManager;
@@ -18,7 +18,10 @@ public class IngameManager : MonoBehaviour
 
     private void Awake()
     {
-        entrance.onTrigger += StartGame;
+        if (entrance)
+        {
+            entrance.onTrigger += StartGame;
+        }
     }
 
     private void Update()

@@ -38,9 +38,10 @@ public class TutorialTarget : MonoBehaviour
     public virtual void Hit()
     {
         projector.Stop();
-        if (!tutorial.CheckRunning())
+        IngameManager manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
+        if (manager.currentTimer == null)
         {
-            tutorial.ChangeRunning();
+            manager.StartTimer();
         }
         if(headshotTime > 0)
         {

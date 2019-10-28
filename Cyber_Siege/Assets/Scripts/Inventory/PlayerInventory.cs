@@ -130,9 +130,9 @@ public class PlayerInventory : MonoBehaviour
                 newWeapon.GetComponent<BaseGun>().owner = owner;
                 Destroy(owner.currentGun.gameObject);
                 owner.currentGun = newWeapon.transform;
-                Destroy(ownerObject);
             }
         }
+        Destroy(ownerObject);
     }
     void SwapGrenade(GameObject ownerObject, ItemData data, int amount)
     {

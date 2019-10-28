@@ -7414,7 +7414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1526675709546840946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10501,6 +10501,7 @@ MonoBehaviour:
   uiManager: {fileID: 1526675709968275729}
   entrance: {fileID: 1813573112}
   exit: {fileID: 1089900471}
+  targets: []
 --- !u!4 &6672650630846628163
 Transform:
   m_ObjectHideFlags: 0

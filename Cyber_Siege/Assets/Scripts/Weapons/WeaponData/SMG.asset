@@ -53,6 +53,6 @@ MonoBehaviour:
       recoilAmount: {x: 1, y: 0.1, z: 0}
   recoilSpeed: 20
   knockdownRecoilPercentage: 61.7
-  shotSound: {fileID: 8300000, guid: a7b1fc5367207a74285b35f2be46ff4a, type: 3}
-  reloadSound: {fileID: 8300000, guid: bdf718e7db02e1a4db2a9e550679ae1c, type: 3}
+  shotSound: {fileID: 8300000, guid: 174116ef01608c042b9d9705f0352dcf, type: 3}
+  reloadSound: {fileID: 8300000, guid: 07b1f7d5d4227b047a4ea17ad9710f32, type: 3}
   infiniteAmmo: 1
