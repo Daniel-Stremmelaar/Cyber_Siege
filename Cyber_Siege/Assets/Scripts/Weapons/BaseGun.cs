@@ -271,7 +271,6 @@ public class BaseGun : MonoBehaviour
                 accuracyChanger += accuracyModifier.x * owner.playerCamera.right;
                 accuracyChanger += accuracyModifier.y * owner.playerCamera.up;
                 accuracyChanger *= spreadPrecisionizer;
-                print(accuracyModifier);
                 if (Physics.Raycast(owner.playerCamera.position, owner.playerCamera.forward + accuracyChanger, out hitData, baseData.bulletRange))
                 {
                     if (hitData.transform.tag == humanoidTag)
@@ -446,16 +445,6 @@ public class BaseGun : MonoBehaviour
     [System.Serializable]
     public enum FireTypes {SemiAutomatic, Automatic, Burst}
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Vector2 accuracyModifier;
-        accuracyModifier = new Vector2(Random.Range(-crosshairOffset, crosshairOffset), Random.Range(-crosshairOffset, crosshairOffset));
-        Vector3 cameraLocation = owner.playerCamera.position + owner.playerCamera.forward * baseData.bulletRange;
-        cameraLocation.x += owner.playerCamera.forward.x * accuracyModifier.x;
-        cameraLocation.y += owner.playerCamera.forward.y * accuracyModifier.y;
-        Debug.DrawLine(owner.playerCamera.position, cameraLocation);
-    }
     [System.Serializable]
     public enum GunState
     {

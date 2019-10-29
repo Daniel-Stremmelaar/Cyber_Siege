@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperbodyMask
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Elbow IK.L
+    m_Weight: 1
+  - m_Path: Armature/Elbow IK.L/Elbow IK.L_end
+    m_Weight: 1
+  - m_Path: Armature/Elbow IK.R
+    m_Weight: 1
+  - m_Path: Armature/Elbow IK.R/Elbow IK.R_end
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.L
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.L/Foot L
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.L/Foot L/Toe.L
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.L/Foot L/Toe.L/Toe.L_end
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.R
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.R/Foot R
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.R/Foot R/Toe.R
+    m_Weight: 1
+  - m_Path: Armature/Heel IK.R/Foot R/Toe.R/Toe.R_end
+    m_Weight: 1
+  - m_Path: Armature/Knee IK.L
+    m_Weight: 1
+  - m_Path: Armature/Knee IK.L/Knee IK.L_end
+    m_Weight: 1
+  - m_Path: Armature/Knee IK.R
+    m_Weight: 1
+  - m_Path: Armature/Knee IK.R/Knee IK.R_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Middle
+      1.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Middle
+      1.L/Middle 2.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Middle
+      1.L/Middle 2.L/Middle 3.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Middle
+      1.L/Middle 2.L/Middle 3.L/Middle 3.L_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pinky
+      1.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pinky
+      1.L/Pinky 2.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pinky
+      1.L/Pinky 2.L/Pinky 3.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pinky
+      1.L/Pinky 2.L/Pinky 3.L/Pinky 3.L_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pointer
+      1.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pointer
+      1.L/Pointer 2.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pointer
+      1.L/Pointer 2.L/Pointer 3.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Pointer
+      1.L/Pointer 2.L/Pointer 3.L/Pointer 3.L_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Ring
+      1.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Ring
+      1.L/Ring 2.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Ring
+      1.L/Ring 2.L/Ring 3.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Ring
+      1.L/Ring 2.L/Ring 3.L/Ring 3.L_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Thumb
+      1.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Thumb
+      1.L/Thumb 2.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Thumb
+      1.L/Thumb 2.L/Thumb 3.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.L/Upper Arm.L/Lower Arm.L/Hand.L/Thumb
+      1.L/Thumb 2.L/Thumb 3.L/Thumb 3.L_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Middle
+      1.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Middle
+      1.R/Middle 2.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Middle
+      1.R/Middle 2.R/Middle 3.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Middle
+      1.R/Middle 2.R/Middle 3.R/Middle 3.R_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pinky
+      1.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pinky
+      1.R/Pinky 2.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pinky
+      1.R/Pinky 2.R/Pinky 3.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pinky
+      1.R/Pinky 2.R/Pinky 3.R/Pinky 3.R_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pointer
+      1.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pointer
+      1.R/Pointer 2.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pointer
+      1.R/Pointer 2.R/Pointer 3.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Pointer
+      1.R/Pointer 2.R/Pointer 3.R/Pointer 3.R_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Ring
+      1.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Ring
+      1.R/Ring 2.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Ring
+      1.R/Ring 2.R/Ring 3.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Ring
+      1.R/Ring 2.R/Ring 3.R/Ring 3.R_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Thumb
+      1.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Thumb
+      1.R/Thumb 2.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Thumb
+      1.R/Thumb 2.R/Thumb 3.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Collar Bone.R/Upper Arm.R/Lower Arm.R/Hand.R/Thumb
+      1.R/Thumb 2.R/Thumb 3.R/Thumb 3.R_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Neck
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Neck/Head
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Spine.1/Spine.2/Neck/Head/Head_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Upper Leg L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Upper Leg L/Lower Leg.L
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Upper Leg L/Lower Leg.L/Lower Leg.L_end
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Upper Leg R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Upper Leg R/Lower Leg.R
+    m_Weight: 1
+  - m_Path: Armature/Pelvis/Upper Leg R/Lower Leg.R/Lower Leg.R_end
+    m_Weight: 1
+  - m_Path: Armature/Wrist IK.L
+    m_Weight: 1
+  - m_Path: Armature/Wrist IK.L/Wrist IK.L_end
+    m_Weight: 1
+  - m_Path: Armature/Wrist IK.R
+    m_Weight: 1
+  - m_Path: Armature/Wrist IK.R/Wrist IK.R_end
+    m_Weight: 1
+  - m_Path: Female
+    m_Weight: 1

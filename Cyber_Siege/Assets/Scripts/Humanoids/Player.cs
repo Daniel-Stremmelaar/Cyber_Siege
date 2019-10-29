@@ -97,7 +97,44 @@ public class Player : MonoBehaviour
     }
     public void FixedUpdate()
     {
-
+        if (currentState != States.Disabled)
+        {
+            if (currentState != States.Frozen)
+            {
+                if (currentState != States.MovementImpaired)
+                {
+                    Movement();
+                    MovementAction();
+                }
+                if (currentState != States.ActionImpaired)
+                {
+                    ;
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        Collider[] interactables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
+                        if (interactables.Length > 0)
+                        {
+                            foreach (Collider interactable in interactables)
+                            {
+                                if (interactable.tag == interactableTag)
+                                {
+                                    interactables[0].GetComponent<Interactable>().CheckInteract("Jump", this);
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Physics.CheckBox(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize, transform.rotation, jumpableLayers, QueryTriggerInteraction.Ignore))
+                            {
+                                Jump();
+                            }
+                        }
+                    }
+                }
+            }
+            CheckCameraLocation();
+        }
     }
     public void Update()
     {
@@ -122,50 +159,12 @@ public class Player : MonoBehaviour
         {
             transform.position = relocate.position;
         }
-        if (currentState != States.Disabled)
-        {
-            if (currentState != States.Frozen)
-            {
-                if (currentState != States.MovementImpaired)
-                {
-                    Movement();
-                    MovementAction();
-                }
-                if (currentState != States.ActionImpaired)
-                {
-                    ;
-                    if (Input.GetButtonDown("Jump"))
-                    {
-                        Collider[] interactables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
-                        if (interactables.Length > 0)
-                        {
-                            foreach(Collider interactable in interactables)
-                            {
-                                if(interactable.tag == interactableTag)
-                                {
-                                    interactables[0].GetComponent<Interactable>().CheckInteract("Jump", this);
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if(Physics.CheckBox(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize, transform.rotation, jumpableLayers, QueryTriggerInteraction.Ignore))
-                            {
-                                Jump();
-                            }
-                        }
-                    }
-                }
-            }
-            CheckCameraLocation();
-        }
         if (Input.GetKeyDown(KeyCode.X))
         {
             StartCoroutine(Slide(slidePower));
         }
     }
-
+    
     public void Interact()
     {
         RaycastHit hitData;
@@ -334,7 +333,6 @@ public class Player : MonoBehaviour
         {
             if(Vector3.Angle(directionChecker.up, hitData.normal) > ySlopeBoosterAngle)
             {
-                print(hitData.transform.name);
                 directionChecker.rotation =  Quaternion.LookRotation(directionChecker.forward, hitData.normal);
                 return true;
             }
@@ -430,7 +428,6 @@ public class Player : MonoBehaviour
             currentStatus = Status.Falling;
             currentState = States.MovementImpaired;
             GetComponent<Rigidbody>().velocity += (transform.forward * launchPower);
-            print("Launched");
             if(currentCameralocationRoutine != null)
             {
                 StopCoroutine(currentCameralocationRoutine);
@@ -523,12 +520,6 @@ public class Player : MonoBehaviour
     public enum Status { Normal, Falling }
     
     public enum ActionState { Return, Walking, Crouching, Aiming, Sliding}
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawCube(feetLocation.position + jumpCheckPosModifier, jumpChargeCheckSize);
-        Gizmos.DrawLine(feetLocation.position, feetLocation.position + feetLocation.forward);
-    }
     public IEnumerator MoveCameraToPoint(Transform objectToMove, Transform locationToMoveTo, float speed)
     {
         yield return null;
