@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5203795232210068046}
   - component: {fileID: 6515747479262771879}
   - component: {fileID: 6879882343945951126}
-  m_Layer: 0
+  - component: {fileID: 4845392512561385488}
+  m_Layer: 12
   m_Name: Target2
   m_TagString: Humanoid
   m_Icon: {fileID: 0}
@@ -116,9 +117,25 @@ MonoBehaviour:
   hologramTime: 0
   speedRef: 0
   manager: {fileID: 0}
-  head: {fileID: 3734844059663690412}
-  health: 1
+  head: {fileID: 0}
+  health: 0
   timePenaltyOnAlive: 1
+--- !u!114 &4845392512561385488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767789775676413586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 0
+  damageMultiplier: 1
+  timeChange: 0
+  owner: {fileID: 6879882343945951126}
 --- !u!1 &6457445366177247822
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8831490953345759003}
   - component: {fileID: 2716372135517767210}
-  - component: {fileID: 3734844059663690412}
+  - component: {fileID: 3345349467199936182}
   m_Layer: 0
   m_Name: Head
   m_TagString: Humanoid
@@ -164,7 +181,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.21
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3734844059663690412
+--- !u!114 &3345349467199936182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,21 +190,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6457445366177247822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 449be840b2eb33b41815d710040dcc49, type: 3}
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTime: 0.05
-  maxTime: 0.2
-  minAlpha: 0.5
-  maxAlpha: 3
-  hologram: {fileID: 0}
-  hologramAlpha: 0
-  hologramTime: 0
-  speedRef: 0
-  manager: {fileID: 0}
-  head: {fileID: 0}
-  health: 0
-  timePenaltyOnAlive: 0
-  adjustText: {fileID: 0}
-  headshotTime: 2
-  mainBody: {fileID: 6879882343945951126}
+  instaKill: 1
+  damageMultiplier: 2
+  timeChange: -2
+  owner: {fileID: 6879882343945951126}
