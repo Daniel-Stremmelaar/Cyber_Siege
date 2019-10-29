@@ -38,8 +38,10 @@ public class BaseGun : MonoBehaviour
     public AudioSource mainSource;
 
     public IngameUIManager playerUI;
+    public GameObject hi;
     private void Start()
     {
+        hi = GameObject.FindGameObjectWithTag("PlayerUI");
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<IngameUIManager>();
         recoilAmount = baseData.recoilPattern.initialRecoil;
         spreadModifier = baseData.spreadData.baseSpreadModifier;
