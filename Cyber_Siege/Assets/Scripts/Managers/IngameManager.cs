@@ -78,7 +78,17 @@ public class IngameManager : MonoBehaviour
 
     public void StartTimer()
     {
-        currentTimer = StartCoroutine(Timer());
+        if(currentTimer == null)
+        {
+            currentTimer = StartCoroutine(Timer());
+        }
+    }
+    public void StartCountdown(float timeGiven)
+    {
+        if(currentTimer == null)
+        {
+            currentTimer = StartCoroutine(Countdown(timeGiven));
+        }
     }
 
     IEnumerator Timer()
@@ -93,15 +103,35 @@ public class IngameManager : MonoBehaviour
         }
     }
 
+    IEnumerator Countdown(float time)
+    {
+        uiManager.timerText.gameObject.SetActive(true);
+        totalTime = time;
+        uiManager.timerText.text = totalTime.ToString("F2");
+        while (totalTime > 0)
+        {
+            yield return null;
+            totalTime -= Time.deltaTime;
+            if (totalTime < 0)
+            {
+                totalTime = 0;
+            }
+            uiManager.timerText.text = totalTime.ToString("F2");
+        }
+        currentTimer = null;
+        uiManager.timerText.gameObject.SetActive(false);
+    }
     public void StopTimer()
     {
         StopCoroutine(currentTimer);
+        currentTimer = null;
     }
     public void ResetTimer()
     {
         totalTime = 0;
         uiManager.timerText.text = totalTime.ToString("F2");
     }
+
     public void ChangeTime(float amount)
     {
         if(amount != 0)

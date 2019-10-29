@@ -57,8 +57,13 @@ public class TutorialSprintTime : MonoBehaviour
     {
         if(tutorial.CheckStage() == 6)
         {
-            running = true;
-            text.gameObject.SetActive(true);
+            Timer();
         }
+    }
+
+    private void Timer()
+    {
+        running = true;
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>().StartCountdown(timeReset);
     }
 }
