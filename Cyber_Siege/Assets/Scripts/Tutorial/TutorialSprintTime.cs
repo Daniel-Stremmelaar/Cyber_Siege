@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialSprintTime : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TutorialSprintTime : MonoBehaviour
     public GameObject player;
     public Vector3 cornerOne;
     public Vector3 cornerTwo;
+    public Text text;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class TutorialSprintTime : MonoBehaviour
             {
                 running = false;
                 time = timeReset;
+                text.text = time.ToString("F4");
                 shutter.SetActive(false);
                 shutterText.SetActive(false);
             }
@@ -35,20 +38,27 @@ public class TutorialSprintTime : MonoBehaviour
         if(running == true)
         {
             time -= Time.deltaTime;
+            text.text = time.ToString("F4");
         }
         if(time <= 0)
         {
+            time = 0.0000f;
+            time.ToString("F4");
             shutter.SetActive(true);
             shutterText.SetActive(true);
+        }
+        if(tutorial.CheckStage() == 7)
+        {
+            text.gameObject.SetActive(false);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        print(tutorial.CheckStage().ToString());
         if(tutorial.CheckStage() == 6)
         {
             running = true;
+            text.gameObject.SetActive(true);
         }
     }
 }
