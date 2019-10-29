@@ -745,6 +745,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookBar: {fileID: 1165704466}
+  gameUI: {fileID: 7758617489379261695}
+  tutorialUI: {fileID: 1187423616}
+  pauseMenu: {fileID: 91375374}
 --- !u!1001 &65408418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2680,6 +2683,17 @@ MonoBehaviour:
         - m_Target: {fileID: 7758617489379261695}
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 91375375}
+          m_MethodName: StartTime
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -27,4 +27,11 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void StartTime()
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }

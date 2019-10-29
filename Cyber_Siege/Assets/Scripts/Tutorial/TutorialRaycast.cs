@@ -7,6 +7,11 @@ public class TutorialRaycast : MonoBehaviour
     public GameObject lookBar;
     private Tutorial tutorial;
     private RaycastHit hit;
+
+    [Header("Pause Menu References")]
+    public GameObject gameUI;
+    public GameObject tutorialUI;
+    public GameObject pauseMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +21,16 @@ public class TutorialRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            gameUI.SetActive(false);
+            tutorialUI.SetActive(false);
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
         if (tutorial.CheckStage() == 1)
         {
             lookBar.SetActive(false);
