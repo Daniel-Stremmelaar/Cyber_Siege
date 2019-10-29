@@ -37,7 +37,7 @@ public class BaseGun : MonoBehaviour
 
     public AudioSource mainSource;
 
-    IngameUIManager playerUI;
+    public IngameUIManager playerUI;
     private void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<IngameUIManager>();
