@@ -23,7 +23,7 @@ public class VolumeSetter : MonoBehaviour {
         }
         else
         {
-            masterVolume = 0.5f;
+            masterVolume = 0.0f;
             PlayerPrefs.SetFloat("MasterVolume", masterVolume);
         }
         masterSlider.value = masterVolume;
@@ -34,7 +34,7 @@ public class VolumeSetter : MonoBehaviour {
         }
         else
         {
-            musicVolume = 0.5f;
+            musicVolume = 0.0f;
             PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         }
         musicSlider.value = musicVolume;
@@ -45,7 +45,7 @@ public class VolumeSetter : MonoBehaviour {
         }
         else
         {
-            effectsVolume = 0.5f;
+            effectsVolume = 0.0f;
             PlayerPrefs.SetFloat("EffectsVolume", effectsVolume);
         }
         effectsSlider.value = effectsVolume;
@@ -64,7 +64,7 @@ public class VolumeSetter : MonoBehaviour {
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
             PlayerPrefs.SetFloat("MasterVolume", masterVolume);
-            AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume");
+            masterMixer.SetFloat("masterVolume", PlayerPrefs.GetFloat("MasterVolume"));
         }
         musicVolume = musicSlider.value;
         if (PlayerPrefs.HasKey("MusicVolume"))

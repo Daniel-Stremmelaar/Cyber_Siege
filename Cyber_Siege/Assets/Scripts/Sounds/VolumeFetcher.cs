@@ -5,22 +5,21 @@ using UnityEngine.Audio;
 
 public class VolumeFetcher : MonoBehaviour {
 
-    public AudioMixer musicMixer;
-    public AudioMixer effectsMixer;
+    public AudioMixer masterMixer;
 
     // Use this for initialization
     void Start () {
         if (PlayerPrefs.HasKey("MasterVolume"))
         {
-            AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume");
+            masterMixer.SetFloat("masterVolume", PlayerPrefs.GetFloat("MasterVolume"));
         }
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
-            musicMixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
+            masterMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("MusicVolume"));
         }
         if (PlayerPrefs.HasKey("EffectsVolume"))
         {
-            effectsMixer.SetFloat("EffectsVolume", PlayerPrefs.GetFloat("EffectsVolume"));
+            masterMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("EffectsVolume"));
         }
 	}
 	
