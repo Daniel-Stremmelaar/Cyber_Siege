@@ -2841,7 +2841,7 @@ PrefabInstance:
     - target: {fileID: 411881188452852276, guid: 6acb4a429b1421245ab755fe408bc7c3,
         type: 3}
       propertyPath: m_TagString
-      value: Vaultable
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 3741385296956297255, guid: 6acb4a429b1421245ab755fe408bc7c3,
         type: 3}
@@ -2906,7 +2906,7 @@ PrefabInstance:
     - target: {fileID: 2127249928894056536, guid: 6acb4a429b1421245ab755fe408bc7c3,
         type: 3}
       propertyPath: requiredInput
-      value: Space
+      value: Jump
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6acb4a429b1421245ab755fe408bc7c3, type: 3}
@@ -3186,6 +3186,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Humanoid
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6ba9b53470c54c14194176926f0902d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3264,6 +3269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Humanoid
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6ba9b53470c54c14194176926f0902d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
         type: 3}
@@ -3353,6 +3363,10 @@ MonoBehaviour:
   hologramAlpha: 0
   hologramTime: 0
   speedRef: 0
+  manager: {fileID: 0}
+  head: {fileID: 0}
+  health: 0
+  timePenaltyOnAlive: 0
   headshotTime: 0
   hostageTime: 0
   projector: {fileID: 1072735811}
@@ -3370,6 +3384,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8678823145569952518, guid: 6ba9b53470c54c14194176926f0902d9, type: 3}
+--- !u!114 &342781919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342781916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: 0
+  owner: {fileID: 342781917}
 --- !u!4 &342781921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
@@ -3667,6 +3697,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 426352199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &431142840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2791792415297692072, guid: 13e846dfb0aec82439e1b133131bb90f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6433697325252539608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &431142841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431142840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: 0
+  owner: {fileID: 925077261566824155}
 --- !u!1001 &444123822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4588,6 +4640,10 @@ MonoBehaviour:
   hologramAlpha: 0
   hologramTime: 0
   speedRef: 0
+  manager: {fileID: 0}
+  head: {fileID: 0}
+  health: 0
+  timePenaltyOnAlive: 0
   headshotTime: 0
   hostageTime: 0
   projector: {fileID: 1138055606}
@@ -4605,6 +4661,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8678823145569952518, guid: 6ba9b53470c54c14194176926f0902d9, type: 3}
+--- !u!114 &550428512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550428509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: 0
+  owner: {fileID: 550428510}
 --- !u!4 &550428514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
@@ -5174,6 +5246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Humanoid
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6ba9b53470c54c14194176926f0902d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
         type: 3}
@@ -8289,6 +8366,10 @@ MonoBehaviour:
   hologramAlpha: 0
   hologramTime: 0
   speedRef: 0
+  manager: {fileID: 0}
+  head: {fileID: 0}
+  health: 0
+  timePenaltyOnAlive: 0
   headshotTime: 0
   hostageTime: 0
   projector: {fileID: 229297146}
@@ -8306,6 +8387,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8678823145569952518, guid: 6ba9b53470c54c14194176926f0902d9, type: 3}
+--- !u!114 &975726823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975726820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: 0
+  owner: {fileID: 975726821}
 --- !u!4 &975726825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
@@ -10873,6 +10970,10 @@ MonoBehaviour:
   hologramAlpha: 0
   hologramTime: 0
   speedRef: 0
+  manager: {fileID: 0}
+  head: {fileID: 0}
+  health: 0
+  timePenaltyOnAlive: 0
   headshotTime: 0
   hostageTime: 0
   projector: {fileID: 504340510}
@@ -10890,6 +10991,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8678823145569952518, guid: 6ba9b53470c54c14194176926f0902d9, type: 3}
+--- !u!114 &1237710662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237710659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: 0
+  owner: {fileID: 1237710660}
 --- !u!4 &1237710664 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
@@ -13208,6 +13325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeadshotTarget (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3519124396825502455, guid: 79ff716cdc8f4b94a83351f79e0d8b12,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 472078781388361956, guid: 79ff716cdc8f4b94a83351f79e0d8b12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13281,7 +13403,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1471176181}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2083974055}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f0821d8fe7442c4cb649567f0bc56e3, type: 3}
@@ -14686,13 +14808,35 @@ Transform:
   m_Father: {fileID: 620053363}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1677922876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3946982899797041325, guid: 65821037a115afb46b2f01267b068c70,
+    type: 3}
+  m_PrefabInstance: {fileID: 4752871549540364029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1677922877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677922876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: 2
+  owner: {fileID: 1680620088}
 --- !u!114 &1680620088 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7728369019027582233, guid: 65821037a115afb46b2f01267b068c70,
     type: 3}
   m_PrefabInstance: {fileID: 4752871549540364029}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1677922876}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f0821d8fe7442c4cb649567f0bc56e3, type: 3}
@@ -16440,6 +16584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Humanoid
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6ba9b53470c54c14194176926f0902d9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6ba9b53470c54c14194176926f0902d9,
         type: 3}
@@ -18353,6 +18502,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2079869074}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2083974055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3519124396825502455, guid: 79ff716cdc8f4b94a83351f79e0d8b12,
+    type: 3}
+  m_PrefabInstance: {fileID: 1471176181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2083974056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083974055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: -2
+  owner: {fileID: 1471176182}
 --- !u!1001 &2091577422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18964,6 +19135,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4837740570309217988, guid: f4d66dae64e0c08479b4f63f4367a4e3,
+        type: 3}
+      propertyPath: damageMultiplier
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4d66dae64e0c08479b4f63f4367a4e3, type: 3}
 --- !u!114 &925077261566824155 stripped
@@ -18972,7 +19148,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6433697325252539608}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 431142840}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f0821d8fe7442c4cb649567f0bc56e3, type: 3}
@@ -18994,6 +19170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Humanoid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323302852411854630, guid: bac41ada5eb67ad4998233e81982f438,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6051361238477962549, guid: bac41ada5eb67ad4998233e81982f438,
         type: 3}
@@ -19257,6 +19438,10 @@ MonoBehaviour:
   hologramAlpha: 0
   hologramTime: 0
   speedRef: 0
+  manager: {fileID: 0}
+  head: {fileID: 0}
+  health: 0
+  timePenaltyOnAlive: 0
   headshotTime: 2
   hostageTime: 0
   projector: {fileID: 1792238162}
@@ -19286,6 +19471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HostageTarget
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946982899797041325, guid: 65821037a115afb46b2f01267b068c70,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7728369019027582233, guid: 65821037a115afb46b2f01267b068c70,
         type: 3}
@@ -20785,13 +20975,30 @@ GameObject:
   - component: {fileID: 7651745473432016337}
   - component: {fileID: 8596729987881682417}
   - component: {fileID: 3425705905842826425}
-  m_Layer: 0
+  - component: {fileID: 8218123718779232526}
+  m_Layer: 12
   m_Name: HeadshotTarget
   m_TagString: Humanoid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8218123718779232526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218123718779232525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 0
+  timeChange: -2
+  owner: {fileID: 3425705905842826425}
 --- !u!1001 &8566271159540710826
 PrefabInstance:
   m_ObjectHideFlags: 0

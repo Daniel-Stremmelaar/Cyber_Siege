@@ -104,14 +104,17 @@ public class IngameManager : MonoBehaviour
     }
     public void ChangeTime(float amount)
     {
-        if(totalTime + amount < 0)
+        if(amount != 0)
         {
-            amount = -totalTime;
+            if (totalTime + amount < 0)
+            {
+                amount = -totalTime;
+            }
+            totalTime += amount;
+            uiManager.timerText.text = totalTime.ToString("F2");
+            uiManager.timeChangeText.text = amount.ToString("F2");
+            uiManager.animator.SetTrigger("Next");
+            uiManager.animator.Play("TimeChangeAnim");
         }
-        totalTime += amount;
-        uiManager.timerText.text = totalTime.ToString("F2");
-        uiManager.timeChangeText.text = amount.ToString("F2");
-        uiManager.animator.SetTrigger("Next");
-        uiManager.animator.Play("TimeChangeAnim");
     }
 }

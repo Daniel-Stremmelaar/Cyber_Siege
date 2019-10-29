@@ -2,19 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialTarget : MonoBehaviour
+public class TutorialTarget : Target
 {
-    [Header("Hologram flicker")]
-    public float minTime;
-    public float maxTime;
-    public float minAlpha;
-    public float maxAlpha;
-    public Material hologram;
-    public float hologramAlpha;
-    public float hologramTime;
-    public float speedRef;
 
-    [Header("Mechanics")]
+    [Header("Mechanics")]   
     public float headshotTime;
     public float hostageTime;
     public Animation projector;
@@ -35,7 +26,7 @@ public class TutorialTarget : MonoBehaviour
         Flicker();
     }
 
-    public virtual void Hit()
+    public override void Death(float timeChange)
     {
         projector.Stop();
         IngameManager manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
@@ -43,20 +34,7 @@ public class TutorialTarget : MonoBehaviour
         {
             manager.StartTimer();
         }
-        if(headshotTime > 0)
-        {
-            tutorial.ChangeTimer(-headshotTime);
-            tutorial.ChangeAdjust(-headshotTime);
-            tutorial.adjustText.GetComponent<FadingText>().PopIn();
-            tutorial.adjustText.GetComponent<FadingText>().FadeOut();
-        }
-        if(hostageTime > 0)
-        {
-            tutorial.ChangeTimer(hostageTime);
-            tutorial.ChangeAdjust(hostageTime);
-            tutorial.adjustText.GetComponent<FadingText>().PopIn();
-            tutorial.adjustText.GetComponent<FadingText>().FadeOut();
-        }
+        manager.ChangeTime(timeChange);
         checker.targets.Remove(gameObject.GetComponent<TutorialTarget>());
         Destroy(gameObject);
     }

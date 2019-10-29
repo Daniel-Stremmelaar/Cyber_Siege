@@ -38,10 +38,8 @@ public class BaseGun : MonoBehaviour
     public AudioSource mainSource;
 
     public IngameUIManager playerUI;
-    public GameObject hi;
     private void Start()
     {
-        hi = GameObject.FindGameObjectWithTag("PlayerUI");
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<IngameUIManager>();
         recoilAmount = baseData.recoilPattern.initialRecoil;
         spreadModifier = baseData.spreadData.baseSpreadModifier;
@@ -283,7 +281,7 @@ public class BaseGun : MonoBehaviour
                             playerUI.hitmarkerRoutine = null;
                         }
                         playerUI.hitmarkerRoutine = StartCoroutine(playerUI.Hitmarker());
-                        //hitData.transform.GetComponent<TutorialTarget>().Hit();
+                        hitData.transform.GetComponent<BodyPart>().Hit(baseData.bulletDamage);
                     }
                     else
                     {

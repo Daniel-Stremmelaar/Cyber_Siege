@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7029633297127986990}
   - component: {fileID: 762090372171511894}
   - component: {fileID: 762090372171511897}
-  m_Layer: 0
+  - component: {fileID: 4837740570309217988}
+  m_Layer: 12
   m_Name: TutorialTarget
   m_TagString: Humanoid
   m_Icon: {fileID: 0}
@@ -114,5 +115,26 @@ MonoBehaviour:
   hologramAlpha: 0
   hologramTime: 0
   speedRef: 0
+  manager: {fileID: 0}
+  head: {fileID: 0}
+  health: 0
+  timePenaltyOnAlive: 0
   headshotTime: 0
   hostageTime: 0
+  projector: {fileID: 0}
+--- !u!114 &4837740570309217988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8769229966937187314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instaKill: 1
+  damageMultiplier: 1
+  timeChange: 0
+  owner: {fileID: 762090372171511897}

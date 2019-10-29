@@ -8,7 +8,7 @@ public class BodyPart : MonoBehaviour
     public float damageMultiplier;
     public float timeChange;
 
-    Target owner;
+    [SerializeField]Target owner;
 
     public void Hit(float damage)
     {
