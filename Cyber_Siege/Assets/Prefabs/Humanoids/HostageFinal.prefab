@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263d2e2e3038ef943affbc1696b501f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instaKill: 0
+  instaKill: 1
   damageMultiplier: 1
   timeChange: 2
   owner: {fileID: -7866411463238484694}
