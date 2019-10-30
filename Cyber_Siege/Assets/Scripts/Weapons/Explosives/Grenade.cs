@@ -9,6 +9,8 @@ public class Grenade : Explosive
     [SerializeField] float explosionDamage;
     [SerializeField] float explosionForce;
     [SerializeField] LayerMask explosionLayers;
+    public AudioClip pinSound, throwSound, explosionSound;
+    public AudioSource audioSource;
 
     [SerializeField] string humanoidTag, velocityObjectTag;
 
@@ -20,6 +22,8 @@ public class Grenade : Explosive
 
     public override void Explode()
     {
+        audioSource.clip = explosionSound;
+        audioSource.Play();
         Collider[] damagableObjects = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayers);
         if(damagableObjects.Length > 0)
         {

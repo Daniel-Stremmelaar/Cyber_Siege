@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     [Header("Camera")]
     public float rotationModifier;
-    [SerializeField] float minCamClamp, maxCamClamp;
+    [SerializeField] float clamp, currentRotatedAmt;
     public Transform playerCamera;
     [SerializeField] Transform standingCamPos, crouchingCamPos, slideCamPos;
     [SerializeField] float cameraTransitionModifier;
@@ -104,6 +104,18 @@ public class Player : MonoBehaviour
                 if (currentState != States.MovementImpaired)
                 {
                     Movement();
+                }
+            }
+        }
+    }
+    public void Update()
+    {
+        if (currentState != States.Disabled)
+        {
+            if (currentState != States.Frozen)
+            {
+                if (currentState != States.MovementImpaired)
+                {
                     MovementAction();
                 }
                 if (currentState != States.ActionImpaired)
@@ -134,34 +146,23 @@ public class Player : MonoBehaviour
                 }
             }
             CheckCameraLocation();
-        }
-    }
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G) && inventory.grenadeSlots[0].remainingAmount > 0)
-        {
-            StartCoroutine(ThrowGrenade());
-        }
-        RaycastHit forwardHit;
-        if(Physics.Raycast(playerCamera.position, playerCamera.forward, out forwardHit, interactRange, interactableMask))
-        {
-            playerUI.interactionText.text = "[" + forwardHit.transform.GetComponent<Interactable>().requiredInput +"] " + forwardHit.transform.GetComponent<Interactable>().hoverText;
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetKeyDown(KeyCode.G) && inventory.grenadeSlots[0].remainingAmount > 0)
             {
-                Interact();
+                StartCoroutine(ThrowGrenade());
             }
-        }
-        else
-        {
-            playerUI.interactionText.text = "";
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            transform.position = relocate.position;
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            StartCoroutine(Slide(slidePower));
+            RaycastHit forwardHit;
+            if (Physics.Raycast(playerCamera.position, playerCamera.forward, out forwardHit, interactRange, interactableMask))
+            {
+                playerUI.interactionText.text = "[" + forwardHit.transform.GetComponent<Interactable>().requiredInput + "] " + forwardHit.transform.GetComponent<Interactable>().hoverText;
+                if (Input.GetButtonDown("Interact"))
+                {
+                    Interact();
+                }
+            }
+            else
+            {
+                playerUI.interactionText.text = "";
+            }
         }
     }
     
@@ -342,9 +343,24 @@ public class Player : MonoBehaviour
     public void RotateCamera()
     {
         //backbone.localEulerAngles = new Vector3(backupX, backbone.localEulerAngles.y, backbone.localEulerAngles.z);
-        Vector2 cameraRotationAmount = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"));
-        transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0) * Time.deltaTime * rotationModifier);
-        playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0) * Time.deltaTime * rotationModifier);
+        Vector2 cameraRotationAmount = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * Time.deltaTime * rotationModifier;
+        if(currentRotatedAmt + cameraRotationAmount.x < -clamp)
+        {
+            cameraRotationAmount.x = -clamp - currentRotatedAmt;
+            currentRotatedAmt = -clamp;
+        }
+        else
+        {
+            if(currentRotatedAmt + cameraRotationAmount.x > clamp)
+            {
+                cameraRotationAmount.x = clamp - currentRotatedAmt;
+                currentRotatedAmt = clamp;
+            }
+        }
+        currentRotatedAmt += cameraRotationAmount.x;
+        transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0));
+        playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0));
+        
         //backbone.Rotate(new Vector3(Input.GetAxis("Mouse Y") * Time.deltaTime * rotationModifier, 0, 0));
         //backupX = backbone.localEulerAngles.x;
         //playerCamera.localEulerAngles = new Vector3(Mathf.Clamp(playerCamera.localEulerAngles.x, minCamClamp, maxCamClamp), playerCamera.localEulerAngles.y, playerCamera.localEulerAngles.z);
@@ -403,9 +419,14 @@ public class Player : MonoBehaviour
         inventory.grenadeSlots[0].remainingAmount--;
         inventory.remainingGrenadeText.text = inventory.grenadeSlots[0].remainingAmount.ToString();
         GameObject grenade = Instantiate(grenadee, gunWieldingPoint.position, Quaternion.identity, gunWieldingPoint);
+        Grenade nade = grenade.GetComponent<Grenade>();
         grenade.GetComponent<Grenade>().owner = this;
+        nade.audioSource.clip = nade.pinSound;
+        nade.audioSource.Play();
+        yield return new WaitForSeconds(nade.audioSource.clip.length);
+        nade.audioSource.clip = nade.throwSound;
+        nade.audioSource.Play();
         //Play animation of throwing grenade.
-        yield return null;
         grenade.transform.parent = null;
         grenade.GetComponent<Rigidbody>().velocity = playerCamera.forward * throwVelocityMultiplier;
         StartCoroutine(grenade.GetComponent<Grenade>().StartExplosionTimer());
