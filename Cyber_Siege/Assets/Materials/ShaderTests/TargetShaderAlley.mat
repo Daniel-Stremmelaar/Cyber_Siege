@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TargetShader
+  m_Name: TargetShaderAlley
   m_Shader: {fileID: -6465566751694194690, guid: 15d794ad7db8a1f47b2de17b939b47b9,
     type: 3}
   m_ShaderKeywords: 
@@ -119,7 +119,7 @@ Material:
     - Vector1_5F0CC0A4: 4
     - Vector1_6B6CC2A2: 0
     - Vector1_6BEE69FC: 2
-    - Vector1_7BC9EA4C: 6
+    - Vector1_7BC9EA4C: 33000
     - Vector1_99A2E31B: -1.05
     - Vector1_9C8058BF: 100
     - Vector1_BA354E53: 500
