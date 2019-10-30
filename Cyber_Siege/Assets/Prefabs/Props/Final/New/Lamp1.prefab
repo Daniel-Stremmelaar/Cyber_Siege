@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 82
   m_IsActive: 1
 --- !u!4 &4845937827455742040
 Transform:
@@ -96,7 +96,7 @@ GameObject:
   m_TagString: VelocityProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 82
   m_IsActive: 1
 --- !u!4 &6172164918735765434
 Transform:
