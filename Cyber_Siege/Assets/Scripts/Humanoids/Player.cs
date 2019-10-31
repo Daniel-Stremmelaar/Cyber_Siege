@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     [Header("Vaulting")]
     [SerializeField] string vaultableTag;
-    [SerializeField] float vaultDetectionRange;
+    [SerializeField] Vector3 vaultDetectionRange, detectionBoxOffset;
     [SerializeField] float vaultSpeed;
 
     [Header("Sliding")]
@@ -123,17 +123,27 @@ public class Player : MonoBehaviour
                     ;
                     if (Input.GetButtonDown("Jump"))
                     {
-                        Collider[] interactables = Physics.OverlapSphere(transform.position, vaultDetectionRange, interactableMask);
+                        Vector3 boxPositionModifier = Vector3.zero;
+                        boxPositionModifier += detectionBoxOffset.x * transform.right;
+                        boxPositionModifier += detectionBoxOffset.y * transform.up;
+                        boxPositionModifier += detectionBoxOffset.z * transform.forward;
+                        Collider[] interactables = Physics.OverlapBox(transform.position + boxPositionModifier, vaultDetectionRange / 2, transform.rotation, interactableMask);
                         if (interactables.Length > 0)
                         {
+                            Interactable closest = interactables[0].GetComponent<Interactable>();
+                            float closestDistance = Mathf.Infinity;
                             foreach (Collider interactable in interactables)
                             {
                                 if (interactable.tag == interactableTag)
                                 {
-                                    interactables[0].GetComponent<Interactable>().CheckInteract("Jump", this);
-                                    break;
+                                    if(Vector3.Distance(transform.position, interactable.transform.position) < closestDistance)
+                                    {
+                                        closestDistance = Vector3.Distance(transform.position, interactable.transform.position);
+                                        closest = interactable.GetComponent<Interactable>();
+                                    }
                                 }
                             }
+                            closest.CheckInteract("Jump", this);
                         }
                         else
                         {
@@ -308,18 +318,6 @@ public class Player : MonoBehaviour
             {
                 lastMovedAmt *= (1 - (crouchWalkDebuff / 100));
             }
-            if (CheckHill())
-            {
-
-            }
-            /*
-            if(CheckHill())
-            {
-                Vector3 lastValue = lastMovedAmt;
-                lastMovedAmt += lastValue.z * -directionChecker.forward;
-                lastMovedAmt += lastValue.x * -directionChecker.right;
-                lastMovedAmt -= lastValue;
-            }*/
             transform.Translate(lastMovedAmt * movementSpeedModifier * Time.deltaTime);
         }
         else
@@ -327,36 +325,10 @@ public class Player : MonoBehaviour
             playerCamera.GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(playerCamera.GetComponent<Camera>().fieldOfView, fieldOfViewNormal, fovChangeSpeed);
         }
     }
-    bool CheckHill()
-    {
-        RaycastHit hitData;
-        if(Physics.Raycast(feetLocation.position, -feetLocation.transform.up, out hitData, 10, terrainMask, QueryTriggerInteraction.Ignore))
-        {
-            if(Vector3.Angle(directionChecker.up, hitData.normal) > ySlopeBoosterAngle)
-            {
-                directionChecker.rotation =  Quaternion.LookRotation(directionChecker.forward, hitData.normal);
-                return true;
-            }
-        }
-        return false;
-    }
     public void RotateCamera()
     {
         //backbone.localEulerAngles = new Vector3(backupX, backbone.localEulerAngles.y, backbone.localEulerAngles.z);
         Vector2 cameraRotationAmount = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")) * Time.deltaTime * rotationModifier;
-        if(currentRotatedAmt + cameraRotationAmount.x < -clamp)
-        {
-            cameraRotationAmount.x = -clamp - currentRotatedAmt;
-            currentRotatedAmt = -clamp;
-        }
-        else
-        {
-            if(currentRotatedAmt + cameraRotationAmount.x > clamp)
-            {
-                cameraRotationAmount.x = clamp - currentRotatedAmt;
-                currentRotatedAmt = clamp;
-            }
-        }
         currentRotatedAmt += cameraRotationAmount.x;
         transform.Rotate(new Vector3(0, cameraRotationAmount.y, 0));
         playerCamera.Rotate(new Vector3(cameraRotationAmount.x, 0, 0));
@@ -550,5 +522,15 @@ public class Player : MonoBehaviour
             yield return null;
         }
         currentCameralocationRoutine = null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 boxPositionModifier = Vector3.zero;
+        boxPositionModifier += detectionBoxOffset.x * transform.right;
+        boxPositionModifier += detectionBoxOffset.y * transform.up;
+        boxPositionModifier += detectionBoxOffset.z * transform.forward;
+
+        Gizmos.DrawCube(transform.position + boxPositionModifier, vaultDetectionRange);
     }
 }

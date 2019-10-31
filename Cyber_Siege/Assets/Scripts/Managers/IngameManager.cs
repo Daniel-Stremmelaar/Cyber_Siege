@@ -16,6 +16,10 @@ public class IngameManager : MonoBehaviour
 
     public List<Target> targets;
 
+    float addedTimeStreak;
+    [SerializeField] float resetDelay;
+    Coroutine resetStreakTimer;
+
     private void Awake()
     {
         if (entrance)
@@ -134,17 +138,29 @@ public class IngameManager : MonoBehaviour
 
     public void ChangeTime(float amount)
     {
-        if(amount != 0)
+        if (totalTime + amount < 0)
         {
-            if (totalTime + amount < 0)
-            {
-                amount = -totalTime;
-            }
+            amount = -totalTime;
+        }
+        if (amount != 0)
+        {
+            addedTimeStreak += amount;
             totalTime += amount;
             uiManager.timerText.text = totalTime.ToString("F2");
-            uiManager.timeChangeText.text = amount.ToString("F2");
+            uiManager.timeChangeText.text = addedTimeStreak.ToString("F2");
             uiManager.animator.SetTrigger("Next");
             uiManager.animator.Play("TimeChangeAnim");
+            if(resetStreakTimer != null)
+            {
+                StopCoroutine(resetStreakTimer);
+            }
+            resetStreakTimer = StartCoroutine(StreakReset());
         }
+    }
+
+    IEnumerator StreakReset()
+    {
+        yield return new WaitForSeconds(resetDelay);
+        addedTimeStreak = 0;
     }
 }

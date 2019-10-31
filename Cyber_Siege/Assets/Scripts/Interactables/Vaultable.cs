@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vaultable : Interactable
 {
-    [SerializeField] Transform[] vaultPositions;
+    public List<Transform> vaultPositions;
     public override void Interact(Player owner)
     {
         List<Vector3> vaultPositionCopy = new List<Vector3>();

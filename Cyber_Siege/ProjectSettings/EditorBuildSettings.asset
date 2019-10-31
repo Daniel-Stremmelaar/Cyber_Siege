@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Dilar/AlleyScene.unity
+    guid: be42097da859b944c9fa32f2e95b32fd
+  - enabled: 1
     path: Assets/Scenes/FinalGame/MainMenu.unity
     guid: 29b400191a2168d41b060bd9aeb1154f
   - enabled: 1
