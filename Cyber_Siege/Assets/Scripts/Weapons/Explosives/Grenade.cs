@@ -22,8 +22,7 @@ public class Grenade : Explosive
 
     public override void Explode()
     {
-        audioSource.clip = explosionSound;
-        audioSource.Play();
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<AudioManager>().InstantiateSFX(explosionSound, transform.position, true);
         Collider[] damagableObjects = Physics.OverlapSphere(transform.position, explosionRadius, explosionLayers);
         if(damagableObjects.Length > 0)
         {

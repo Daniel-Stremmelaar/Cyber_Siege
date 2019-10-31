@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6359761783418925762
+--- !u!1 &7625712611480191318
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,78 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3937426601098362513}
-  - component: {fileID: 6033217069847455397}
-  - component: {fileID: 5788582651262615325}
-  - component: {fileID: 8465214529845204979}
+  - component: {fileID: 7625712611480191272}
+  - component: {fileID: 7625712611480191319}
   m_Layer: 0
-  m_Name: IngameManager
-  m_TagString: Manager
+  m_Name: SFXHolder
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3937426601098362513
+--- !u!4 &7625712611480191272
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6359761783418925762}
+  m_GameObject: {fileID: 7625712611480191318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5946202, y: 3.5631168, z: -16.36157}
+  m_LocalPosition: {x: -61.264927, y: 23.83123, z: 23.671848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6033217069847455397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6359761783418925762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac95a7109901dc45852bb0027481b98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxBulletHoleAmount: 20
-  uiManager: {fileID: 0}
-  entrance: {fileID: 0}
-  exit: {fileID: 0}
-  targets: []
-  resetDelay: 3
---- !u!114 &5788582651262615325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6359761783418925762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1dbf69cfd5ea5648a69aaad754c5c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundSource: {fileID: 8465214529845204979}
-  fadeSpeed: 1
-  normalBackgroundVolume: 1
---- !u!82 &8465214529845204979
+--- !u!82 &7625712611480191319
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6359761783418925762}
+  m_GameObject: {fileID: 7625712611480191318}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 3222030784328249395, guid: 7e473e0423463924c817a4ff1010b489,
+  OutputAudioMixerGroup: {fileID: -8168265496585265360, guid: 7e473e0423463924c817a4ff1010b489,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
