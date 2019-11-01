@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -127,6 +128,10 @@ public class Tutorial : MonoBehaviour
         {
             tutorialObjects[stage].SetActive(true);
         }
+        if(stage == 12)
+        {
+            EndDelay();
+        }
     }
 
     public void NextStage()
@@ -171,5 +176,11 @@ public class Tutorial : MonoBehaviour
     {
         yield return new WaitForSeconds(startDelay);
         next = true;
+    }
+
+    public IEnumerator EndDelay()
+    {
+        yield return new WaitForSeconds(subtitleTimes[12]);
+        SceneManager.LoadScene(0);
     }
 }
