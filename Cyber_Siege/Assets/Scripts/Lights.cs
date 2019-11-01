@@ -44,7 +44,6 @@ public class Lights : MonoBehaviour
 
                 if (Physics.Raycast(pivotpoint.position, pivotpoint.transform.forward, out hit, distance, wall))
                 {
-                    print("TT");
                     if (hit.transform.tag == "Flore" && distance > rightAmount)
                     {
                         CheckStairs(test.transform);
