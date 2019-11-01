@@ -15,7 +15,7 @@ public class Target : MonoBehaviour
     public float speedRef;
 
     [Header("Mechanics")]
-    public GeneralManager manager;
+    public IngameManager manager;
     public TargetHead head;
     public float health;
     public float timePenaltyOnAlive;
@@ -24,7 +24,7 @@ public class Target : MonoBehaviour
     {
         hologram = gameObject.GetComponent<Renderer>().material;
         hologramTime = Random.Range(minTime, maxTime);
-        //manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GeneralManager>();
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>();
     }
 
     private void Update()
@@ -43,10 +43,10 @@ public class Target : MonoBehaviour
 
     public virtual void Death(float timeChange)
     {
-        Destroy(gameObject);
         GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>().targets.Remove(this);
         GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>().ChangeTime(timeChange);
-        manager.targets.Remove(gameObject.GetComponent<Target>());
+        manager.targets.Remove(GetComponent<Target>());
+        DestroyImmediate(gameObject);
     }
 
     public virtual void Flicker()
