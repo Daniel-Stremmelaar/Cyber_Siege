@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8f45e16fefe31419627da30c07d884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionParticle: {fileID: 8824632139946760413, guid: c8343340065aa154d93954bcb48093d2,
+  explosionParticle: {fileID: 437993794468888483, guid: 691622c992e51594e8eeae1d31b72cf2,
     type: 3}
   owner: {fileID: 0}
   explosionDelay: 2
