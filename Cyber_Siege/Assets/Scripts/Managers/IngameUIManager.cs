@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class IngameUIManager : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class IngameUIManager : MonoBehaviour
     public float hitmarkerDurationBeforeFade;
     public Coroutine hitmarkerRoutine;
 
-    public Text clipAmmo, storedAmmo, grenades;
+    public TextMeshProUGUI clipAmmo, storedAmmo, weaponName;
 
-    public Text timerText, timeChangeText;
+    public TextMeshProUGUI timerText, timeChangeText;
 
-    public Text interactionText;
+    public TextMeshProUGUI interactionText;
 
     public Animator animator;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerInventory : MonoBehaviour
     public WeaponSlot[] weaponSlots;
     public GrenadeSlot[] grenadeSlots;
 
-    public Text remainingGrenadeText;
+    public TextMeshProUGUI remainingGrenadeText;
 
     public Player owner;
 
@@ -123,7 +124,6 @@ public class PlayerInventory : MonoBehaviour
                 currentlyEquippedSlot.itemData = data;
                 currentlyEquippedSlot.remainingClipAmmo = ownerObject.GetComponent<WeaponPickup>().clipAmmoRemaining;
                 currentlyEquippedSlot.remainingStoredAmmo = ownerObject.GetComponent<WeaponPickup>().storedAmmoRemaining;
-                currentlyEquippedSlot.icon.sprite = data.itemIcon;
                 GameObject newWeapon = Instantiate(data.itemPrefab, owner.gunWieldingPoint.position, owner.gunWieldingPoint.rotation, owner.gunWieldingPoint);
                 newWeapon.GetComponent<BaseGun>().currentClip = ownerObject.GetComponent<WeaponPickup>().clipAmmoRemaining;
                 newWeapon.GetComponent<BaseGun>().currentAmmoStore = currentlyEquippedSlot.remainingStoredAmmo;

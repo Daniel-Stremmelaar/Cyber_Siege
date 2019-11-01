@@ -48,58 +48,62 @@ public class BaseGun : MonoBehaviour
     // Start is called before the first frame update
     public void Update()
     {
-        if (Input.GetButtonDown("Reload"))
+        if(owner.currentState != Player.States.Disabled)
         {
-            if (currentClip < baseData.clipCapacity && currentAmmoStore > 0 && currentState != GunState.Reloading)
+            if (Input.GetButtonDown("Reload"))
             {
-                currentActionRoutine = StartCoroutine(Reload());
-            }
-        }
-        if (currentActionRoutine == null)
-        {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                owner.running = false;
-                //Zoom
-            }
-            else
-            {
-                if (Input.GetButtonUp("Fire2"))
+                if (currentClip < baseData.clipCapacity && currentAmmoStore > 0 && currentState != GunState.Reloading)
                 {
-                    //Unzoom
+                    currentActionRoutine = StartCoroutine(Reload());
                 }
             }
-            if (Input.GetButton("Fire1"))
+            if (currentActionRoutine == null)
             {
-                if (currentClip == 0)
+                if (Input.GetButtonDown("Fire2"))
                 {
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        if (currentAmmoStore > 0)
-                        {
-                            currentActionRoutine = StartCoroutine(Reload());
-                            return;
-                        }
-                    }
+                    owner.running = false;
+                    //Zoom
                 }
                 else
                 {
-                    if (owner.lastMovedAmtNormalized != Vector3.zero && !owner.running || owner.lastMovedAmtNormalized == Vector3.zero)
+                    if (Input.GetButtonUp("Fire2"))
                     {
-                        CheckFireMode();
+                        //Unzoom
+                    }
+                }
+                if (Input.GetButton("Fire1"))
+                {
+                    if (currentClip == 0)
+                    {
+                        if (Input.GetButtonDown("Fire1"))
+                        {
+                            if (currentAmmoStore > 0)
+                            {
+                                currentActionRoutine = StartCoroutine(Reload());
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (owner.lastMovedAmtNormalized != Vector3.zero && !owner.running || owner.lastMovedAmtNormalized == Vector3.zero)
+                        {
+                            CheckFireMode();
+                        }
                     }
                 }
             }
-        }
-        if (CheckCrosshairVisibility())
-        {
-            ChangeCrosshairSize(CheckGunState());
+            if (CheckCrosshairVisibility())
+            {
+                ChangeCrosshairSize(CheckGunState());
+            }
         }
     }
     public void OnEquip()
     {
         playerUI.clipAmmo.text = currentClip.ToString();
         playerUI.GetComponent<IngameUIManager>().storedAmmo.text = currentAmmoStore.ToString();
+        playerUI.weaponName.text = owner.inventory.weaponSlots[owner.inventory.currentlyEquippedWeapon].itemData.itemName;
     }
     bool CheckCrosshairVisibility()
     {
