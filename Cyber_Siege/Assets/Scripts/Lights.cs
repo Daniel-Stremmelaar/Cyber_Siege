@@ -72,7 +72,7 @@ public class Lights : MonoBehaviour
         {
             if (colliders[i].transform.tag == "Stairs" && colliders.Length == 0)
             {
-                print(pos+"/"+ );
+                print(pos+"/");
                 minDistance.Add(Vector3.Distance(pos.transform.position, colliders[i].transform.position));
                 index = minDistance.IndexOf(minDistance.Min());
                 lightsList[index].enabled = true;
