@@ -64,6 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundSource: {fileID: 8465214529845204979}
+  sfxSpawn: {fileID: 7625712611480191318, guid: bb83b1ce8e3d8174da45714bf8cd70b2,
+    type: 3}
   fadeSpeed: 1
   normalBackgroundVolume: 1
 --- !u!82 &8465214529845204979
