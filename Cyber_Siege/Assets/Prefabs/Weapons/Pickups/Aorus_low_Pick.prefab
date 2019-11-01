@@ -786,8 +786,8 @@ MonoBehaviour:
   requiredInput: E
   pickupData: {fileID: 11400000, guid: de71997911d51cd4a9498743bd5de32f, type: 2}
   amount: 1
-  clipAmmoRemaining: 420
-  storedAmmoRemaining: 140
+  clipAmmoRemaining: 30
+  storedAmmoRemaining: 120
 --- !u!1 &5082176756140622216
 GameObject:
   m_ObjectHideFlags: 0

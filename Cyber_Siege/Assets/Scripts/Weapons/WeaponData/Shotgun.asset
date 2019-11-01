@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   clipCapacity: 1
-  ammoCapacity: 10
+  ammoCapacity: 25
   reloadSpeedMultiplier: 1
   bulletDamage: 1
   shotKnockdownX: 0.7

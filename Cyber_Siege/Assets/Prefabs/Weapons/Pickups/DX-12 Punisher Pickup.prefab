@@ -98,8 +98,8 @@ MonoBehaviour:
   requiredInput: E
   pickupData: {fileID: 11400000, guid: 4b1e74a324ef5a84ebcdcd192e9941ec, type: 2}
   amount: 1
-  clipAmmoRemaining: 420
-  storedAmmoRemaining: 140
+  clipAmmoRemaining: 1
+  storedAmmoRemaining: 25
 --- !u!65 &2380254
 BoxCollider:
   m_ObjectHideFlags: 0

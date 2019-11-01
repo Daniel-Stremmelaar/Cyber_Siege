@@ -4229,6 +4229,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 711753644484028519, guid: e4743aea586c50a42881f80880d74ab7,
+        type: 3}
+      propertyPath: remainingClipAmmo
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 711753644484028519, guid: e4743aea586c50a42881f80880d74ab7,
+        type: 3}
+      propertyPath: remainingStoredAmmo
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 368556780747627063, guid: e4743aea586c50a42881f80880d74ab7,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4265,6 +4275,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 24f40321e6d475743a83c845b589f89d,
         type: 2}
+    - target: {fileID: 4627685951487693939, guid: e4743aea586c50a42881f80880d74ab7,
+        type: 3}
+      propertyPath: remainingClipAmmo
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627685951487693939, guid: e4743aea586c50a42881f80880d74ab7,
+        type: 3}
+      propertyPath: remainingStoredAmmo
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 4695885090370598570, guid: e4743aea586c50a42881f80880d74ab7,
         type: 3}
       propertyPath: m_IsActive
@@ -4756,12 +4776,12 @@ PrefabInstance:
     - target: {fileID: 7467766398021046332, guid: f4d02e68c4b3b024f988e69d94e52d9d,
         type: 3}
       propertyPath: currentClip
-      value: 1
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7467766398021046332, guid: f4d02e68c4b3b024f988e69d94e52d9d,
         type: 3}
       propertyPath: currentAmmoStore
-      value: 1
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 7467766398021046332, guid: f4d02e68c4b3b024f988e69d94e52d9d,
         type: 3}
