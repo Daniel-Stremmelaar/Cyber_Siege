@@ -15,6 +15,7 @@ public class IngameUIManager : MonoBehaviour
     public TextMeshProUGUI clipAmmo, storedAmmo, weaponName;
 
     public TextMeshProUGUI timerText, timeChangeText;
+    public GameObject timerHolder;
 
     public TextMeshProUGUI interactionText;
 

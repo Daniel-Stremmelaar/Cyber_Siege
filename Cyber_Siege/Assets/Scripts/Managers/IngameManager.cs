@@ -57,7 +57,7 @@ public class IngameManager : MonoBehaviour
     public void StartGame()
     {
         print("BET");
-        uiManager.timerText.gameObject.SetActive(true);
+        uiManager.timerHolder.SetActive(true);
         StartTimer();
         entrance.onTrigger -= StartGame;
         exit.onTrigger += FinishGame;
@@ -109,7 +109,7 @@ public class IngameManager : MonoBehaviour
 
     IEnumerator Countdown(float time)
     {
-        uiManager.timerText.gameObject.SetActive(true);
+        uiManager.timerHolder.SetActive(true);
         totalTime = time;
         uiManager.timerText.text = totalTime.ToString("F2");
         while (totalTime > 0)
@@ -123,7 +123,7 @@ public class IngameManager : MonoBehaviour
             uiManager.timerText.text = totalTime.ToString("F2");
         }
         currentTimer = null;
-        uiManager.timerText.gameObject.SetActive(false);
+        uiManager.timerHolder.SetActive(false);
     }
     public void StopTimer()
     {
