@@ -20,6 +20,32 @@ public class IngameUIManager : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject pauseMenu;
+    public List<GameObject> gameUI = new List<GameObject>();
+    public Player player;
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (pauseMenu.active == false)
+            {
+                foreach (GameObject g in gameUI)
+                {
+                    g.SetActive(false);
+                }
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+    }
+
     public IEnumerator Hitmarker()
     {
         Color resetColor = hitMarker.color;
@@ -37,5 +63,17 @@ public class IngameUIManager : MonoBehaviour
         }
         hitMarker.gameObject.SetActive(false);
         hitmarkerRoutine = null;
+    }
+
+    public void ResumeGame()
+    {
+        foreach (GameObject g in gameUI)
+        {
+            g.SetActive(true);
+        }
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
