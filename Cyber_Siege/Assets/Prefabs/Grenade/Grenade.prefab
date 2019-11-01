@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8152327843410973482}
   - component: {fileID: 2516147943409381619}
   - component: {fileID: 9161798475854072611}
-  - component: {fileID: 5198682787411066896}
   - component: {fileID: -1821506506424825147}
+  - component: {fileID: 7386428813282421765}
   m_Layer: 0
   m_Name: Grenade
   m_TagString: Untagged
@@ -126,19 +126,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &5198682787411066896
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7574549861876082678}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.07659887
-  m_Center: {x: 0.0013234653, y: 0.07659887, z: -0.0000000018626451}
 --- !u!82 &-1821506506424825147
 AudioSource:
   m_ObjectHideFlags: 0
@@ -235,3 +222,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!64 &7386428813282421765
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7574549861876082678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -8031502829385147155, guid: 3518c509b7b92db419a5f6d7a0927821, type: 3}

@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource backgroundSource;
     Coroutine currentFadeRoutine;
-    GameObject sfxSpawn;
+    [SerializeField]GameObject sfxSpawn;
 
     public float fadeSpeed, normalBackgroundVolume;
 
