@@ -388,11 +388,31 @@ public class BaseGun : MonoBehaviour
                     rotateAmount.x = remainingRotationAmount.x;
                 }
             }
+            else
+            {
+                if (rotateAmount.x < 0)
+                {
+                    if (rotateAmount.x < remainingRotationAmount.x)
+                    {
+                        rotateAmount.x = remainingRotationAmount.x;
+                    }
+                }
+            }
             if (rotateAmount.y > 0)
             {
                 if (rotateAmount.y > remainingRotationAmount.y)
                 {
                     rotateAmount.y = remainingRotationAmount.y;
+                }
+            }
+            else
+            {
+                if (rotateAmount.y < 0)
+                {
+                    if (rotateAmount.y < remainingRotationAmount.y)
+                    {
+                        rotateAmount.y = remainingRotationAmount.y;
+                    }
                 }
             }
             owner.playerCamera.Rotate(new Vector3(-rotateAmount.x, 0, 0));

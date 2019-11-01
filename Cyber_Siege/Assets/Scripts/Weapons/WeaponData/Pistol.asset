@@ -23,7 +23,7 @@ MonoBehaviour:
     type: 3}
   movementSpeedModifier: 0
   destroyTime: 1000
-  shotDelay: 0.05
+  shotDelay: 0.1
   bulletRange: 1000
   bulletVelocity: 10
   idleSpread: 5

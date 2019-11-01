@@ -45,7 +45,8 @@ public class Target : MonoBehaviour
     {
         Destroy(gameObject);
         GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>().targets.Remove(this);
-        //manager.targets.Remove(gameObject.GetComponent<Target>());
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<IngameManager>().ChangeTime(timeChange);
+        manager.targets.Remove(gameObject.GetComponent<Target>());
     }
 
     public virtual void Flicker()
