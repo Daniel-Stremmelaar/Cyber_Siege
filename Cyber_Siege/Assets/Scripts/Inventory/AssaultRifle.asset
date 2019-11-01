@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   itemType: 0
-  itemPrefab: {fileID: 1797044571209767851, guid: 7511f529e97ffc54bac553ff8a4f5ea1,
+  itemPrefab: {fileID: 1118137049673918838, guid: 913569f961952dc4cb275520e1b03025,
     type: 3}
-  itemDrop: {fileID: 8847246204381149795, guid: c9cdb558f7fcf5c438b0c8cabfc52856,
+  itemDrop: {fileID: 4594978195050966641, guid: 1459a9fc241a92c44b4fbf70518a4aa0,
     type: 3}
   itemIcon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   itemName: Aorus

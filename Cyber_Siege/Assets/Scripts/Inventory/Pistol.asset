@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   itemType: 0
-  itemPrefab: {fileID: 2102147094395435810, guid: a61a3b3962400a1459efd11bf5b93702,
+  itemPrefab: {fileID: 9030424925576118081, guid: 10ed70ca51848604088a27172bac1ff4,
     type: 3}
-  itemDrop: {fileID: 5817846338923899543, guid: e608316f82c4bc74fa02ff657962762b,
+  itemDrop: {fileID: 3312259577071593898, guid: e5810eb0c704ab546b144f2b1f9a0548,
     type: 3}
   itemIcon: {fileID: 21300000, guid: 513f46b7407e550459db27aea9fe8459, type: 3}
   itemName: Aura
