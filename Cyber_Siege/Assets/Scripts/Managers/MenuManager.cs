@@ -20,9 +20,14 @@ public class MenuManager : MonoBehaviour
 
     public void StartTime()
     {
-        Time.timeScale = 1;
+        ResetTime();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void ResetTime()
+    {
+        Time.timeScale = 1;
     }
 
     public void PlaySound(AudioClip clip)
