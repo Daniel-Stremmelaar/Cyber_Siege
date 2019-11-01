@@ -60,7 +60,6 @@ public class TutorialRaycast : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G) && tutorial.CheckStage() == 10)
         {
             print("grenade");
-            StartCoroutine(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().ThrowGrenade());
             tutorial.NextStage();
         }
     }
