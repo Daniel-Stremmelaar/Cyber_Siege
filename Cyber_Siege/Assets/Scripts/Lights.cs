@@ -36,8 +36,8 @@ public class Lights : MonoBehaviour
         for (int i = 0; i < lightsList.Length; i++)
         {
             Light test = lightsList[i];
-            distance = Vector3.Distance(transform.position, test.transform.position);
-            distance = distance - 1;
+            distance = Vector3.Distance(pivotpoint.position, test.transform.position);
+            //distance = distance - 1;
             if (test.type != LightType.Directional)
             {
                 pivotpoint.LookAt(test.transform.position);
@@ -50,6 +50,7 @@ public class Lights : MonoBehaviour
                     }
                     else if (hit.transform.tag == "Flore" && distance < rightAmount)
                     {
+                        print(distance);
                         test.enabled = false;
                     }
                     //distance = Vector3.Distance(transform.position, hit.point);
@@ -71,6 +72,7 @@ public class Lights : MonoBehaviour
         {
             if (colliders[i].transform.tag == "Stairs" && colliders.Length == 0)
             {
+                print(pos+"/"+ );
                 minDistance.Add(Vector3.Distance(pos.transform.position, colliders[i].transform.position));
                 index = minDistance.IndexOf(minDistance.Min());
                 lightsList[index].enabled = true;
