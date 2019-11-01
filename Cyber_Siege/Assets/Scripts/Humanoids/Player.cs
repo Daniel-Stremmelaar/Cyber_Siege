@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask terrainMask, interactableMask;
     [SerializeField] string interactableTag;
     public float interactRange;
-    [SerializeField] States currentState;
+    public States currentState;
     [SerializeField] Status currentStatus;
     public ActionState currentActionState;
     [SerializeField] Transform feetLocation;
