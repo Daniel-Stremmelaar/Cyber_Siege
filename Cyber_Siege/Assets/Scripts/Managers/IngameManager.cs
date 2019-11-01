@@ -12,6 +12,8 @@ public class IngameManager : MonoBehaviour
 
     [SerializeField] IngameUIManager uiManager;
 
+    public Transform relocate;
+
     [SerializeField] TriggerEvent entrance, exit;
 
     public List<Target> targets;
@@ -65,6 +67,7 @@ public class IngameManager : MonoBehaviour
     public void FinishGame()
     {
         StopTimer();
+        entrance.onTrigger += StartGame;
         exit.onTrigger -= FinishGame;
 
         float penaltyTime = 0;
@@ -76,6 +79,8 @@ public class IngameManager : MonoBehaviour
         {
             ChangeTime(-penaltyTime);
         }
+
+        GameObject.FindGameObjectWithTag("Player").transform.position = relocate.position;
     }
 
 
