@@ -15,7 +15,7 @@ MonoBehaviour:
   clipCapacity: 25
   ammoCapacity: 250
   reloadSpeedMultiplier: 1
-  bulletDamage: 0
+  bulletDamage: 1
   shotKnockdownX: 0.2
   knockupSpeed: 0.1
   knockdownSpeed: 35
@@ -24,7 +24,7 @@ MonoBehaviour:
   movementSpeedModifier: 0
   destroyTime: 1000
   shotDelay: 0.05
-  bulletRange: 20
+  bulletRange: 1000
   bulletVelocity: 10
   idleSpread: 5
   movingSpread: 15

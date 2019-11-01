@@ -24,7 +24,7 @@ MonoBehaviour:
   movementSpeedModifier: 0
   destroyTime: 1000
   shotDelay: 0.05
-  bulletRange: 20
+  bulletRange: 1000
   bulletVelocity: 10
   idleSpread: 5
   movingSpread: 15
