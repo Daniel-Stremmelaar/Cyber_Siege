@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2957595366351808832
+--- !u!1 &4414736719221724809
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3382587167901654234}
-  - component: {fileID: 5706262324354001355}
-  - component: {fileID: 7046447452897537909}
+  - component: {fileID: 880775370752074939}
+  - component: {fileID: 493054115380584432}
+  - component: {fileID: 5258685286980359334}
   m_Layer: 0
-  m_Name: Handle_low
+  m_Name: SingleDoorBarricades.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 82
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3382587167901654234
+--- !u!4 &880775370752074939
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2957595366351808832}
+  m_GameObject: {fileID: 4414736719221724809}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000000026077032, y: 0.2588659, z: 0.0000000031781382}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.000000029802322, y: 0, z: 0.052519467}
+  m_LocalScale: {x: 0.9623272, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9148107237730866061}
-  m_RootOrder: 0
+  m_Father: {fileID: 8204019146081234992}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5706262324354001355
+--- !u!33 &493054115380584432
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2957595366351808832}
-  m_Mesh: {fileID: 8236233635957273240, guid: bb6ab04088888bb4abfb8c46ad5786bd, type: 3}
---- !u!23 &7046447452897537909
+  m_GameObject: {fileID: 4414736719221724809}
+  m_Mesh: {fileID: 2464488784816573367, guid: 5c83bb6569939534f8e2da6b722b00c5, type: 3}
+--- !u!23 &5258685286980359334
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2957595366351808832}
+  m_GameObject: {fileID: 4414736719221724809}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a7fcd0687edc384b888c2605918e96a, type: 2}
+  - {fileID: 2100000, guid: 547edbc5b7f7b48448f023795b011bd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +78,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &5237619058315501982
+--- !u!1 &5152643723799691811
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,46 +86,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9148107237730866061}
-  - component: {fileID: 265604279978420667}
-  - component: {fileID: 5806007177632290114}
+  - component: {fileID: 8204019146081234992}
   m_Layer: 0
-  m_Name: Bucket
+  m_Name: DoubleDoor Barricaded2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 82
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9148107237730866061
+--- !u!4 &8204019146081234992
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237619058315501982}
+  m_GameObject: {fileID: 5152643723799691811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3382587167901654234}
+  - {fileID: 974031566699687415}
+  - {fileID: 880775370752074939}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &265604279978420667
+--- !u!1 &6878149545777653700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974031566699687415}
+  - component: {fileID: 1017280874973673881}
+  - component: {fileID: 2156922905397807682}
+  m_Layer: 0
+  m_Name: Full_Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &974031566699687415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6878149545777653700}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8204019146081234992}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1017280874973673881
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237619058315501982}
-  m_Mesh: {fileID: -9121751838259287324, guid: bb6ab04088888bb4abfb8c46ad5786bd, type: 3}
---- !u!23 &5806007177632290114
+  m_GameObject: {fileID: 6878149545777653700}
+  m_Mesh: {fileID: 8801924477354219668, guid: 5c83bb6569939534f8e2da6b722b00c5, type: 3}
+--- !u!23 &2156922905397807682
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237619058315501982}
+  m_GameObject: {fileID: 6878149545777653700}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -136,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a7fcd0687edc384b888c2605918e96a, type: 2}
+  - {fileID: 2100000, guid: 547edbc5b7f7b48448f023795b011bd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
